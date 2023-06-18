@@ -1,6 +1,6 @@
 # ポートフォリオサイト焼肉鴨緑江の予約管理アプリです
 
-[week5-6　テーマ決め](https://www.notion.so/week5-6-d079c54c99e948c689bb75e4997c84d0?pvs=4)
+[week5-6 テーマ決め](https://www.notion.so/week5-6-d079c54c99e948c689bb75e4997c84d0?pvs=4)
 
 [week7-8 要件定義](https://www.notion.so/week7-8-c341dbe260aa42c7bec8a2323f211a09?pvs=4)
 
