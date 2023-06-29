@@ -8,4 +8,8 @@
 
 [week9-10 設計1](https://www.notion.so/week9-10-1-bd73292925a84578ad2e36ecf1bb1d58?pvs=4)
 
+[week10-11 設計2](https://www.notion.so/week11-12-2-4bdaeca48988446fbab91ec8ea74b5e4?pvs=4)
+
 [ワイヤーフレーム](./documents/wire_frame.md)
+
+[システム構成図](./documents/%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E6%A7%8B%E6%88%90%E5%9B%B3.drawio.png)
