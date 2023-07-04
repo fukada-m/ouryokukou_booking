@@ -13,7 +13,7 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*
-/tmp/*
+booking_api/tmp/*
 !/log/.keep
 !/tmp/.keep
 
@@ -56,4 +56,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-booking_api/tmp
+
