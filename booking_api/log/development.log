@@ -12,3 +12,190 @@ Completed 200 OK in 29ms (Views: 4.3ms | ActiveRecord: 0.0ms | Allocations: 7143
   [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-07-03 14:35:51.212276"], ["updated_at", "2023-07-03 14:35:51.212276"]]
   [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
   [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/health_check" for ::1 at 2023-07-04 00:24:22 +0900
+  
+SyntaxError (/Users/mitsuharu/Desktop/ouryokukou_booking/booking_api/app/controllers/health_checks_controller.rb:4: syntax error, unexpected end-of-input):
+  
+app/controllers/health_checks_controller.rb:4: syntax error, unexpected end-of-input
+app/controllers/health_checks_controller.rb:4: syntax error, unexpected end-of-input
+Started GET "/health_check" for ::1 at 2023-07-04 09:29:59 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 1ms (Allocations: 140)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:31:38 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 1ms (Views: 1.2ms | Allocations: 245)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:36:07 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 2ms (Views: 1.3ms | Allocations: 87)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:40:03 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 3ms (Views: 1.3ms | Allocations: 85)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:40:03 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | Allocations: 85)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:49:10 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 2ms (Views: 0.9ms | Allocations: 85)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:49:13 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | Allocations: 85)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:49:15 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | Allocations: 85)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:49:15 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | Allocations: 85)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:54:40 +0900
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 2347)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:54:41 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:54:52 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 87)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:54:52 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 85)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:57:06 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 87)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:57:06 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 0ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 85)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:57:52 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 87)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:57:52 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 87)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:58:03 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 88)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:58:03 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:58:16 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:58:16 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:58:19 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:58:19 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:58:28 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:58:28 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:58:46 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:58:46 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:58:49 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:58:49 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 8ms (Views: 8.1ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 09:58:56 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 16ms (Views: 6.2ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 10:00:00 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 10:12:04 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 4ms (Views: 1.8ms | Allocations: 86)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 10:12:14 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 3ms (Views: 1.0ms | Allocations: 86)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 10:12:34 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 1ms (Views: 0.5ms | Allocations: 86)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 10:14:04 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 4ms (Views: 0.9ms | Allocations: 87)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 10:14:06 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | Allocations: 86)
+
+
