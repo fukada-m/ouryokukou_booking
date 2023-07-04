@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+SAMPLE_TESTS = [
+	{
+		name: 'Going around the world',
+	},
+	{
+		name: 'graduating from college',
+	}
+]
+
+SAMPLE_TESTS.each do |test|
+	Test.create(test)
+end

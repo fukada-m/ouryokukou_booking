@@ -199,3 +199,226 @@ Processing by HealthChecksController#index as HTML
 Completed 200 OK in 0ms (Views: 0.2ms | Allocations: 86)
 
 
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTests (20230704110940)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "tests" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230704110940"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTest Create (0.5ms)[0m  [1m[32mINSERT INTO "tests" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Going around the world"], ["created_at", "2023-07-04 12:18:13.028811"], ["updated_at", "2023-07-04 12:18:13.028811"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTest Create (0.1ms)[0m  [1m[32mINSERT INTO "tests" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "graduating from college"], ["created_at", "2023-07-04 12:18:13.030823"], ["updated_at", "2023-07-04 12:18:13.030823"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTest Load (0.3ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+Started GET "/" for ::1 at 2023-07-04 21:22:10 +0900
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/mitsuharu/.rbenv/versions/3.2.1/lib/ruby/gems/3.2.0/gems/railties-7.0.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/mitsuharu/.rbenv/versions/3.2.1/lib/ruby/gems/3.2.0/gems/railties-7.0.6/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.1ms | Allocations: 490)
+Completed 200 OK in 7ms (Views: 2.6ms | ActiveRecord: 0.0ms | Allocations: 4063)
+
+
+Started GET "/test" for ::1 at 2023-07-04 21:22:18 +0900
+  
+ActionController::RoutingError (No route matches [GET] "/test"):
+  
+Started GET "/favicon.ico" for ::1 at 2023-07-04 21:22:18 +0900
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/test_db" for ::1 at 2023-07-04 21:22:34 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.5ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 13ms (Views: 8.3ms | ActiveRecord: 0.9ms | Allocations: 5662)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 21:42:37 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 3ms (Views: 1.2ms | Allocations: 92)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 21:42:38 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.2ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 16ms (Views: 15.5ms | ActiveRecord: 3.3ms | Allocations: 1042)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 21:44:09 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 87)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 21:44:10 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.3ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 6ms (Views: 4.9ms | ActiveRecord: 0.3ms | Allocations: 899)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 21:46:00 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.4ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 10ms (Views: 8.2ms | ActiveRecord: 0.4ms | Allocations: 889)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 21:46:01 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.1ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 5ms (Views: 5.0ms | ActiveRecord: 0.1ms | Allocations: 899)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 21:46:02 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.7ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.7ms | Allocations: 889)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 21:46:02 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.2ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.2ms | Allocations: 889)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 21:46:02 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.2ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.2ms | Allocations: 889)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 21:46:03 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 85)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 21:46:03 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.2ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.2ms | Allocations: 889)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 21:46:04 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.2ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.2ms | Allocations: 889)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 21:46:04 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.2ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.2ms | Allocations: 889)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 21:46:04 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.1ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.1ms | Allocations: 889)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 21:46:23 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.6ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 6ms (Views: 3.9ms | ActiveRecord: 0.6ms | Allocations: 889)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 21:46:24 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.1ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.1ms | Allocations: 891)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 21:46:24 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.1ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 10ms (Views: 9.8ms | ActiveRecord: 0.1ms | Allocations: 890)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 21:51:55 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (3.4ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 33ms (Views: 19.3ms | ActiveRecord: 3.4ms | Allocations: 900)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 21:51:58 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 21:51:59 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.1ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.1ms | Allocations: 890)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 21:56:41 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (2.8ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 17ms (Views: 13.5ms | ActiveRecord: 2.8ms | Allocations: 891)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 21:57:09 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.4ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 0.4ms | Allocations: 890)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 22:13:49 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.3ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 17ms (Views: 16.7ms | ActiveRecord: 3.6ms | Allocations: 1029)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 22:15:29 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.3ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 9ms (Views: 5.5ms | ActiveRecord: 0.3ms | Allocations: 890)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 22:45:27 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.2ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 34ms (Views: 25.5ms | ActiveRecord: 3.7ms | Allocations: 1028)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 22:45:29 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/health_check" for ::1 at 2023-07-04 22:45:31 +0900
+Processing by HealthChecksController#index as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 86)
+
+
+Started GET "/test_db" for ::1 at 2023-07-04 22:45:31 +0900
+Processing by HealthChecksController#test_db as HTML
+  [1m[36mTest Load (0.2ms)[0m  [1m[34mSELECT "tests".* FROM "tests"[0m
+  ↳ app/controllers/health_checks_controller.rb:8:in `test_db'
+Completed 200 OK in 7ms (Views: 6.7ms | ActiveRecord: 0.2ms | Allocations: 890)
+
+
