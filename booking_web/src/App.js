@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 function App() {
   const [status, setStatus] = useState('チェックしてみて');
-  const [testData, setTestData] = useState([{id: 1, name: 'テストデータ'}]);
+  const [testData, setTestData] = useState([{id: 1, name: 'テストデータNone'}]);
 
   const onClick1 = async () => {
     try {
@@ -32,12 +32,12 @@ function App() {
       <h1>Booking Web</h1>
       <div style={ {marginTop: "20px"} }>
         <p>Status: {status}</p>
-        <p>Test DB:</p>
+        <p>Testデータ:</p>
         {testData.map((data) => (
           <p key={data.id}>{data.name}</p>
         ))}
         <button onClick={onClick1}>Health Check</button>
-        <button onClick={onClick2}>Test DB</button>
+        <button onClick={onClick2}>Test DBからデータを取得</button>
       </div>
     </div>
   );
