@@ -19,6 +19,7 @@ function App() {
   const onClick2 = async () => {
     try {
       const res = await axiosInstance.get("/test_db");
+      console.log(res.data);
       setTestData(res.data);
     } catch (error) {
       console.error(error);
