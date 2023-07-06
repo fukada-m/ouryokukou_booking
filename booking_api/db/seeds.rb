@@ -5,18 +5,19 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-# SAMPLE_TESTS = [
-# 	{
-# 		name: 'Going around the world',
-# 	},
-# 	{
-# 		name: 'graduating from college',
-# 	}
-# ]
+#
+SAMPLE_TESTS = [
+	{
+		name: 'Going around the world',
+	},
+	{
+		name: 'graduating from college',
+	}
+]
 
-# SAMPLE_TESTS.each do |test|
-# 	Test.find_or_create_by(test)
-# end
+SAMPLE_TESTS.each do |test|
+	Test.find_or_create_by(test)
+end
 
 TABLES = [
 	{ name: '1番' },
@@ -34,5 +35,10 @@ TABLES = [
 
 TABLES.each { |table| Table.find_or_create_by(table)}
 
+CATEGORYS = [
+	{ name: 'LINE' },
+	{ name: '電話' },
+]
 
+CATEGORYS.each { |category| BookingCategory.find_or_create_by(category) }
 

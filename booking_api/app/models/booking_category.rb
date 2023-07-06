@@ -1,0 +1,2 @@
+class BookingCategory < ApplicationRecord
+end
