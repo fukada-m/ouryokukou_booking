@@ -1,5 +1,5 @@
 class TablesController < ApplicationController
-  def get_tables
+  def get_all_tables
     data = Table.all.map(&:name)
       render json: data
   end
