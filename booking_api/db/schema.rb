@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_07_012352) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_07_093135) do
   create_table "booking_categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -29,6 +29,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_07_012352) do
     t.index ["booking_category_id"], name: "index_bookings_on_booking_category_id"
   end
 
+  create_table "bookings_tables", force: :cascade do |t|
+    t.integer "booking_id"
+    t.integer "table_id"
+    t.index ["booking_id"], name: "index_bookings_tables_on_booking_id"
+    t.index ["table_id"], name: "index_bookings_tables_on_table_id"
+  end
+
   create_table "tables", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -42,4 +49,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_07_012352) do
   end
 
   add_foreign_key "bookings", "booking_categories"
+  add_foreign_key "bookings_tables", "bookings"
+  add_foreign_key "bookings_tables", "tables"
 end
