@@ -51,6 +51,14 @@ SAMPLE_BOOKINGS = [
 		note: 'にんじんが食べれないです。',
 		booking_category_id: 2,
 	},
+	{
+		date: '2023-07-03',
+		name: '深田',
+		number_of_adults: 2,
+		number_of_children: 0,
+		note: '',
+		booking_category_id: 1,
+	}
 ]
 
 SAMPLE_BOOKINGS.each { |booking| Booking.find_or_create_by(booking) }
