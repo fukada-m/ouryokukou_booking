@@ -12,4 +12,21 @@ class BookingsController < ApplicationController
     end
     render json: all_booking
   end
+
+  def create_booking
+    booking = Booking.new(get_body_params)
+    if booking.save
+      render json: { status: 'SUCCESS' }
+    else
+      render json: { status: 'ERROR', data: booking.errors }
+    end
+  end
+
+  private
+
+  def get_body_params
+    params.require(:booking).permit(:date,
+      :name, :number_of_adults, :number_of_children, :note, :booking_category_id)
+  end
+
 end
