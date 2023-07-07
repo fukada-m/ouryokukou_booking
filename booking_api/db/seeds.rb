@@ -42,3 +42,23 @@ CATEGORYS = [
 
 CATEGORYS.each { |category| BookingCategory.find_or_create_by(category) }
 
+SAMPLE_BOOKINGS = [
+	{
+		date: '2021-07-07',
+		name: 'fukada',
+		number_of_adults: 2,
+		number_of_children: 1,
+		note: 'test',
+		booking_category_id: 1,
+	},
+	{
+		date: '2021-07-07',
+		name: '佐々木',
+		number_of_adults: 3,
+		number_of_children: 2,
+		note: 'にんじんが食べれないです。',
+		booking_category_id: 2,
+	},
+]
+
+SAMPLE_BOOKINGS.each { |booking| Booking.find_or_create_by(booking) }
