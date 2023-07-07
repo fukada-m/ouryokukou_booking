@@ -9,28 +9,42 @@ class BookingsController < ApplicationController
   end
 
   def get_all_booking
-    all_booking = Booking.all.map do |booking|
-      {
-        date: booking.date,
-        name: booking.name,
-        number_of_adults: booking.number_of_adults,
-        number_of_children: booking.number_of_children,
-        note: booking.note,
-        booking_category_name: booking.booking_category.name,
-      }
+    all_bookings = Booking.all.map do |booking|
+      tables = booking.tables.map { |table| table.name }
+        {
+          id: booking.id,
+          date: booking.date,
+          name: booking.name,
+          number_of_adults: booking.number_of_adults,
+          number_of_children: booking.number_of_children,
+          note: booking.note,
+          table: tables,
+          booking_category: booking.booking_category.name
+        }
     end
-    render json: all_booking
+    render json: { status: 'SUCCESS', data: all_bookings }
   end
 
   def get_booking
     begin
       booking = Booking.find_by!(id: get_body_params[:id])
-      render json: booking
+      tables = booking.tables.map { |table| table.name }
+      render json: {
+        id: booking.id,
+        date: booking.date,
+        name: booking.name,
+        number_of_adults: booking.number_of_adults,
+        number_of_children: booking.number_of_children,
+        note: booking.note,
+        table: tables,
+        booking_category: booking.booking_category.name
+      }
     rescue ActiveRecord::RecordNotFound => e
       render json: { status: 'ERROR', data: e.message, message: '該当する予約がありませんでした。' }
     end
   end
 
+  # 暫定版
   def update_booking
     begin
       booking = Booking.find_by!(id: get_body_params[:id])

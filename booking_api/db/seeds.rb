@@ -54,3 +54,21 @@ SAMPLE_BOOKINGS = [
 ]
 
 SAMPLE_BOOKINGS.each { |booking| Booking.find_or_create_by(booking) }
+booking = Booking.find(2)
+table = Table.find(1)
+unless booking.tables.include?(table)
+	booking.tables << table
+end
+
+booking = Booking.find(2)
+table = Table.find(4)
+unless booking.tables.include?(table)
+	booking.tables << table
+end
+
+booking = Booking.find(3)
+table = Table.find(5)
+unless booking.tables.include?(table)
+	booking.tables << table
+end
+
