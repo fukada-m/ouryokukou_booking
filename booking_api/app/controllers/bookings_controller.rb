@@ -1,10 +1,16 @@
 class BookingsController < ApplicationController
   def create_booking
-    booking = Booking.new(get_body_params)
+    booking = Booking.new(get_body_booking_params)
     if booking.save
+      get_body_table_params[:id].each do |table_id|
+        table = Table.find(table_id)
+        unless booking.tables.include?(table)
+          booking.tables << table
+        end
+      end
       render json: { status: 'SUCCESS' }
     else
-      render json: { status: 'ERROR', data: booking.errors }
+      render json: { status: 'ERROR', data: booking.errors, message: '予約の作成に失敗しました。' }
     end
   end
 
@@ -27,7 +33,7 @@ class BookingsController < ApplicationController
 
   def get_booking
     begin
-      booking = Booking.find_by!(id: get_body_params[:id])
+      booking = Booking.find_by!(id: get_body_booking_params[:id])
       tables = booking.tables.map { |table| table.name }
       render json: {
         id: booking.id,
@@ -47,8 +53,8 @@ class BookingsController < ApplicationController
   # 暫定版
   def update_booking
     begin
-      booking = Booking.find_by!(id: get_body_params[:id])
-      if booking.update(get_body_params)
+      booking = Booking.find_by!(id: get_body_booking_params[:id])
+      if booking.update(get_body_booking_params)
         render json: { status: 'SUCCESS' }
       else
         render json: { status: 'ERROR', data: booking.errors }
@@ -60,7 +66,7 @@ class BookingsController < ApplicationController
 
   def delete_booking
     begin
-      booking = Booking.find_by!(id: get_body_params[:id])
+      booking = Booking.find_by!(id: get_body_booking_params[:id])
       if booking.destroy
         render json: { status: 'SUCCESS' }
       else
@@ -73,9 +79,13 @@ class BookingsController < ApplicationController
 
   private
 
-  def get_body_params
+  def get_body_booking_params
     params.require(:booking).permit(:id, :date,:name,
       :number_of_adults, :number_of_children, :note, :booking_category_id)
+  end
+
+  def get_body_table_params
+    params.require(:table).permit(id: [])
   end
 
 end
