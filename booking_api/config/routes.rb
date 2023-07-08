@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   post '/api/create_booking', to: 'bookings#create_booking'
   get '/api/get_all_booking', to: 'bookings#get_all_booking'
-  get '/api/get_booking', to: 'bookings#get_booking'
-  put '/api/upeate_booking', to: 'bookings#update_booking'
+  put '/api/update_booking', to: 'bookings#update_booking'
   delete '/api/delete_booking', to: 'bookings#delete_booking'
 
   get '/api/get_all_categories', to: 'booking_categories#get_all_categories'
