@@ -6,7 +6,7 @@ class TablesController < ApplicationController
 
   def is_seated_true
     begin
-      table = Table.find_by!(id: get_body_table_params[:id])
+      table = Table.find_by!(id: get_table_params[:id])
       if table.update(is_seated: true)
         render json: { status: 'SUCCESS' }
       else
@@ -19,7 +19,7 @@ class TablesController < ApplicationController
 
   def is_seated_false
     begin
-      table = Table.find_by!(id: get_body_table_params[:id])
+      table = Table.find_by!(id: get_table_params[:id])
       if table.update(is_seated: false)
         render json: { status: 'SUCCESS' }
       else
@@ -32,7 +32,7 @@ class TablesController < ApplicationController
 
   private
 
-  def get_body_table_params
+  def get_table_params
     params.require(:table).permit(:id)
   end
 end
