@@ -17,7 +17,7 @@ class BookingsController < ApplicationController
   def get_all_booking
     all_booking = Booking.includes(:tables, :booking_category).all
     render json: all_booking.map do |booking|
-      booking.as_json.merge(
+      booking.merge(
         { table: booking.tables.map { |table| table.name }, booking_category: booking.booking_category.name }
       )
     end
