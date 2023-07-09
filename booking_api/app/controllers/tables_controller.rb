@@ -1,7 +1,7 @@
 class TablesController < ApplicationController
   def get_all_tables
-    data = Table.all.map{ |table| { name: table.name, is_seated: table.is_seated } }
-      render json: data
+    data = Table.all
+      render json: data.as_json(except: [:created_at, :updated_at])
   end
 
   def is_seated_true
