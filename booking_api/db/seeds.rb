@@ -62,19 +62,19 @@ SAMPLE_BOOKINGS = [
 ]
 
 SAMPLE_BOOKINGS.each { |booking| Booking.find_or_create_by(booking) }
-booking = Booking.find(2)
+booking = Booking.find(1)
 table = Table.find(1)
 unless booking.tables.include?(table)
 	booking.tables << table
 end
 
-booking = Booking.find(2)
-table = Table.find(4)
+booking = Booking.find(1)
+table = Table.find(2)
 unless booking.tables.include?(table)
 	booking.tables << table
 end
 
-booking = Booking.find(3)
+booking = Booking.find(2)
 table = Table.find(5)
 unless booking.tables.include?(table)
 	booking.tables << table
