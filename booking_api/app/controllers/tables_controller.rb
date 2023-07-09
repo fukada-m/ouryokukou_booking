@@ -29,10 +29,32 @@ class TablesController < ApplicationController
       render json: { status: 'ERROR', data: e.message, message: '該当するテーブルがありませんでした。' }
     end
   end
+  def remove_table_relation
+    begin
+      table = Table.find_by!(get_table_params)
+      booking = Booking.find_by!(get_booking_params)
+      if table.bookings.include?(booking)
+        table.bookings.delete(booking)
+        render json: { status: 'SUCCESS' }
+      else
+        render json: { status: 'ERROR', message: '該当するテーブルと予約の関連付けがありませんでした。' }
+      end
+    rescue ActiveRecord::RecordNotFound => e
+      render json: { status: 'ERROR', data: e.message, message: '該当するテーブルがありませんでした。' }
+    end
+  end
+
+  def add_table_relation
+
+  end
 
   private
 
   def get_table_params
     params.require(:table).permit(:id)
+  end
+
+  def get_booking_params
+    params.require(:booking).permit(:id)
   end
 end

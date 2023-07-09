@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get '/api/get_all_tables', to: 'tables#get_all_tables'
   put '/api/is_seated_true', to: 'tables#is_seated_true'
   put '/api/is_seated_false', to: 'tables#is_seated_false'
+  put '/api/remove_table_relation', to: 'tables#remove_table_relation'
+  put '/api/add_table_relation', to: 'tables#add_table_relation'
 
   get '/api/get_all_categories', to: 'booking_categories#get_all_categories'
 
