@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_07_093135) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_08_061236) do
   create_table "booking_categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -40,6 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_07_093135) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_seated", default: false
   end
 
   create_table "tests", force: :cascade do |t|
