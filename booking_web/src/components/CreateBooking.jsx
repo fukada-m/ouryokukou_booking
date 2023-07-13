@@ -10,36 +10,36 @@ export const CreateBooking = () => {
     const [bookingCategoryId, SetBookingCategoryId] = useState(1)
     const [tableId, SetTableId] = useState()
     const [note, SetNote] = useState()
-    let week = null
+    const weekChars = [
+      "日",
+      "月",
+      "火",
+      "水",
+      "木",
+      "金",
+      "土",
+    ];
 
-    const data = {
-        booking: {
-            date: date,
-            week: week,
-            time: time,
-            name: name,
-            number_of_adults: numberOfAdults,
-            number_of_children: numberOfChildren,
-            booking_category_id: bookingCategoryId,
-            note: note,
-        },
-        table: {
-            id: [tableId],
-        }
-    }
+
 
     const create = async () => {
       const today = new Date(date)
-      const weekChars = [
-        "日",
-        "月",
-        "火",
-        "水",
-        "木",
-        "金",
-        "土",
-      ];
-      week = weekChars[today.getDay()]
+      const week = weekChars[today.getDay()]
+          const data = {
+            booking: {
+              date: date,
+              week: week,
+              time: time,
+              name: name,
+              number_of_adults: numberOfAdults,
+              number_of_children: numberOfChildren,
+              booking_category_id: bookingCategoryId,
+              note: note,
+            },
+            table: {
+              id: [tableId],
+            },
+          };
         try {
             const res = await axiosInstance.post("/api/create_booking", data);
             console.log(res.data);

@@ -22,7 +22,7 @@ class BookingsController < ApplicationController
         except: [:id, :created_at, :updated_at]
       },
       tables: {
-        except: [:id, :created_at, :updated_at]
+        except: [:created_at, :updated_at]
       },
     },
     except: [:booking_category_id,:created_at, :updated_at])

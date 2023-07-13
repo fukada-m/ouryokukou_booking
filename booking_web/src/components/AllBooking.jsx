@@ -15,7 +15,7 @@ export const AllBooking = () => {
   return (
     <>
     <h1>予約一覧</h1>
-    <div style={{ display: "flex"  }}>
+    <div style={{ display: "flex" }}>
       {allBooking.map((booking) => (
           <div key={booking.id} style={{margin: "20px"}}>
           <p>ID:{booking.id}</p>
