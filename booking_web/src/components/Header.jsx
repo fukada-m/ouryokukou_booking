@@ -8,6 +8,8 @@ export const Header = () => {
       <Link to="/allBooking">全ての予約を表示</Link>
       <span> | </span>
       <Link to="/todayBooking">今日の予約を表示</Link>
+      <span> | </span>
+      <Link to="/createBooking">新規予約を作成</Link>
     </div>
   );
 }

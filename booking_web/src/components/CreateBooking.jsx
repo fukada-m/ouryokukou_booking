@@ -2,14 +2,14 @@ import React, {useState} from 'react'
 import { axiosInstance } from '../utils/axios'
 
 export const CreateBooking = () => {
-    const [date, SetDate] = useState()
-    const [time, SetTime] = useState()
-    const [name, SetName] = useState()
-    const [numberOfAdults, SetNumberOfAdults] = useState(1)
-    const [numberOfChildren, SetNumberOfChildren] = useState(1)
-    const [bookingCategoryId, SetBookingCategoryId] = useState(1)
-    const [tableId, SetTableId] = useState()
-    const [note, SetNote] = useState()
+    const [date, setDate] = useState()
+    const [time, setTime] = useState()
+    const [name, setName] = useState()
+    const [numberOfAdults, setNumberOfAdults] = useState(1)
+    const [numberOfChildren, setNumberOfChildren] = useState(1)
+    const [bookingCategoryId, setBookingCategoryId] = useState(1)
+    const [tableId, setTableId] = useState()
+    const [note, setNote] = useState()
     const weekChars = [
       "日",
       "月",
@@ -19,8 +19,6 @@ export const CreateBooking = () => {
       "金",
       "土",
     ];
-
-
 
     const create = async () => {
       const today = new Date(date)
@@ -52,17 +50,15 @@ export const CreateBooking = () => {
     <>
       <h1>CreateBooking</h1>
       <div>
-        <label>日付</label>
-        <input type="date" onChange={(e) => SetDate(e.target.value)} />
-        <label>時間</label>
-        <input type="time" onChange={(e) => SetTime(e.target.value)} />
+        <input type="date" onChange={(e) => setDate(e.target.value)} />
+        <input type="time" onChange={(e) => setTime(e.target.value)} />
         <label>名前</label>
-        <input type="text" onChange={(e) => SetName(e.target.value)} />
+        <input type="text" onChange={(e) => setName(e.target.value)} />
         <label>大人</label>
         <input
           type="number"
           value={numberOfAdults}
-          onChange={(e) => SetNumberOfAdults(e.target.value)}
+          onChange={(e) => setNumberOfAdults(e.target.value)}
           min={1}
           max={99}
         />
@@ -70,7 +66,7 @@ export const CreateBooking = () => {
         <input
           type="number"
           value={numberOfChildren}
-          onChange={(e) => SetNumberOfChildren(e.target.value)}
+          onChange={(e) => setNumberOfChildren(e.target.value)}
           min={0}
           max={99}
         />
@@ -78,7 +74,7 @@ export const CreateBooking = () => {
         <input
           type="number"
           value={bookingCategoryId}
-          onChange={(e) => SetBookingCategoryId(e.target.value)}
+          onChange={(e) => setBookingCategoryId(e.target.value)}
           min={1}
           max={2}
         />
@@ -86,12 +82,12 @@ export const CreateBooking = () => {
         <input
           type="number"
           value={tableId}
-          onChange={(e) => SetTableId(e.target.value)}
+          onChange={(e) => setTableId(e.target.value)}
           min={1}
           max={99}
         />
         <label>備考</label>
-        <textarea onChange={(e) => SetNote(e.target.value)} />
+        <textarea onChange={(e) => setNote(e.target.value)} />
         <button onClick={create}>登録</button>
       </div>
     </>

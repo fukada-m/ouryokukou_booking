@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { axiosInstance } from '../utils/axios'
+import { DeleteButton } from './DeleteButton';
 
 export const AllBooking = () => {
     const [allBooking, setAllBooking] = useState([]);
@@ -31,6 +32,7 @@ export const AllBooking = () => {
             </div>
           ))}
           <p>{booking.note}</p>
+          <DeleteButton bookingId={booking.id} setAllBooking={setAllBooking}/>
         </div>
       ))}
     </div>
