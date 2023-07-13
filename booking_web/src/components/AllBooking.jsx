@@ -3,7 +3,7 @@ import { axiosInstance } from '../utils/axios'
 
 export const AllBooking = () => {
     const [allBooking, setAllBooking] = useState([]);
-    
+
     const fetchAllBooking = async () => {
         const allBooking = await axiosInstance.get("/api/get_all_booking");
         setAllBooking(allBooking.data);
@@ -20,6 +20,8 @@ export const AllBooking = () => {
           <div key={booking.id} style={{margin: "20px"}}>
           <p>ID:{booking.id}</p>
           <p>{booking.date}</p>
+          <p>{booking.week}</p>
+          <p>{booking.time}</p>
           <p>{booking.name}</p>
           <p>大人{booking.number_of_adults}人</p>
           <p>子供{booking.number_of_children}人</p>
