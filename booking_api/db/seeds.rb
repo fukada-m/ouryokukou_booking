@@ -42,6 +42,8 @@ SAMPLE_BOOKINGS = [
 		number_of_children: 1,
 		note: 'test',
 		booking_category_id: 1,
+		week: '水',
+		time: '18:00',
 	},
 	{
 		date: '2021-07-07',
@@ -50,14 +52,19 @@ SAMPLE_BOOKINGS = [
 		number_of_children: 2,
 		note: 'にんじんが食べれないです。',
 		booking_category_id: 2,
+		week: '水',
+		time: '17:00',
 	},
 	{
-		date: '2023-07-03',
+		date: '2023-07-13',
 		name: '深田',
 		number_of_adults: 2,
 		number_of_children: 0,
 		note: '',
 		booking_category_id: 1,
+		week: '木',
+		time: '18:00',
+
 	}
 ]
 
