@@ -3,16 +3,20 @@ import { axiosInstance } from '../utils/axios'
 
 export const CreateBooking = () => {
     const [date, SetDate] = useState()
+    const [time, SetTime] = useState()
     const [name, SetName] = useState()
     const [numberOfAdults, SetNumberOfAdults] = useState(1)
     const [numberOfChildren, SetNumberOfChildren] = useState(1)
     const [bookingCategoryId, SetBookingCategoryId] = useState(1)
     const [tableId, SetTableId] = useState()
     const [note, SetNote] = useState()
+    let week = null
 
     const data = {
         booking: {
             date: date,
+            week: week,
+            time: time,
             name: name,
             number_of_adults: numberOfAdults,
             number_of_children: numberOfChildren,
@@ -25,6 +29,17 @@ export const CreateBooking = () => {
     }
 
     const create = async () => {
+      const today = new Date(date)
+      const weekChars = [
+        "日",
+        "月",
+        "火",
+        "水",
+        "木",
+        "金",
+        "土",
+      ];
+      week = weekChars[today.getDay()]
         try {
             const res = await axiosInstance.post("/api/create_booking", data);
             console.log(res.data);
@@ -39,6 +54,8 @@ export const CreateBooking = () => {
       <div>
         <label>日付</label>
         <input type="date" onChange={(e) => SetDate(e.target.value)} />
+        <label>時間</label>
+        <input type="time" onChange={(e) => SetTime(e.target.value)} />
         <label>名前</label>
         <input type="text" onChange={(e) => SetName(e.target.value)} />
         <label>大人</label>
@@ -69,10 +86,7 @@ export const CreateBooking = () => {
         <input
           type="number"
           value={tableId}
-          onChange={(e) => {
-            SetTableId(e.target.value)
-            console.log(tableId)
-          }}
+          onChange={(e) => SetTableId(e.target.value)}
           min={1}
           max={99}
         />
