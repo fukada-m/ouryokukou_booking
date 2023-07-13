@@ -21,6 +21,7 @@ export const DeleteBooking = () => {
   return (
     <div>
       <h1>DeleteBooking</h1>
+      <label>予約ID</label>
       <input type="number" onChange={(e) => SetId(e.target.value)} />
       <button onClick={destory}>削除</button>
     </div>

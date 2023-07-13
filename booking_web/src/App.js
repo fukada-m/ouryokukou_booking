@@ -4,6 +4,7 @@ import { AllBooking } from './components/AllBooking';
 import { Test } from './components/Test'
 import { CreateBooking } from './components/CreateBooking';
 import { DeleteBooking } from './components/DeleteBooking.jsx';
+import { UpdateBooking } from './components/UpdateBooking';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <AllBooking />
       <CreateBooking />
       <DeleteBooking />
+      <UpdateBooking />
     </>
   );
 }
