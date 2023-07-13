@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_08_061236) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_13_064252) do
   create_table "booking_categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -26,6 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_08_061236) do
     t.integer "booking_category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "week"
+    t.string "time"
     t.index ["booking_category_id"], name: "index_bookings_on_booking_category_id"
   end
 
@@ -34,17 +36,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_08_061236) do
     t.integer "table_id"
     t.index ["booking_id"], name: "index_bookings_tables_on_booking_id"
     t.index ["table_id"], name: "index_bookings_tables_on_table_id"
-  end
-
-  create_table "books", force: :cascade do |t|
-    t.date "date"
-    t.string "name"
-    t.integer "number"
-    t.text "note"
-    t.integer "booking_category_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["booking_category_id"], name: "index_books_on_booking_category_id"
   end
 
   create_table "tables", force: :cascade do |t|
@@ -63,5 +54,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_08_061236) do
   add_foreign_key "bookings", "booking_categories"
   add_foreign_key "bookings_tables", "bookings"
   add_foreign_key "bookings_tables", "tables"
-  add_foreign_key "books", "booking_categories"
 end
