@@ -19,8 +19,7 @@ export const AllBooking = () => {
       {allBooking.map((booking) => (
           <div key={booking.id} style={{margin: "20px"}}>
           <p>ID:{booking.id}</p>
-          <p>{booking.date}</p>
-          <p>{booking.week}</p>
+          <p>{booking.date}({booking.week})</p>
           <p>{booking.time}</p>
           <p>{booking.name}</p>
           <p>大人{booking.number_of_adults}人</p>
