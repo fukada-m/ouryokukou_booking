@@ -24,7 +24,7 @@ export const CreateBooking = () => {
         }
     }
 
-    const postBooking = async () => {
+    const create = async () => {
         try {
             const res = await axiosInstance.post("/api/create_booking", data);
             console.log(res.data);
@@ -78,7 +78,7 @@ export const CreateBooking = () => {
         />
         <label>備考</label>
         <textarea onChange={(e) => SetNote(e.target.value)} />
-        <button onClick={postBooking}>登録</button>
+        <button onClick={create}>登録</button>
       </div>
     </>
   );
