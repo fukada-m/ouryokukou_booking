@@ -54,6 +54,7 @@ export const TodayBooking = () => {
               table={table}
               todayBooking={todayBooking}
               setTodayBooking={setTodayBooking}
+              setTables={setTables}
             />
             {table.is_seated || <SitSeatButton tableId={table.id} setTables={setTables} />}
             {table.is_seated && <LeaveSeatButton tableId={table.id} setTables={setTables} />}

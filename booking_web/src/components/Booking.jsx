@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { DeleteButton } from './DeleteButton'
 
 export const Booking = (props) => {
-  const { table, todayBooking, setTodayBooking } = props;
+  const { table, todayBooking, setTodayBooking, setTables } = props;
 
   const booking = todayBooking.filter((booking) => {
     const selectedTable = booking.tables.filter((todayTable) => {
@@ -27,6 +27,8 @@ export const Booking = (props) => {
           <p>{booking.note}</p>
           <p></p>
           <DeleteButton
+            table={table}
+            setTables={setTables}
             bookingId={booking.id}
             setTodayBooking={setTodayBooking}
           />

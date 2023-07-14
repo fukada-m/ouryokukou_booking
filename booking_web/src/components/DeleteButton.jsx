@@ -3,7 +3,7 @@ import { axiosInstance } from '../utils/axios'
 import { today } from '../utils/today'
 
 export const DeleteButton = (props) => {
-  const { bookingId, setAllBooking, setTodayBooking, setNoAssigendBooking } =
+  const { bookingId, table, setTables, setAllBooking, setTodayBooking, setNoAssigendBooking } =
     props;
 
   const data = {
@@ -26,7 +26,14 @@ export const DeleteButton = (props) => {
         setNoAssigendBooking && setNoAssigendBooking(noAssigendBooking);
         setAllBooking && setAllBooking(allBooking.data);
         setTodayBooking && setTodayBooking(todayBooking);
-
+        const tableId = {
+          table: {
+            id: table.id
+          }
+        };
+        await axiosInstance.put("/api/is_seated_false", tableId);
+        const newTable = await axiosInstance.get("/api/get_all_tables");
+        setTables(newTable.data)
       } catch (error) {
         console.error(error);
       }
