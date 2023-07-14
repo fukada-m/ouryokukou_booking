@@ -1,48 +1,49 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { axiosInstance } from '../utils/axios'
+import { useNavigate } from 'react-router-dom'
 
 export const CreateBooking = () => {
-    const [date, SetDate] = useState()
-    const [time, SetTime] = useState()
-    const [name, SetName] = useState()
-    const [numberOfAdults, SetNumberOfAdults] = useState(1)
-    const [numberOfChildren, SetNumberOfChildren] = useState(1)
-    const [bookingCategoryId, SetBookingCategoryId] = useState(1)
-    const [tableId, SetTableId] = useState()
-    const [note, SetNote] = useState()
-    let week = null
-
-    const data = {
-        booking: {
-            date: date,
-            week: week,
-            time: time,
-            name: name,
-            number_of_adults: numberOfAdults,
-            number_of_children: numberOfChildren,
-            booking_category_id: bookingCategoryId,
-            note: note,
-        },
-        table: {
-            id: [tableId],
-        }
-    }
+    const navigate = useNavigate()
+    const [date, setDate] = useState()
+    const [time, setTime] = useState()
+    const [name, setName] = useState()
+    const [numberOfAdults, setNumberOfAdults] = useState(1)
+    const [numberOfChildren, setNumberOfChildren] = useState(1)
+    const [bookingCategoryId, setBookingCategoryId] = useState(1)
+    const [tableId, setTableId] = useState()
+    const [note, setNote] = useState()
+    const weekChars = [
+      "日",
+      "月",
+      "火",
+      "水",
+      "木",
+      "金",
+      "土",
+    ];
 
     const create = async () => {
       const today = new Date(date)
-      const weekChars = [
-        "日",
-        "月",
-        "火",
-        "水",
-        "木",
-        "金",
-        "土",
-      ];
-      week = weekChars[today.getDay()]
+      const week = weekChars[today.getDay()]
+          const data = {
+            booking: {
+              date: date,
+              week: week,
+              time: time,
+              name: name,
+              number_of_adults: numberOfAdults,
+              number_of_children: numberOfChildren,
+              booking_category_id: bookingCategoryId,
+              note: note,
+            },
+            table: {
+              id: [tableId],
+            },
+          };
         try {
             const res = await axiosInstance.post("/api/create_booking", data);
             console.log(res.data);
+            navigate("/")
         } catch (error) {
             console.error(error);
         }
@@ -52,17 +53,15 @@ export const CreateBooking = () => {
     <>
       <h1>CreateBooking</h1>
       <div>
-        <label>日付</label>
-        <input type="date" onChange={(e) => SetDate(e.target.value)} />
-        <label>時間</label>
-        <input type="time" onChange={(e) => SetTime(e.target.value)} />
+        <input type="date" onChange={(e) => setDate(e.target.value)} />
+        <input type="time" onChange={(e) => setTime(e.target.value)} />
         <label>名前</label>
-        <input type="text" onChange={(e) => SetName(e.target.value)} />
+        <input type="text" onChange={(e) => setName(e.target.value)} />
         <label>大人</label>
         <input
           type="number"
           value={numberOfAdults}
-          onChange={(e) => SetNumberOfAdults(e.target.value)}
+          onChange={(e) => setNumberOfAdults(e.target.value)}
           min={1}
           max={99}
         />
@@ -70,7 +69,7 @@ export const CreateBooking = () => {
         <input
           type="number"
           value={numberOfChildren}
-          onChange={(e) => SetNumberOfChildren(e.target.value)}
+          onChange={(e) => setNumberOfChildren(e.target.value)}
           min={0}
           max={99}
         />
@@ -78,7 +77,7 @@ export const CreateBooking = () => {
         <input
           type="number"
           value={bookingCategoryId}
-          onChange={(e) => SetBookingCategoryId(e.target.value)}
+          onChange={(e) => setBookingCategoryId(e.target.value)}
           min={1}
           max={2}
         />
@@ -86,12 +85,12 @@ export const CreateBooking = () => {
         <input
           type="number"
           value={tableId}
-          onChange={(e) => SetTableId(e.target.value)}
+          onChange={(e) => setTableId(e.target.value)}
           min={1}
           max={99}
         />
         <label>備考</label>
-        <textarea onChange={(e) => SetNote(e.target.value)} />
+        <textarea onChange={(e) => setNote(e.target.value)} />
         <button onClick={create}>登録</button>
       </div>
     </>
