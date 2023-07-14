@@ -1,7 +1,9 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { axiosInstance } from '../utils/axios'
+import { useNavigate } from 'react-router-dom'
 
 export const CreateBooking = () => {
+    const navigate = useNavigate()
     const [date, setDate] = useState()
     const [time, setTime] = useState()
     const [name, setName] = useState()
@@ -41,6 +43,7 @@ export const CreateBooking = () => {
         try {
             const res = await axiosInstance.post("/api/create_booking", data);
             console.log(res.data);
+            navigate("/")
         } catch (error) {
             console.error(error);
         }
