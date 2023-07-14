@@ -43,7 +43,10 @@ export const CreateBooking = () => {
         try {
             const res = await axiosInstance.post("/api/create_booking", data);
             console.log(res.data);
-            navigate("/")
+            if (res.data.status === "SUCCESS") {
+              alert("予約の作成が完了しました");
+              navigate("/");
+            }
         } catch (error) {
             console.error(error);
         }
