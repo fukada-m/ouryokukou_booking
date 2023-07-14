@@ -1,21 +1,21 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { DeleteButton } from './DeleteButton'
 
 export const Booking = (props) => {
-  const { tableNum, todayBooking, setTodayBooking } = props;
+  const { table, todayBooking, setTodayBooking } = props;
 
   const booking = todayBooking.filter((booking) => {
-    const table = booking.tables.filter((table) => {
-      return table.id === tableNum
+    const selectedTable = booking.tables.filter((todayTable) => {
+      return todayTable.id === table.id
     })
-      return table.length > 0
+    return selectedTable.length > 0
   })
 
   return (
-    <div>
-      <p style={{ margin: "10px" }}>{tableNum}番</p>
+    <div style={{ backgroundColor: table.is_seated && "red" }}>
+      <p style={{ margin: "10px" }}>{table.id}番</p>
       {booking.map((booking) => (
-        <div key={booking.id} >
+        <div key={booking.id}>
           <p>
             {booking.date}({booking.week})
           </p>
@@ -25,6 +25,7 @@ export const Booking = (props) => {
           <p>子供{booking.number_of_children}人</p>
           <p>{booking.booking_category.name}</p>
           <p>{booking.note}</p>
+          <p></p>
           <DeleteButton
             bookingId={booking.id}
             setTodayBooking={setTodayBooking}

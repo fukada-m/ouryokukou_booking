@@ -3,11 +3,13 @@ import { axiosInstance } from '../utils/axios'
 import { Booking } from './Booking'
 import { today } from '../utils/today'
 import { NoAssignedBooking } from './NoAssignedBooking'
+import { LeaveSeatButton } from './LeaveSeatButton'
+import { SitSeatButton } from './SitSeatButton'
 
 export const TodayBooking = () => {
     const [todayBooking, setTodayBooking] = useState([]);
     const [noAssigendBooking, setNoAssigendBooking] = useState([]);
-    const table_num = [1, 2, 3, 5, 11, 12, 13, 14, 15, 16, 21 ]
+    const [tables, setTables] = useState([]);
 
 
   const fetchTodayBooking = async () => {
@@ -26,23 +28,35 @@ export const TodayBooking = () => {
     }
   };
 
+  const fetchSeat = async () => {
+    try {
+      const res = await axiosInstance.get("/api/get_all_tables");
+      console.log(res.data);
+      setTables(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
 
     useEffect(() => {
       fetchTodayBooking();
+      fetchSeat();
     }, []);
 
   return (
     <>
       <h1>TodayBooking</h1>
       <div style={{ display: "flex" }}>
-        {table_num.map((table) => (
-          <div key={table}>
+        {tables.map((table) => (
+          <div key={table.id}>
             <Booking
-              tableNum={table}
+              table={table}
               todayBooking={todayBooking}
               setTodayBooking={setTodayBooking}
             />
+            <SitSeatButton tableId={table.id} setTables={setTables}/>
+            <LeaveSeatButton tableId={table.id} setTables={setTables} />
           </div>
         ))}
         {noAssigendBooking.map((booking) => (
