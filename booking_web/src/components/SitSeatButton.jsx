@@ -21,7 +21,7 @@ export const SitSeatButton = (props) => {
 
   return (
     <div>
-        <button onClick={sitSeat}>着席</button>
+        <button onClick={sitSeat}>来店</button>
         </div>
   )
 }

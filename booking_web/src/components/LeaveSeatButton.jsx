@@ -21,7 +21,7 @@ export const LeaveSeatButton = (props) => {
 
   return (
     <div>
-        <button onClick={leaveSeat}>離席</button>
+        <button onClick={leaveSeat}>会計</button>
     </div>
   )
 }
