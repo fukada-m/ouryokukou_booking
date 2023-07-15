@@ -49,7 +49,7 @@ export const AddTableRelationButton = (props) => {
           <option value="14">14番</option>
           <option value="15">15番</option>
           <option value="16">16番</option>
-          <option value="21">17番</option>
+          <option value="21">21番</option>
         </select>
       </div>
       <button onClick={addTableRelation}>席を割り振る</button>

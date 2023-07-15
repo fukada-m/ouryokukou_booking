@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { DeleteButton } from './DeleteButton'
+import { MoveSeatButton } from './MoveSeatButton';
 
 export const Booking = (props) => {
   const { table, todayBooking, setTodayBooking, setTables } = props;
@@ -25,13 +26,13 @@ export const Booking = (props) => {
           <p>子供{booking.number_of_children}人</p>
           <p>{booking.booking_category.name}</p>
           <p>{booking.note}</p>
-          <p></p>
           <DeleteButton
             table={table}
             setTables={setTables}
             bookingId={booking.id}
             setTodayBooking={setTodayBooking}
           />
+          <MoveSeatButton bookingId={booking.id} tableId={table.id} setTodayBooking={setTodayBooking}/>
         </div>
       ))}
     </div>
