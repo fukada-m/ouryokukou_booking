@@ -1,5 +1,7 @@
 import React from 'react'
 import { DeleteButton } from './DeleteButton'
+import { AddTableRelationButton } from './AddTableRelationButton'
+
 
 export const NoAssignedBooking = (props) => {
     const { noAssigendBooking, setNoAssigendBooking } = props;
@@ -15,6 +17,7 @@ export const NoAssignedBooking = (props) => {
       <p>子供{noAssigendBooking.number_of_children}人</p>
       <p>{noAssigendBooking.booking_category.name}</p>
       <p>{noAssigendBooking.note}</p>
+      <AddTableRelationButton bookingId={noAssigendBooking.id} />
       <DeleteButton
         bookingId={noAssigendBooking.id}
         setNoAssigendBooking={setNoAssigendBooking}
