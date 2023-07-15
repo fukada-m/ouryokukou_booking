@@ -18,8 +18,8 @@ function App() {
         <Route path="/allBooking" element={<AllBooking />} />
         <Route path="/todayBooking" element={<TodayBooking />} />
         <Route path="/createBooking" element={<CreateBooking />} />
+        <Route path="/editBooking/:id" element={<UpdateBooking />} />
       </Routes>
-      <UpdateBooking />
     </>
   );
 }

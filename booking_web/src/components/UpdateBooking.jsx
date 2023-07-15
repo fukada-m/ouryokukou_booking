@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import { axiosInstance } from "../utils/axios";
+import { useParams, useNavigate } from "react-router-dom";
+
 
 export const UpdateBooking = () => {
-    const [id, SetId] = useState();
+    const navigate = useNavigate();
+    let { id } = useParams();
     const [date, SetDate] = useState();
     const [name, SetName] = useState();
     const [numberOfAdults, SetNumberOfAdults] = useState(1);
@@ -30,6 +33,10 @@ export const UpdateBooking = () => {
       try {
         const res = await axiosInstance.put("/api/update_booking", data);
         console.log(res.data);
+        if (res.data.status === "SUCCESS") {
+          // alert("予約の更新が完了しました");
+          navigate("/allBooking");
+        }
       } catch (error) {
         console.error(error);
       }
@@ -39,8 +46,6 @@ export const UpdateBooking = () => {
       <>
         <h1>UpdateBooking</h1>
         <div>
-          <label>予約ID</label>
-          <input type="number" onChange={(e) => SetId(e.target.value)} />
           <label>日付</label>
           <input type="date" onChange={(e) => SetDate(e.target.value)} />
           <label>名前</label>
@@ -71,7 +76,7 @@ export const UpdateBooking = () => {
           />
           <label>備考</label>
           <textarea onChange={(e) => SetNote(e.target.value)} />
-          <button onClick={create}>登録</button>
+          <button onClick={create}>更新</button>
         </div>
       </>
     );
