@@ -56,8 +56,7 @@ export const TodayBooking = () => {
               setTodayBooking={setTodayBooking}
               setTables={setTables}
             />
-            {table.is_seated || <SitSeatButton tableId={table.id} setTables={setTables} />}
-            {table.is_seated && <LeaveSeatButton tableId={table.id} setTables={setTables} />}
+            {table.is_seated == false ? <SitSeatButton tableId={table.id} setTables={setTables} /> : <LeaveSeatButton tableId={table.id} setTables={setTables} />}
           </div>
         ))}
         {noAssigendBooking.map((booking) => (
