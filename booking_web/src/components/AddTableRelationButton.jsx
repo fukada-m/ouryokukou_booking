@@ -1,14 +1,17 @@
 import React, {useState} from 'react'
 import { axiosInstance } from '../utils/axios'
+import { today } from '../utils/today'
 
 export const AddTableRelationButton = (props) => {
+  const { bookingId, setTodayBooking, setNoAssigendBooking } = props;
+
   const tableNum = [1,2,3,5,11,12,13,14,15,16,21]
   const [table, setTable] = useState(1);
+
   const handleChange = (event) => {
     setTable(event.target.value);
   };
 
-  const { bookingId } = props;
   const data = {
     booking: {
       id: bookingId,
@@ -20,6 +23,15 @@ export const AddTableRelationButton = (props) => {
   const addTableRelation = async () => {
     const res = await axiosInstance.put("/api/add_table_relation", data);
     console.log(res.data);
+    const allBooking = await axiosInstance.get("/api/get_all_booking");
+    const todayBooking = allBooking.data.filter(
+      (booking) => booking.date === today()
+    );
+    setTodayBooking(todayBooking);
+    const noAssigendBooking = todayBooking.filter((booking) => {
+      return booking.tables.length === 0;
+    });
+    setNoAssigendBooking(noAssigendBooking);
   };
 
 

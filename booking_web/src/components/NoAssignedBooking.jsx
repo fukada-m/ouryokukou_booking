@@ -4,7 +4,7 @@ import { AddTableRelationButton } from './AddTableRelationButton'
 
 
 export const NoAssignedBooking = (props) => {
-    const { noAssigendBooking, setNoAssigendBooking } = props;
+    const { noAssigendBooking, setNoAssigendBooking, setTodayBooking} = props;
   return (
     <div>
       <p style={{ margin: "10px" }}>席が未定</p>
@@ -17,7 +17,11 @@ export const NoAssignedBooking = (props) => {
       <p>子供{noAssigendBooking.number_of_children}人</p>
       <p>{noAssigendBooking.booking_category.name}</p>
       <p>{noAssigendBooking.note}</p>
-      <AddTableRelationButton bookingId={noAssigendBooking.id} />
+      <AddTableRelationButton
+        bookingId={noAssigendBooking.id}
+        setTodayBooking={setTodayBooking}
+        setNoAssigendBooking={setNoAssigendBooking}
+      />
       <DeleteButton
         bookingId={noAssigendBooking.id}
         setNoAssigendBooking={setNoAssigendBooking}

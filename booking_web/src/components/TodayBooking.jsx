@@ -65,6 +65,7 @@ export const TodayBooking = () => {
             <NoAssignedBooking
               noAssigendBooking={booking}
               setNoAssigendBooking={setNoAssigendBooking}
+              setTodayBooking={setTodayBooking}
             />
           </div>
         ))}
