@@ -81,7 +81,7 @@ export const CreateBooking = () => {
         <label>予約カテゴリー</label>
         <input type="radio" value="1"
             checked={bookingCategoryId === '1'} onChange={()=> setBookingCategoryId("1")}/>
-        <label for="option1">Line</label>
+        <label for="option1">LINE</label>
 
         <input type="radio" value="2"
             checked={bookingCategoryId === '2'} onChange={() => setBookingCategoryId("2")}/>
