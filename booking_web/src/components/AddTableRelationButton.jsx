@@ -8,10 +8,6 @@ export const AddTableRelationButton = (props) => {
   const tableNum = [1,2,3,5,11,12,13,14,15,16,21]
   const [table, setTable] = useState(1);
 
-  const handleChange = (event) => {
-    setTable(event.target.value);
-  };
-
   const data = {
     booking: {
       id: bookingId,
@@ -38,7 +34,7 @@ export const AddTableRelationButton = (props) => {
   return (
     <div>
       <div>
-        <select value={table} onChange={handleChange}>
+        <select value={table} onChange={(e) => setTable(e.target.value)}>
           <option value="1">1番</option>
           <option value="2">2番</option>
           <option value="3">3番</option>

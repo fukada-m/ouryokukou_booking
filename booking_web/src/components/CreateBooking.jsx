@@ -9,7 +9,7 @@ export const CreateBooking = () => {
     const [name, setName] = useState()
     const [numberOfAdults, setNumberOfAdults] = useState(1)
     const [numberOfChildren, setNumberOfChildren] = useState(1)
-    const [bookingCategoryId, setBookingCategoryId] = useState(1)
+    const [bookingCategoryId, setBookingCategoryId] = useState("1")
     const [tableId, setTableId] = useState()
     const [note, setNote] = useState()
     const weekChars = [
@@ -27,14 +27,14 @@ export const CreateBooking = () => {
       const week = weekChars[today.getDay()]
           const data = {
             booking: {
-              date: date,
-              week: week,
-              time: time,
-              name: name,
+              date,
+              week,
+              time,
+              name,
               number_of_adults: numberOfAdults,
               number_of_children: numberOfChildren,
               booking_category_id: bookingCategoryId,
-              note: note,
+              note,
             },
             table: {
               id: [tableId],
@@ -60,6 +60,7 @@ export const CreateBooking = () => {
         <input type="time" onChange={(e) => setTime(e.target.value)} />
         <label>名前</label>
         <input type="text" onChange={(e) => setName(e.target.value)} />
+        <br/>
         <label>大人</label>
         <input
           type="number"
@@ -76,22 +77,31 @@ export const CreateBooking = () => {
           min={0}
           max={99}
         />
+        <br/>
         <label>予約カテゴリー</label>
-        <input
-          type="number"
-          value={bookingCategoryId}
-          onChange={(e) => setBookingCategoryId(e.target.value)}
-          min={1}
-          max={2}
-        />
+        <input type="radio" value="1"
+            checked={bookingCategoryId === '1'} onChange={()=> setBookingCategoryId("1")}/>
+        <label for="option1">Line</label>
+
+        <input type="radio" value="2"
+            checked={bookingCategoryId === '2'} onChange={() => setBookingCategoryId("2")}/>
+        <label for="option2">電話</label><br />
         <label>卓版</label>
-        <input
-          type="number"
-          value={tableId}
-          onChange={(e) => setTableId(e.target.value)}
-          min={1}
-          max={99}
-        />
+        <select value={tableId} onChange={(e) => setTableId(e.target.value)}>
+          <option value="">未定</option>
+          <option value="1">1番</option>
+          <option value="2">2番</option>
+          <option value="3">3番</option>
+          <option value="5">5番</option>
+          <option value="11">11番</option>
+          <option value="12">12番</option>
+          <option value="13">13番</option>
+          <option value="14">14番</option>
+          <option value="15">15番</option>
+          <option value="16">16番</option>
+          <option value="21">21番</option>
+        </select>
+        <br/>
         <label>備考</label>
         <textarea onChange={(e) => setNote(e.target.value)} />
         <button onClick={create}>登録</button>

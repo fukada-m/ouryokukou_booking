@@ -6,10 +6,6 @@ export const MoveSeatButton = (props) => {
     const { bookingId, tableId,  setTodayBooking } = props;
     const [table, setTable] = useState(1);
 
-    const handleChange = (e) => {
-        setTable(e.target.value);
-    };
-
     const moveSeat = async () => {
         const removeData = {
             table: {
@@ -45,7 +41,7 @@ export const MoveSeatButton = (props) => {
   return (
     <div>
       <div>
-        <select value={table} onChange={handleChange}>
+        <select value={table} onChange={(e) => setTable(e.target.value)}>
           <option value="1">1番</option>
           <option value="2">2番</option>
           <option value="3">3番</option>
