@@ -2,36 +2,70 @@ import React, { useState, useEffect } from 'react'
 import { axiosInstance } from '../utils/axios'
 import { Booking } from './Booking'
 import { today } from '../utils/today'
+import { NoAssignedBooking } from './NoAssignedBooking'
+import { LeaveSeatButton } from './LeaveSeatButton'
+import { SitSeatButton } from './SitSeatButton'
 
 export const TodayBooking = () => {
     const [todayBooking, setTodayBooking] = useState([]);
-    const table_num = [1, 2, 3, 5, 11, 12, 13, 14, 15, 16, 21 ]
+    const [noAssigendBooking, setNoAssigendBooking] = useState([]);
+    const [tables, setTables] = useState([]);
 
 
-const fetchAllBooking = async () => {
-  try {
-    const allBooking = await axiosInstance.get("/api/get_all_booking");
-    const todayBooking =allBooking.data.filter(
-      (booking) => booking.date === today()
-    );
-    setTodayBooking(todayBooking)
-  } catch (error) {
-    console.error(error);
-  }
-};
+  const fetchTodayBooking = async () => {
+    try {
+      const allBooking = await axiosInstance.get("/api/get_all_booking");
+      const todayBooking =allBooking.data.filter(
+        (booking) => booking.date === today()
+      );
+      setTodayBooking(todayBooking)
+      const noAssigendBooking = todayBooking.filter((booking) => {
+        return booking.tables.length === 0
+      })
+      setNoAssigendBooking(noAssigendBooking)
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchSeat = async () => {
+    try {
+      const res = await axiosInstance.get("/api/get_all_tables");
+      console.log(res.data);
+      setTables(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
 
     useEffect(() => {
-      fetchAllBooking();
+      fetchTodayBooking();
+      fetchSeat();
     }, []);
 
   return (
     <>
       <h1>TodayBooking</h1>
       <div style={{ display: "flex" }}>
-        {table_num.map((table) => (
-          <div key={table}>
-            <Booking tableNum={table} todayBooking={todayBooking} setTodayBooking={setTodayBooking} />
+        {tables.map((table) => (
+          <div key={table.id}>
+            <Booking
+              table={table}
+              todayBooking={todayBooking}
+              setTodayBooking={setTodayBooking}
+              setTables={setTables}
+            />
+            {table.is_seated == false ? <SitSeatButton tableId={table.id} setTables={setTables} /> : <LeaveSeatButton tableId={table.id} setTables={setTables} />}
+          </div>
+        ))}
+        {noAssigendBooking.map((booking) => (
+          <div key={booking.id}>
+            <NoAssignedBooking
+              noAssigendBooking={booking}
+              setNoAssigendBooking={setNoAssigendBooking}
+              setTodayBooking={setTodayBooking}
+            />
           </div>
         ))}
       </div>
