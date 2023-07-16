@@ -12,7 +12,6 @@ export const UpdateBooking = () => {
     const [numberOfAdults, setNumberOfAdults] = useState();
     const [numberOfChildren, setNumberOfChildren] = useState();
     const [bookingCategoryId, setBookingCategoryId] = useState();
-    const [tableId, setTableId] = useState();
     const [note, setNote] = useState();
 
     const fetchBooking = async () => {
@@ -28,7 +27,6 @@ export const UpdateBooking = () => {
       }else if (booking.booking_category.name === "電話") {
         setBookingCategoryId("2");
       }
-      // setTableId(booking.data.table_id);
       setNote(booking.note);
     };
 
@@ -46,10 +44,7 @@ export const UpdateBooking = () => {
           number_of_children: numberOfChildren,
           booking_category_id: bookingCategoryId,
           note,
-        },
-        table: {
-          id: [tableId],
-        },
+        }
       };
       try {
         const res = await axiosInstance.put("/api/update_booking", data);
