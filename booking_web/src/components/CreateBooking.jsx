@@ -86,7 +86,7 @@ export const CreateBooking = () => {
         <input type="radio" value="2"
             checked={bookingCategoryId === '2'} onChange={() => setBookingCategoryId("2")}/>
         <label for="option2">電話</label><br />
-        <label>卓版</label>
+        <label>卓番</label>
         <select value={tableId} onChange={(e) => setTableId(e.target.value)}>
           <option value="">未定</option>
           <option value="1">1番</option>
