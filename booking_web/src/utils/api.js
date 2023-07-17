@@ -10,5 +10,15 @@ export const getAllBookings = async () => {
     }
 }
 
+export const createBooking = async (data) => {
+    try {
+        const res = await axiosInstance.post('/api/create_booking', data);
+        console.log(res.data);
+        return res.data;
+    } catch (error) {
+    console.error(error);
+    }
+}
+
 
 

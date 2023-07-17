@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { axiosInstance } from "../utils/axios";
+import { createBooking } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import { getWeek } from "../utils/date";
 
@@ -14,6 +14,21 @@ export const CreateBooking = () => {
   const [bookingCategoryId, setBookingCategoryId] = useState("1");
   const [tableId, setTableId] = useState();
   const [note, setNote] = useState();
+
+  const tableNum = [
+    { id: "", name: "未定"},
+    { id: 1, name: "1番" },
+    { id: 2, name: "2番" },
+    { id: 3, name: "3番" },
+    { id: 5, name: "5番" },
+    { id: 11, name: "11番" },
+    { id: 12, name: "12番" },
+    { id: 13, name: "13番" },
+    { id: 14, name: "14番" },
+    { id: 15, name: "15番" },
+    { id: 16, name: "16番" },
+    { id: 21, name: "21番" }
+  ]
 
   const create = async () => {
     const week = getWeek(date);
@@ -32,16 +47,10 @@ export const CreateBooking = () => {
         id: [tableId],
       },
     };
-    try {
-      const res = await axiosInstance.post("/api/create_booking", data);
-      console.log(res.data);
-      if (res.data.status === "SUCCESS") {
-        // alert("予約の作成が完了しました");
-        navigate("/allBooking");
-      }
-    } catch (error) {
-      console.error(error);
-    }
+
+    await createBooking(data);
+    // alert("予約の作成が完了しました");
+    navigate("/allBooking");
   };
 
   return (
@@ -89,18 +98,9 @@ export const CreateBooking = () => {
         <br />
         <label>卓番</label>
         <select value={tableId} onChange={(e) => setTableId(e.target.value)}>
-          <option value="">未定</option>
-          <option value="1">1番</option>
-          <option value="2">2番</option>
-          <option value="3">3番</option>
-          <option value="5">5番</option>
-          <option value="11">11番</option>
-          <option value="12">12番</option>
-          <option value="13">13番</option>
-          <option value="14">14番</option>
-          <option value="15">15番</option>
-          <option value="16">16番</option>
-          <option value="21">21番</option>
+          {tableNum.map((table) => (
+            <option key={table.id} value={table.id}>{table.name}</option>
+          ))}
         </select>
         <br />
         <label>備考</label>
