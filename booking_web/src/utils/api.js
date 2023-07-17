@@ -69,3 +69,13 @@ export const sitSeat = async (data) => {
         console.error(error);
     }
 }
+
+export const leaveSeat = async (data) => {
+    try {
+        await axiosInstance.put("/api/is_seated_false", data);
+        const tables = await axiosInstance.get("/api/get_all_tables");
+        return tables.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
