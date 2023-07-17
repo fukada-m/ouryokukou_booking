@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { axiosInstance } from "../utils/axios";
 import { useParams, useNavigate } from "react-router-dom";
+import { getAllBooking } from '../utils/api';
 
 
 export const UpdateBooking = () => {
@@ -15,19 +16,19 @@ export const UpdateBooking = () => {
     const [note, setNote] = useState();
 
     const fetchBooking = async () => {
-      const allBooking = await axiosInstance.get("/api/get_all_booking");
-      const booking = allBooking.data.find((booking) => booking.id === Number(id));
-      console.log(booking);
-      setDate(booking.date);
-      setName(booking.name);
-      setNumberOfAdults(booking.number_of_adults);
-      setNumberOfChildren(booking.number_of_children);
-      if (booking.booking_category.name === "LINE") {
+      const allBooking = await getAllBooking();
+      const booking = allBooking.find((booking) => booking.id === Number(id));
+      const { date, name, number_of_adults, number_of_children, booking_category, note } = booking
+      setDate(date);
+      setName(name);
+      setNumberOfAdults(number_of_adults);
+      setNumberOfChildren(number_of_children);
+      if (booking_category.name === "LINE") {
         setBookingCategoryId("1");
-      }else if (booking.booking_category.name === "電話") {
+      }else if (booking_category.name === "電話") {
         setBookingCategoryId("2");
       }
-      setNote(booking.note);
+      setNote(note);
     };
 
     useEffect(() => {
