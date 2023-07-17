@@ -1,62 +1,54 @@
-import React, { useState, useEffect } from 'react'
-import { axiosInstance } from '../utils/axios'
-import { Booking } from './Booking'
-import { today } from '../utils/today'
-import { NoAssignedBooking } from './NoAssignedBooking'
-import { LeaveSeatButton } from './LeaveSeatButton'
-import { SitSeatButton } from './SitSeatButton'
+import React, { useState, useEffect } from "react";
+import { today } from "../utils/date";
+import { getAllBooking, getTables } from "../utils/api";
+import { Booking } from "./Booking";
+import { NoAssignedBooking } from "./NoAssignedBooking";
+import { LeaveSeatButton } from "./LeaveSeatButton";
+import { SitSeatButton } from "./SitSeatButton";
 
 export const TodayBooking = () => {
-    const [todayBooking, setTodayBooking] = useState([]);
-    const [noAssigendBooking, setNoAssigendBooking] = useState([]);
-    const [tables, setTables] = useState([]);
-
+  const [todayBooking, setTodayBooking] = useState([]);
+  const [noAssigendBooking, setNoAssigendBooking] = useState([]);
+  const [tables, setTables] = useState([]);
 
   const fetchTodayBooking = async () => {
-    try {
-      const allBooking = await axiosInstance.get("/api/get_all_booking");
-      const todayBooking =allBooking.data.filter(
-        (booking) => booking.date === today()
-      );
-      setTodayBooking(todayBooking)
-      const noAssigendBooking = todayBooking.filter((booking) => {
-        return booking.tables.length === 0
-      })
-      setNoAssigendBooking(noAssigendBooking)
-    } catch (error) {
-      console.error(error);
-    }
+    const allBooking = await getAllBooking();
+    const todayBooking = allBooking.filter(
+      (booking) => booking.date === today()
+    );
+    setTodayBooking(todayBooking);
+    const noAssigendBooking = todayBooking.filter(
+      (booking) => booking.tables.length === 0
+    );
+    setNoAssigendBooking(noAssigendBooking);
+    setTables(await getTables());
   };
 
-  const fetchSeat = async () => {
-    try {
-      const res = await axiosInstance.get("/api/get_all_tables");
-      console.log(res.data);
-      setTables(res.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-
-    useEffect(() => {
-      fetchTodayBooking();
-      fetchSeat();
-    }, []);
+  useEffect(() => {
+    fetchTodayBooking();
+  }, []);
 
   return (
     <>
       <h1>TodayBooking</h1>
       <div style={{ display: "flex" }}>
         {tables.map((table) => (
-          <div key={table.id}>
+          <div
+            key={table.id}
+            style={{ backgroundColor: table.is_seated && "red" }}
+          >
+            <p style={{ margin: "10px" }}>{table.id}番</p>
+            {table.is_seated == false ? (
+              <SitSeatButton tableId={table.id} setTables={setTables} />
+            ) : (
+              <LeaveSeatButton tableId={table.id} setTables={setTables} />
+            )}
             <Booking
               table={table}
               todayBooking={todayBooking}
               setTodayBooking={setTodayBooking}
               setTables={setTables}
             />
-            {table.is_seated == false ? <SitSeatButton tableId={table.id} setTables={setTables} /> : <LeaveSeatButton tableId={table.id} setTables={setTables} />}
           </div>
         ))}
         {noAssigendBooking.map((booking) => (
@@ -71,5 +63,4 @@ export const TodayBooking = () => {
       </div>
     </>
   );
-}
-
+};

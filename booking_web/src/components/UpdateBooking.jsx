@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { axiosInstance } from "../utils/axios";
 import { useParams, useNavigate } from "react-router-dom";
+import { getAllBooking, updateBooking } from '../utils/api';
 
 
 export const UpdateBooking = () => {
@@ -12,24 +12,22 @@ export const UpdateBooking = () => {
     const [numberOfAdults, setNumberOfAdults] = useState();
     const [numberOfChildren, setNumberOfChildren] = useState();
     const [bookingCategoryId, setBookingCategoryId] = useState();
-    const [tableId, setTableId] = useState();
     const [note, setNote] = useState();
 
     const fetchBooking = async () => {
-      const allBooking = await axiosInstance.get("/api/get_all_booking");
-      const booking = allBooking.data.find((booking) => booking.id === Number(id));
-      console.log(booking);
-      setDate(booking.date);
-      setName(booking.name);
-      setNumberOfAdults(booking.number_of_adults);
-      setNumberOfChildren(booking.number_of_children);
-      if (booking.booking_category.name === "LINE") {
+      const allBooking = await getAllBooking();
+      const booking = allBooking.find((booking) => booking.id === Number(id));
+      const { date, name, number_of_adults, number_of_children, booking_category, note } = booking
+      setDate(date);
+      setName(name);
+      setNumberOfAdults(number_of_adults);
+      setNumberOfChildren(number_of_children);
+      if (booking_category.name === "LINE") {
         setBookingCategoryId("1");
-      }else if (booking.booking_category.name === "電話") {
+      }else if (booking_category.name === "電話") {
         setBookingCategoryId("2");
       }
-      // setTableId(booking.data.table_id);
-      setNote(booking.note);
+      setNote(note);
     };
 
     useEffect(() => {
@@ -46,21 +44,13 @@ export const UpdateBooking = () => {
           number_of_children: numberOfChildren,
           booking_category_id: bookingCategoryId,
           note,
-        },
-        table: {
-          id: [tableId],
-        },
+        }
       };
-      try {
-        const res = await axiosInstance.put("/api/update_booking", data);
-        console.log(res.data);
-        if (res.data.status === "SUCCESS") {
+      const res = await updateBooking(data);
+        if (res.status === "SUCCESS") {
           // alert("予約の更新が完了しました");
           navigate("/allBooking");
         }
-      } catch (error) {
-        console.error(error);
-      }
     };
 
     return (

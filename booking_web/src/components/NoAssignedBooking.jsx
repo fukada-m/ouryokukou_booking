@@ -5,25 +5,26 @@ import { AddTableRelationButton } from './AddTableRelationButton'
 
 export const NoAssignedBooking = (props) => {
     const { noAssigendBooking, setNoAssigendBooking, setTodayBooking} = props;
+    const { date, week, time, name, number_of_adults, number_of_children, booking_category, note, id } = noAssigendBooking
   return (
     <div>
       <p style={{ margin: "10px" }}>席が未定</p>
+      <p>{date}({week})</p>
+      <p>{time}</p>
+      <p>{name}</p>
       <p>
-        {noAssigendBooking.date}({noAssigendBooking.week})
+        大人{number_of_adults}人 子供{number_of_children}人
       </p>
-      <p>{noAssigendBooking.time}</p>
-      <p>{noAssigendBooking.name}</p>
-      <p>大人{noAssigendBooking.number_of_adults}人</p>
-      <p>子供{noAssigendBooking.number_of_children}人</p>
-      <p>{noAssigendBooking.booking_category.name}</p>
-      <p>{noAssigendBooking.note}</p>
+      <p>{booking_category.name}</p>
+      <p>{note}</p>
       <AddTableRelationButton
-        bookingId={noAssigendBooking.id}
+        bookingId={id}
         setTodayBooking={setTodayBooking}
         setNoAssigendBooking={setNoAssigendBooking}
+        table={null}
       />
       <DeleteButton
-        bookingId={noAssigendBooking.id}
+        bookingId={id}
         setNoAssigendBooking={setNoAssigendBooking}
       />
     </div>

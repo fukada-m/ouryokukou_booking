@@ -1,28 +1,21 @@
-import React from 'react'
-import { axiosInstance } from '../utils/axios'
+import React from "react";
+import { sitSeat } from "../utils/api";
 
 export const SitSeatButton = (props) => {
-    const { tableId, setTables } = props;
-    const sitSeat = async () => {
-        const data = {
-            table: {
-                id: tableId,
-            },
-        };
-        try {
-            const res = await axiosInstance.put("/api/is_seated_true", data);
-            console.log(res.data);
-            const fetchTables = await axiosInstance.get("/api/get_all_tables");
-            setTables(fetchTables.data);
-        } catch (error) {
-            console.error(error);
-        }
+  const { tableId, setTables } = props;
+  
+  const onClickSitSeat = async () => {
+    const data = {
+      table: {
+        id: tableId,
+      },
     };
+    setTables(await sitSeat(data));
+  };
 
   return (
     <div>
-        <button onClick={sitSeat}>来店</button>
-        </div>
-  )
-}
-
+      <button onClick={onClickSitSeat}>来店</button>
+    </div>
+  );
+};
