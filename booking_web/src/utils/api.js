@@ -59,3 +59,13 @@ export const addTableRelation = async (data) => {
         console.error(error);
     }
 }
+
+export const sitSeat = async (data) => {
+    try {
+        await axiosInstance.put("/api/is_seated_true", data);
+        const tables = await axiosInstance.get("/api/get_all_tables");
+        return tables.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
