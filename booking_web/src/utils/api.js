@@ -52,3 +52,10 @@ export const moveSeat = async (addData, removeData) => {
     }
 };
 
+export const addTableRelation = async (data) => {
+    try {
+        await axiosInstance.put("/api/add_table_relation", data);
+    } catch (error) {
+        console.error(error);
+    }
+}
