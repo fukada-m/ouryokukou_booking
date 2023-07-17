@@ -1,5 +1,10 @@
 import React from "react";
-import { axiosInstance } from "../utils/axios";
+import {
+  deleteBooking,
+  getAllBooking,
+  getTables,
+  leaveSeat,
+} from "../utils/api";
 import { today } from "../utils/date";
 
 export const DeleteButton = (props) => {
@@ -12,41 +17,38 @@ export const DeleteButton = (props) => {
     setNoAssigendBooking,
   } = props;
 
-  const data = {
-    booking: {
-      id: bookingId,
-    },
-  };
+  const onClickDelete = async () => {
+    const data = {
+      booking: {
+        id: bookingId,
+      },
+    };
 
-  const destory = async () => {
-    try {
-      const res = await axiosInstance.delete("/api/delete_booking", { data });
-      console.log(res.data);
-      const allBooking = await axiosInstance.get("/api/get_all_booking");
-      const todayBooking = allBooking.data.filter(
-        (booking) => booking.date === today()
-      );
-      const noAssigendBooking = todayBooking.filter((booking) => {
-        return booking.tables.length === 0;
-      });
-      setNoAssigendBooking && setNoAssigendBooking(noAssigendBooking);
-      setAllBooking && setAllBooking(allBooking.data);
-      setTodayBooking && setTodayBooking(todayBooking);
+    await deleteBooking(data);
+    const allBooking = await getAllBooking();
+    const todayBooking = allBooking.filter(
+      (booking) => booking.date === today()
+    );
+    const noAssigendBooking = todayBooking.filter((booking) => {
+      return booking.tables.length === 0;
+    });
+    setNoAssigendBooking && setNoAssigendBooking(noAssigendBooking);
+    setAllBooking && setAllBooking(allBooking);
+    setTodayBooking && setTodayBooking(todayBooking);
+    if (setTables == true) {
       const tableId = {
         table: {
           id: table.id,
         },
       };
-      await axiosInstance.put("/api/is_seated_false", tableId);
-      const newTable = await axiosInstance.get("/api/get_all_tables");
-      setTables(newTable.data);
-    } catch (error) {
-      console.error(error);
+      leaveSeat(tableId);
+      setTables(await getTables());
     }
   };
+
   return (
     <div>
-      <button onClick={destory}>削除</button>
+      <button onClick={onClickDelete}>削除</button>
     </div>
   );
 };

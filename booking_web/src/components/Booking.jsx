@@ -32,9 +32,9 @@ export const Booking = (props) => {
             setTodayBooking={setTodayBooking}
           />
           <DeleteButton
+            bookingId={booking.id}
             table={table}
             setTables={setTables}
-            bookingId={booking.id}
             setTodayBooking={setTodayBooking}
           />
         </div>

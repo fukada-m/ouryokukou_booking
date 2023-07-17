@@ -21,6 +21,7 @@ export const NoAssignedBooking = (props) => {
         bookingId={id}
         setTodayBooking={setTodayBooking}
         setNoAssigendBooking={setNoAssigendBooking}
+        table={null}
       />
       <DeleteButton
         bookingId={id}

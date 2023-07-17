@@ -28,6 +28,13 @@ export const updateBooking = async (data) => {
     }
 }
 
+export const deleteBooking = async (data) => {
+    try {
+        await axiosInstance.delete("/api/delete_booking", { data });
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 export const getTables = async () => {
     try {
@@ -79,3 +86,5 @@ export const leaveSeat = async (data) => {
         console.error(error);
     }
 }
+
+
