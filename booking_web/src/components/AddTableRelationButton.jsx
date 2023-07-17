@@ -1,11 +1,12 @@
-import React, {useState} from 'react'
-import { axiosInstance } from '../utils/axios'
-import { today } from '../utils/today'
+import React, { useState } from "react";
+import { axiosInstance } from "../utils/axios";
+import { today } from "../utils/date";
 
 export const AddTableRelationButton = (props) => {
-  const { bookingId, setTodayBooking, setAllBooking, setNoAssigendBooking } = props;
+  const { bookingId, setTodayBooking, setAllBooking, setNoAssigendBooking } =
+    props;
 
-  const tableNum = [1,2,3,5,11,12,13,14,15,16,21]
+  const tableNum = [1, 2, 3, 5, 11, 12, 13, 14, 15, 16, 21];
   const [table, setTable] = useState(1);
 
   const data = {
@@ -31,7 +32,6 @@ export const AddTableRelationButton = (props) => {
     setNoAssigendBooking && setNoAssigendBooking(noAssigendBooking);
   };
 
-
   return (
     <div>
       <div>
@@ -52,5 +52,4 @@ export const AddTableRelationButton = (props) => {
       <button onClick={addTableRelation}>席を割り振る</button>
     </div>
   );
-}
-
+};

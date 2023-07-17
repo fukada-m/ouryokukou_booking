@@ -1,28 +1,27 @@
-import React, { useState, useEffect } from 'react'
-import { axiosInstance } from '../utils/axios'
-import { Booking } from './Booking'
-import { today } from '../utils/today'
-import { NoAssignedBooking } from './NoAssignedBooking'
-import { LeaveSeatButton } from './LeaveSeatButton'
-import { SitSeatButton } from './SitSeatButton'
+import React, { useState, useEffect } from "react";
+import { axiosInstance } from "../utils/axios";
+import { Booking } from "./Booking";
+import { today } from "../utils/date";
+import { NoAssignedBooking } from "./NoAssignedBooking";
+import { LeaveSeatButton } from "./LeaveSeatButton";
+import { SitSeatButton } from "./SitSeatButton";
 
 export const TodayBooking = () => {
-    const [todayBooking, setTodayBooking] = useState([]);
-    const [noAssigendBooking, setNoAssigendBooking] = useState([]);
-    const [tables, setTables] = useState([]);
-
+  const [todayBooking, setTodayBooking] = useState([]);
+  const [noAssigendBooking, setNoAssigendBooking] = useState([]);
+  const [tables, setTables] = useState([]);
 
   const fetchTodayBooking = async () => {
     try {
       const allBooking = await axiosInstance.get("/api/get_all_booking");
-      const todayBooking =allBooking.data.filter(
+      const todayBooking = allBooking.data.filter(
         (booking) => booking.date === today()
       );
-      setTodayBooking(todayBooking)
+      setTodayBooking(todayBooking);
       const noAssigendBooking = todayBooking.filter((booking) => {
-        return booking.tables.length === 0
-      })
-      setNoAssigendBooking(noAssigendBooking)
+        return booking.tables.length === 0;
+      });
+      setNoAssigendBooking(noAssigendBooking);
     } catch (error) {
       console.error(error);
     }
@@ -38,11 +37,10 @@ export const TodayBooking = () => {
     }
   };
 
-
-    useEffect(() => {
-      fetchTodayBooking();
-      fetchSeat();
-    }, []);
+  useEffect(() => {
+    fetchTodayBooking();
+    fetchSeat();
+  }, []);
 
   return (
     <>
@@ -56,7 +54,11 @@ export const TodayBooking = () => {
               setTodayBooking={setTodayBooking}
               setTables={setTables}
             />
-            {table.is_seated == false ? <SitSeatButton tableId={table.id} setTables={setTables} /> : <LeaveSeatButton tableId={table.id} setTables={setTables} />}
+            {table.is_seated == false ? (
+              <SitSeatButton tableId={table.id} setTables={setTables} />
+            ) : (
+              <LeaveSeatButton tableId={table.id} setTables={setTables} />
+            )}
           </div>
         ))}
         {noAssigendBooking.map((booking) => (
@@ -71,5 +73,4 @@ export const TodayBooking = () => {
       </div>
     </>
   );
-}
-
+};

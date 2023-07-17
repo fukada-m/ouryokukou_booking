@@ -1,42 +1,44 @@
-import React, {useState} from 'react'
-import { axiosInstance } from '../utils/axios'
-import { today } from '../utils/today'
+import React, { useState } from "react";
+import { axiosInstance } from "../utils/axios";
+import { today } from "../utils/date";
 
 export const MoveSeatButton = (props) => {
-    const { bookingId, tableId,  setTodayBooking } = props;
-    const [table, setTable] = useState(1);
+  const { bookingId, tableId, setTodayBooking } = props;
+  const [table, setTable] = useState(1);
 
-    const moveSeat = async () => {
-        const removeData = {
-            table: {
-                id: tableId,
-            },
-            booking: {
-                id: bookingId,
-            }
-        };
-        const addData = {
-            table: {
-                id: table,
-            },
-            booking: {
-                id: bookingId,
-            }
-        };
-        try {
-            const res1 = await axiosInstance.put("/api/add_table_relation",addData);
-            console.log(res1.data);
-            const res2 = await axiosInstance.put("/api/remove_table_relation",removeData);
-            const allBooking = await axiosInstance.get("/api/get_all_booking");
-            const todayBooking = allBooking.data.filter(
-            (booking) => booking.date === today()
-            );
-            setTodayBooking(todayBooking);
-        } catch (error) {
-            console.error(error);
-        }
+  const moveSeat = async () => {
+    const removeData = {
+      table: {
+        id: tableId,
+      },
+      booking: {
+        id: bookingId,
+      },
     };
-
+    const addData = {
+      table: {
+        id: table,
+      },
+      booking: {
+        id: bookingId,
+      },
+    };
+    try {
+      const res1 = await axiosInstance.put("/api/add_table_relation", addData);
+      console.log(res1.data);
+      const res2 = await axiosInstance.put(
+        "/api/remove_table_relation",
+        removeData
+      );
+      const allBooking = await axiosInstance.get("/api/get_all_booking");
+      const todayBooking = allBooking.data.filter(
+        (booking) => booking.date === today()
+      );
+      setTodayBooking(todayBooking);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div>
@@ -55,8 +57,7 @@ export const MoveSeatButton = (props) => {
           <option value="21">21番</option>
         </select>
       </div>
-        <button onClick={moveSeat}>席の移動</button>
+      <button onClick={moveSeat}>席の移動</button>
     </div>
-  )
-}
-
+  );
+};
