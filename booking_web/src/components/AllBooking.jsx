@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { DeleteButton } from './DeleteButton';
 import { Link } from 'react-router-dom';
 import { AddTableRelationButton } from './AddTableRelationButton';
-import { getAllBookings } from '../utils/api';
+import { getAllBooking } from '../utils/api';
 
 export const AllBooking = () => {
     const [allBooking, setAllBooking] = useState([]);
 
     const fetchAllBooking = async () => {
-        setAllBooking(await getAllBookings());
+        setAllBooking(await getAllBooking());
     }
 
     useEffect(() => {
