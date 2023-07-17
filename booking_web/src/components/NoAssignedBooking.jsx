@@ -13,8 +13,10 @@ export const NoAssignedBooking = (props) => {
       </p>
       <p>{noAssigendBooking.time}</p>
       <p>{noAssigendBooking.name}</p>
-      <p>大人{noAssigendBooking.number_of_adults}人</p>
-      <p>子供{noAssigendBooking.number_of_children}人</p>
+      <p>
+        大人{noAssigendBooking.number_of_adults}人 子供
+        {noAssigendBooking.number_of_children}人
+      </p>
       <p>{noAssigendBooking.booking_category.name}</p>
       <p>{noAssigendBooking.note}</p>
       <AddTableRelationButton

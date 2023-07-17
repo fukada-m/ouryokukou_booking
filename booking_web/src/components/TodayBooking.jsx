@@ -13,9 +13,13 @@ export const TodayBooking = () => {
 
   const fetchTodayBooking = async () => {
     const allBooking = await getAllBooking();
-    const todayBooking = allBooking.filter((booking) => booking.date === today());
+    const todayBooking = allBooking.filter(
+      (booking) => booking.date === today()
+    );
     setTodayBooking(todayBooking);
-    const noAssigendBooking = todayBooking.filter((booking) => booking.tables.length === 0 );
+    const noAssigendBooking = todayBooking.filter(
+      (booking) => booking.tables.length === 0
+    );
     setNoAssigendBooking(noAssigendBooking);
     setTables(await getTables());
   };
@@ -29,18 +33,22 @@ export const TodayBooking = () => {
       <h1>TodayBooking</h1>
       <div style={{ display: "flex" }}>
         {tables.map((table) => (
-          <div key={table.id}>
+          <div
+            key={table.id}
+            style={{ backgroundColor: table.is_seated && "red" }}
+          >
+            <p style={{ margin: "10px" }}>{table.id}番</p>
+            {table.is_seated == false ? (
+              <SitSeatButton tableId={table.id} setTables={setTables} />
+            ) : (
+              <LeaveSeatButton tableId={table.id} setTables={setTables} />
+            )}
             <Booking
               table={table}
               todayBooking={todayBooking}
               setTodayBooking={setTodayBooking}
               setTables={setTables}
             />
-            {table.is_seated == false ? (
-              <SitSeatButton tableId={table.id} setTables={setTables} />
-            ) : (
-              <LeaveSeatButton tableId={table.id} setTables={setTables} />
-            )}
           </div>
         ))}
         {noAssigendBooking.map((booking) => (
