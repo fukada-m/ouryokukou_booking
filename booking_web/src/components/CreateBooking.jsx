@@ -48,9 +48,13 @@ export const CreateBooking = () => {
       },
     };
 
-    await createBooking(data);
-    // alert("予約の作成が完了しました");
-    navigate("/allBooking");
+    const res = await createBooking(data);
+      if (res.status === "SUCCESS") {
+        // alert("予約の作成が完了しました");
+        navigate("/allBooking");
+      } else {
+        alert("予約の作成に失敗しました");
+      }
   };
 
   return (

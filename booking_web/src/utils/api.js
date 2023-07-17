@@ -18,6 +18,16 @@ export const createBooking = async (data) => {
     }
 }
 
+export const updateBooking = async (data) => {
+    try {
+        const res = await axiosInstance.put("/api/update_booking", data);
+        return res.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
 export const getTables = async () => {
     try {
         const res = await axiosInstance.get("/api/get_all_tables");

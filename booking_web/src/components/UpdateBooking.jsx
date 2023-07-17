@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { axiosInstance } from "../utils/axios";
 import { useParams, useNavigate } from "react-router-dom";
-import { getAllBooking } from '../utils/api';
+import { getAllBooking, updateBooking } from '../utils/api';
 
 
 export const UpdateBooking = () => {
@@ -47,16 +46,11 @@ export const UpdateBooking = () => {
           note,
         }
       };
-      try {
-        const res = await axiosInstance.put("/api/update_booking", data);
-        console.log(res.data);
-        if (res.data.status === "SUCCESS") {
+      const res = await updateBooking(data);
+        if (res.status === "SUCCESS") {
           // alert("予約の更新が完了しました");
           navigate("/allBooking");
         }
-      } catch (error) {
-        console.error(error);
-      }
     };
 
     return (
