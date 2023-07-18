@@ -19,7 +19,7 @@ export const AddTableRelationButton = (props) => {
     {id: 21, name: "21番" }
   ];
 
-  const [table, setTable] = useState();
+  const [table, setTable] = useState(1);
 
   const onClickAddTableRelation = async () => {
     const data = {

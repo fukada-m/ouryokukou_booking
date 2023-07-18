@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HealthChecksController < ApplicationController
   def index
     render json: { status: 'ok' }
@@ -7,5 +9,4 @@ class HealthChecksController < ApplicationController
     data = Test.all
     render json: data
   end
-
 end
