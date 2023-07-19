@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { moveSeat } from "../utils/api";
+import { useSetRecoilState } from "recoil";
+import { todayBookingState } from "../atom/state";
 
 export const MoveSeatButton = (props) => {
-  const { bookingId, tableId, setTodayBooking } = props;
+  const { bookingId, tableId } = props;
+  const setTodayBooking = useSetRecoilState(todayBookingState);
+
   const tableNum = [
     {id: 1, name:"1番"},
     {id: 2, name:"2番"},

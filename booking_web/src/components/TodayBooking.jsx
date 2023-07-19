@@ -5,11 +5,16 @@ import { Booking } from "./Booking";
 import { NoAssignedBooking } from "./NoAssignedBooking";
 import { LeaveSeatButton } from "./LeaveSeatButton";
 import { SitSeatButton } from "./SitSeatButton";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { todayBookingState, noAssignedBookingState, tableState } from "../atom/state";
+
 
 export const TodayBooking = () => {
-  const [todayBooking, setTodayBooking] = useState([]);
-  const [noAssigendBooking, setNoAssigendBooking] = useState([]);
-  const [tables, setTables] = useState([]);
+  const setTodayBooking = useSetRecoilState(todayBookingState);
+  const [noAssigendBooking, setNoAssigendBooking] = useRecoilState(
+    noAssignedBookingState
+  );
+  const [tables, setTables] = useRecoilState(tableState);
 
   const fetchTodayBooking = async () => {
     const allBooking = await getAllBooking();
@@ -45,18 +50,13 @@ export const TodayBooking = () => {
             )}
             <Booking
               table={table}
-              todayBooking={todayBooking}
-              setTodayBooking={setTodayBooking}
-              setTables={setTables}
             />
           </div>
         ))}
         {noAssigendBooking.map((booking) => (
           <div key={booking.id}>
             <NoAssignedBooking
-              noAssigendBooking={booking}
-              setNoAssigendBooking={setNoAssigendBooking}
-              setTodayBooking={setTodayBooking}
+              booking={booking}
             />
           </div>
         ))}

@@ -3,9 +3,11 @@ import { DeleteButton } from './DeleteButton';
 import { Link } from 'react-router-dom';
 import { AddTableRelationButton } from './AddTableRelationButton';
 import { getAllBooking } from '../utils/api';
+import { useRecoilState } from 'recoil';
+import { allBookingState } from '../atom/state';
 
 export const AllBooking = () => {
-    const [allBooking, setAllBooking] = useState([]);
+    const [allBooking, setAllBooking] = useRecoilState(allBookingState);
 
     const fetchAllBooking = async () => {
         setAllBooking(await getAllBooking());
@@ -40,11 +42,9 @@ export const AllBooking = () => {
             <p>備考：{booking.note}</p>
             <DeleteButton
               bookingId={booking.id}
-              setAllBooking={setAllBooking}
             />
             <AddTableRelationButton
               bookingId={booking.id}
-              setAllBooking={setAllBooking}
             />
             <Link to={`/editBooking/${booking.id}`}>編集</Link>
           </div>

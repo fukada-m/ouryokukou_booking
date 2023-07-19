@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { DeleteButton } from "./DeleteButton";
 import { MoveSeatButton } from "./MoveSeatButton";
+import { useRecoilValue } from "recoil";
+import { todayBookingState } from "../atom/state";
+
 
 export const Booking = (props) => {
-  const { table, todayBooking, setTodayBooking, setTables } = props;
+  const { table } = props;
+  const todayBooking = useRecoilValue(todayBookingState);
 
   const booking = todayBooking.filter((booking) => {
     const selectedTable = booking.tables.filter((todayTable) => {
@@ -29,13 +33,10 @@ export const Booking = (props) => {
           <MoveSeatButton
             bookingId={booking.id}
             tableId={table.id}
-            setTodayBooking={setTodayBooking}
           />
           <DeleteButton
             bookingId={booking.id}
             table={table}
-            setTables={setTables}
-            setTodayBooking={setTodayBooking}
           />
         </div>
       ))}

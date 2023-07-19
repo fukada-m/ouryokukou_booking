@@ -1,11 +1,23 @@
 import React from 'react'
 import { DeleteButton } from './DeleteButton'
 import { AddTableRelationButton } from './AddTableRelationButton'
-
+import { useRecoilState } from 'recoil'
+import { noAssignedBookingState } from "../atom/state";
 
 export const NoAssignedBooking = (props) => {
-    const { noAssigendBooking, setNoAssigendBooking, setTodayBooking} = props;
-    const { date, week, time, name, number_of_adults, number_of_children, booking_category, note, id } = noAssigendBooking
+  const { booking } = props;
+
+    const {
+      date,
+      week,
+      time,
+      name,
+      number_of_adults,
+      number_of_children,
+      booking_category,
+      note,
+      id,
+    } = booking;
   return (
     <div>
       <p style={{ margin: "10px" }}>席が未定</p>
@@ -19,13 +31,10 @@ export const NoAssignedBooking = (props) => {
       <p>{note}</p>
       <AddTableRelationButton
         bookingId={id}
-        setTodayBooking={setTodayBooking}
-        setNoAssigendBooking={setNoAssigendBooking}
-        table={null}
+        // table={null}
       />
       <DeleteButton
         bookingId={id}
-        setNoAssigendBooking={setNoAssigendBooking}
       />
     </div>
   );
