@@ -47,7 +47,7 @@ export const AllBooking = () => {
             <AddTableRelationButton
               bookingId={booking.id}
             />
-            <RemoveTableRelationButton bookingId={booking.id} />
+            <RemoveTableRelationButton bookingId={booking.id} tableNum={booking.tables}/>
             <Link to={`/editBooking/${booking.id}`}>編集</Link>
           </div>
         ))}
