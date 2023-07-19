@@ -48,16 +48,13 @@ export const TodayBooking = () => {
             ) : (
               <LeaveSeatButton tableId={table.id} setTables={setTables} />
             )}
-            <Booking
-              table={table}
-            />
+            <Booking table={table} />
+
           </div>
         ))}
         {noAssigendBooking.map((booking) => (
           <div key={booking.id}>
-            <NoAssignedBooking
-              booking={booking}
-            />
+            <NoAssignedBooking booking={booking} />
           </div>
         ))}
       </div>
