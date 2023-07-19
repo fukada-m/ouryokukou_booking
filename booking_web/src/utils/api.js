@@ -67,6 +67,14 @@ export const addTableRelation = async (data) => {
     }
 }
 
+export const removeTableRelation = async (data) => {
+    try {
+        await axiosInstance.put("/api/remove_table_relation", data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 export const sitSeat = async (data) => {
     try {
         await axiosInstance.put("/api/is_seated_true", data);

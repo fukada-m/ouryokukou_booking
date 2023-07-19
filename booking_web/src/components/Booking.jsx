@@ -5,6 +5,7 @@ import { useRecoilValue } from "recoil";
 import { todayBookingState } from "../atom/state";
 
 
+
 export const Booking = (props) => {
   const { table } = props;
   const todayBooking = useRecoilValue(todayBookingState);
