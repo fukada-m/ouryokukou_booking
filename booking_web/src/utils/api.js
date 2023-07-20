@@ -47,8 +47,8 @@ export const getTables = async () => {
 
 export const moveSeat = async (addData, removeData) => {
     try {
-        await axiosInstance.put("/api/add_table_relation", addData);
         await axiosInstance.put("/api/remove_table_relation", removeData);
+        await axiosInstance.put("/api/add_table_relation", addData);
         const allBooking = await axiosInstance.get("/api/get_all_booking");
         const todayBooking = allBooking.data.filter(
             (booking) => booking.date === today()
@@ -62,6 +62,14 @@ export const moveSeat = async (addData, removeData) => {
 export const addTableRelation = async (data) => {
     try {
         await axiosInstance.put("/api/add_table_relation", data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const removeTableRelation = async (data) => {
+    try {
+        await axiosInstance.put("/api/remove_table_relation", data);
     } catch (error) {
         console.error(error);
     }

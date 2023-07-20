@@ -9,6 +9,7 @@ export const UpdateBooking = () => {
 
     const [date, setDate] = useState();
     const [name, setName] = useState();
+    const [time, setTime] = useState();
     const [numberOfAdults, setNumberOfAdults] = useState();
     const [numberOfChildren, setNumberOfChildren] = useState();
     const [bookingCategoryId, setBookingCategoryId] = useState();
@@ -17,8 +18,9 @@ export const UpdateBooking = () => {
     const fetchBooking = async () => {
       const allBooking = await getAllBooking();
       const booking = allBooking.find((booking) => booking.id === Number(id));
-      const { date, name, number_of_adults, number_of_children, booking_category, note } = booking
+      const { date, time, name, number_of_adults, number_of_children, booking_category, note } = booking
       setDate(date);
+      setTime(time);
       setName(name);
       setNumberOfAdults(number_of_adults);
       setNumberOfChildren(number_of_children);
@@ -39,6 +41,7 @@ export const UpdateBooking = () => {
         booking: {
           id,
           date,
+          time,
           name,
           number_of_adults: numberOfAdults,
           number_of_children: numberOfChildren,
@@ -57,11 +60,15 @@ export const UpdateBooking = () => {
       <>
         <h1>UpdateBooking</h1>
         <div>
-          <label>日付</label>
           <input
             type="date"
             defaultValue={date}
             onChange={(e) => setDate(e.target.value)}
+          />
+          <input
+            type="time"
+            defaultValue={time}
+            onChange={(e) => setTime(e.target.value)}
           />
           <label>名前</label>
           <input

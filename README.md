@@ -15,3 +15,5 @@
 [ワイヤーフレーム](./documents/wire_frame.md)
 
 [システム構成図インフラ](./documents/%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E6%A7%8B%E6%88%90%E5%9B%B3.drawio.png)
+
+[デプロイ手順書](https://www.notion.so/25a68208638c4e13995963a7b7eae31d?pvs=4)

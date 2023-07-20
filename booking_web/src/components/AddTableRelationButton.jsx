@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { addTableRelation, getAllBooking } from "../utils/api";
 import { today } from "../utils/date";
+import { useSetRecoilState } from "recoil";
+import { allBookingState, todayBookingState, noAssignedBookingState } from "../atom/state";
 
 export const AddTableRelationButton = (props) => {
-  const { bookingId, setTodayBooking, setAllBooking, setNoAssigendBooking } =props;
+  const { bookingId } =props;
+  const setAllBooking = useSetRecoilState(allBookingState);
+  const setTodayBooking = useSetRecoilState(todayBookingState);
+  const setNoAssigendBooking = useSetRecoilState(noAssignedBookingState)
+
 
   const tableNum = [
     {id: 1, name: "1番" },
@@ -19,7 +25,7 @@ export const AddTableRelationButton = (props) => {
     {id: 21, name: "21番" }
   ];
 
-  const [table, setTable] = useState();
+  const [table, setTable] = useState(1);
 
   const onClickAddTableRelation = async () => {
     const data = {
@@ -32,15 +38,15 @@ export const AddTableRelationButton = (props) => {
     };
     await addTableRelation(data);
     const allBooking = await getAllBooking();
-    setAllBooking && setAllBooking(allBooking);
+    setAllBooking(allBooking);
     const todayBooking = allBooking.filter(
       (booking) => booking.date === today()
     );
-    setTodayBooking && setTodayBooking(todayBooking);
+    setTodayBooking(todayBooking);
     const noAssigendBooking = todayBooking.filter((booking) => {
       return booking.tables.length === 0;
     });
-    setNoAssigendBooking && setNoAssigendBooking(noAssigendBooking);
+    setNoAssigendBooking(noAssigendBooking);
   };
 
   return (
