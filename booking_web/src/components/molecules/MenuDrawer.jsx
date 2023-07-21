@@ -21,10 +21,10 @@ export const MenuDrawer = (props) => {
               編集
             </Button>
             <Button w="100%" my={2}>
-              席を追加
+              席を割り振る
             </Button>
             <Button w="100%" my={2}>
-              席を削除
+              席を解除
             </Button>
             <Button w="100%" my={2}>
               席の移動

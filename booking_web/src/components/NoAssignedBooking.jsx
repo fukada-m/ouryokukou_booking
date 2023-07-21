@@ -3,6 +3,7 @@ import { DeleteButton } from "./atoms/button/DeleteButton";
 import { AddTableRelationButton } from "./AddTableRelationButton";
 import { useRecoilState } from "recoil";
 import { noAssignedBookingState } from "../atom/state";
+import { Link } from "react-router-dom";
 
 export const NoAssignedBooking = (props) => {
   const { booking } = props;
@@ -33,9 +34,9 @@ export const NoAssignedBooking = (props) => {
       <p>{note}</p>
       <AddTableRelationButton
         bookingId={id}
-        // table={null}
       />
       <DeleteButton bookingId={id} />
+      <Link to={`/editBooking/${booking.id}`}>編集</Link>
     </div>
   );
 };
