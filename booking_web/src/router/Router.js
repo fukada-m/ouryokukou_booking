@@ -7,12 +7,9 @@ import { CreateBooking } from '../components/pages/CreateBooking';
 import { UpdateBooking } from '../components/pages/UpdateBooking';
 import { Login } from '../components/pages/Login';
 import { Page404 } from '../components/pages/Page404';
+import { HeaderLayout } from '../components/templates/HeaderLayout';
 
 const routes = [
-    {
-        path: "/",
-        element: <Login />
-    },
     {
         path: "/allBooking",
         element: <AllBooking />
@@ -39,8 +36,9 @@ const routes = [
 export const Router = () => {
     return (
         <Routes>
+            <Route path='/' element={<Login />}></Route>
             {routes.map((route) => (
-                <Route key={route.path} path={route.path} element={route.element} />
+                <Route key={route.path} path={route.path} element={<HeaderLayout>{route.element}</HeaderLayout>} />
             ))}
         </Routes>
     )
