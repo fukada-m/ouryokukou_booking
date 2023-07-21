@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { today } from "../utils/date";
-import { getAllBooking, getTables } from "../utils/api";
-import { Booking } from "./Booking";
-import { NoAssignedBooking } from "./NoAssignedBooking";
-import { LeaveSeatButton } from "./LeaveSeatButton";
-import { SitSeatButton } from "./SitSeatButton";
+import { today } from "../../utils/date";
+import { getAllBooking, getTables } from "../../utils/api";
+import { Booking } from "../Booking";
+import { NoAssignedBooking } from "../NoAssignedBooking";
+import { LeaveSeatButton } from "../LeaveSeatButton";
+import { SitSeatButton } from "../SitSeatButton";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { todayBookingState, noAssignedBookingState, tableState } from "../atom/state";
+import { todayBookingState, noAssignedBookingState, tableState } from "../../atom/state";
 
 
 export const TodayBooking = () => {

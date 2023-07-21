@@ -1,11 +1,9 @@
-import './App.css';
-import { Routes, Route } from "react-router-dom";
 import { RecoilRoot } from 'recoil';
-import { AllBooking } from './components/AllBooking';
+import { ChakraProvider } from "@chakra-ui/react"
+
+import { Router } from './router/Router';
 import { Header } from './components/Header';
-import { CreateBooking } from './components/CreateBooking';
-import { UpdateBooking } from './components/UpdateBooking';
-import { TodayBooking } from './components/TodayBooking';
+import theme from './theme/theme';
 
 
 function App() {
@@ -15,13 +13,9 @@ function App() {
       <h1>Booking Web</h1>
       <Header />
       <RecoilRoot>
-        <Routes>
-          <Route path="/" element={<AllBooking />} />
-          <Route path="/allBooking" element={<AllBooking />} />
-          <Route path="/todayBooking" element={<TodayBooking />} />
-          <Route path="/createBooking" element={<CreateBooking />} />
-          <Route path="/editBooking/:id" element={<UpdateBooking />} />
-        </Routes>
+        <ChakraProvider theme={theme}>
+          <Router />
+        </ChakraProvider>
       </RecoilRoot>
     </>
   );

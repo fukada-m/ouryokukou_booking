@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { DeleteButton } from './DeleteButton';
+import { DeleteButton } from '../DeleteButton';
 import { Link } from 'react-router-dom';
-import { AddTableRelationButton } from './AddTableRelationButton';
-import { RemoveTableRelationButton } from './RemoveTableRelationButton';
-import { getAllBooking } from '../utils/api';
+import { AddTableRelationButton } from '../AddTableRelationButton';
+import { RemoveTableRelationButton } from '../RemoveTableRelationButton';
+import { getAllBooking } from '../../utils/api';
 import { useRecoilState } from 'recoil';
-import { allBookingState } from '../atom/state';
+import { allBookingState } from '../../atom/state';
 
 export const AllBooking = () => {
     const [allBooking, setAllBooking] = useRecoilState(allBookingState);

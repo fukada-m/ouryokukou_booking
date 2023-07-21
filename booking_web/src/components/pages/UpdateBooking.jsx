@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from "react-router-dom";
-import { getAllBooking, updateBooking } from '../utils/api';
+import { getAllBooking, updateBooking } from '../../utils/api';
 
 
 export const UpdateBooking = () => {

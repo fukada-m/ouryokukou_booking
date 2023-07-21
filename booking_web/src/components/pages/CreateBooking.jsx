@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { createBooking } from "../utils/api";
+import { createBooking } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
-import { getWeek } from "../utils/date";
+import { getWeek } from "../../utils/date";
 
 export const CreateBooking = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ export const CreateBooking = () => {
   const [note, setNote] = useState();
 
   const tableNum = [
-    { id: "", name: "未定"},
+    { id: "", name: "未定" },
     { id: 1, name: "1番" },
     { id: 2, name: "2番" },
     { id: 3, name: "3番" },
@@ -27,8 +27,8 @@ export const CreateBooking = () => {
     { id: 14, name: "14番" },
     { id: 15, name: "15番" },
     { id: 16, name: "16番" },
-    { id: 21, name: "21番" }
-  ]
+    { id: 21, name: "21番" },
+  ];
 
   const create = async () => {
     const week = getWeek(date);
@@ -49,12 +49,12 @@ export const CreateBooking = () => {
     };
 
     const res = await createBooking(data);
-      if (res.status === "SUCCESS") {
-        // alert("予約の作成が完了しました");
-        navigate("/allBooking");
-      } else {
-        alert("予約の作成に失敗しました");
-      }
+    if (res.status === "SUCCESS") {
+      // alert("予約の作成が完了しました");
+      navigate("/allBooking");
+    } else {
+      alert("予約の作成に失敗しました");
+    }
   };
 
   return (
@@ -103,7 +103,9 @@ export const CreateBooking = () => {
         <label>卓番</label>
         <select value={tableId} onChange={(e) => setTableId(e.target.value)}>
           {tableNum.map((table) => (
-            <option key={table.id} value={table.id}>{table.name}</option>
+            <option key={table.id} value={table.id}>
+              {table.name}
+            </option>
           ))}
         </select>
         <br />
