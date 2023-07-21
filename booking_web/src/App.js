@@ -10,7 +10,6 @@ function App() {
 
   return (
     <>
-      <h1>Booking Web</h1>
       <RecoilRoot>
         <ChakraProvider theme={theme}>
           <Router />
