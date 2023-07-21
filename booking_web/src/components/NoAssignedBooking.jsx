@@ -1,12 +1,13 @@
 import React from "react";
 import { DeleteButton } from "./atoms/button/DeleteButton";
 import { AddTableRelationButton } from "./AddTableRelationButton";
-import { useRecoilState } from "recoil";
-import { noAssignedBookingState } from "../atom/state";
+import { useRecoilValue } from "recoil";
+import { noAssignedBookingState, buttonDispState } from "../atom/state";
 import { Link } from "react-router-dom";
 
 export const NoAssignedBooking = (props) => {
   const { booking } = props;
+  const dispButton = useRecoilValue(buttonDispState);
 
   const {
     date,
@@ -32,11 +33,11 @@ export const NoAssignedBooking = (props) => {
       </p>
       <p>{booking_category.name}</p>
       <p>{note}</p>
-      <AddTableRelationButton
+      { dispButton.addTable == true && <AddTableRelationButton
         bookingId={id}
-      />
-      <DeleteButton bookingId={id} />
-      <Link to={`/editBooking/${booking.id}`}>編集</Link>
+      />}
+      { dispButton.delete == true && <DeleteButton bookingId={id} />}
+      { dispButton.edit == true && <Link to={`/editBooking/${booking.id}`}>編集</Link>}
     </div>
   );
 };

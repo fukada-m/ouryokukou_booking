@@ -28,7 +28,6 @@ export const buttonDispState = atom({
         addTable: false,
         removeTable: false,
         moveTable: false,
-        visit: false,
     }
 })
 

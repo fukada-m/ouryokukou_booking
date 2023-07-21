@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { DeleteButton } from "./atoms/button/DeleteButton";
 import { MoveSeatButton } from "./MoveSeatButton";
 import { useRecoilValue } from "recoil";
-import { todayBookingState } from "../atom/state";
+import { todayBookingState, buttonDispState } from "../atom/state";
 import { Link } from "react-router-dom";
 
 export const Booking = (props) => {
   const { table } = props;
   const todayBooking = useRecoilValue(todayBookingState);
+  const dispButton = useRecoilValue(buttonDispState);
+
 
   const booking = todayBooking.filter((booking) => {
     const selectedTable = booking.tables.filter((todayTable) => {
@@ -30,9 +32,9 @@ export const Booking = (props) => {
           </p>
           <p>{booking.booking_category.name}</p>
           <p>{booking.note}</p>
-          <MoveSeatButton bookingId={booking.id} tableId={table.id} />
-          <DeleteButton bookingId={booking.id} table={table} />
-          <Link to={`/editBooking/${booking.id}`}>編集</Link>
+          {dispButton.moveTable == true && <MoveSeatButton bookingId={booking.id} tableId={table.id} />}
+          {dispButton.delete == true && <DeleteButton bookingId={booking.id} table={table} />}
+          {dispButton.edit == true && <Link to={`/editBooking/${booking.id}`}>編集</Link>}
         </div>
       ))}
     </div>
