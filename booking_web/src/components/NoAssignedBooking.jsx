@@ -1,27 +1,29 @@
-import React from 'react'
-import { DeleteButton } from './DeleteButton'
-import { AddTableRelationButton } from './AddTableRelationButton'
-import { useRecoilState } from 'recoil'
+import React from "react";
+import { DeleteButton } from "./atoms/button/DeleteButton";
+import { AddTableRelationButton } from "./AddTableRelationButton";
+import { useRecoilState } from "recoil";
 import { noAssignedBookingState } from "../atom/state";
 
 export const NoAssignedBooking = (props) => {
   const { booking } = props;
 
-    const {
-      date,
-      week,
-      time,
-      name,
-      number_of_adults,
-      number_of_children,
-      booking_category,
-      note,
-      id,
-    } = booking;
+  const {
+    date,
+    week,
+    time,
+    name,
+    number_of_adults,
+    number_of_children,
+    booking_category,
+    note,
+    id,
+  } = booking;
   return (
     <div>
       <p style={{ margin: "10px" }}>席が未定</p>
-      <p>{date}({week})</p>
+      <p>
+        {date}({week})
+      </p>
       <p>{time}</p>
       <p>{name}</p>
       <p>
@@ -33,10 +35,7 @@ export const NoAssignedBooking = (props) => {
         bookingId={id}
         // table={null}
       />
-      <DeleteButton
-        bookingId={id}
-      />
+      <DeleteButton bookingId={id} />
     </div>
   );
-}
-
+};

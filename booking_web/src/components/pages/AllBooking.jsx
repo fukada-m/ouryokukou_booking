@@ -1,22 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import { DeleteButton } from '../DeleteButton';
-import { Link } from 'react-router-dom';
-import { AddTableRelationButton } from '../AddTableRelationButton';
-import { RemoveTableRelationButton } from '../RemoveTableRelationButton';
-import { getAllBooking } from '../../utils/api';
-import { useRecoilState } from 'recoil';
-import { allBookingState } from '../../atom/state';
+import React, { useEffect, useState } from "react";
+import { DeleteButton } from "../atoms/button/DeleteButton";
+import { Link } from "react-router-dom";
+import { AddTableRelationButton } from "../AddTableRelationButton";
+import { RemoveTableRelationButton } from "../RemoveTableRelationButton";
+import { getAllBooking } from "../../utils/api";
+import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
+import { allBookingState, buttonDispState } from "../../atom/state";
 
 export const AllBooking = () => {
-    const [allBooking, setAllBooking] = useRecoilState(allBookingState);
+  const [allBooking, setAllBooking] = useRecoilState(allBookingState);
+  const dispButton = useRecoilValue(buttonDispState);
 
-    const fetchAllBooking = async () => {
-        setAllBooking(await getAllBooking());
-    }
 
-    useEffect(() => {
-        fetchAllBooking();
-    }, [])
+  const fetchAllBooking = async () => {
+    setAllBooking(await getAllBooking());
+  };
+
+
+  useEffect(() => {
+    fetchAllBooking();
+  }, []);
 
   return (
     <>
@@ -31,7 +34,8 @@ export const AllBooking = () => {
             <p>{booking.time}</p>
             <p>{booking.name}</p>
             <p>
-              大人{booking.number_of_adults}人 子供{booking.number_of_children}人
+              大人{booking.number_of_adults}人 子供{booking.number_of_children}
+              人
             </p>
             <p></p>
             <p>{booking.booking_category.name}</p>
@@ -41,19 +45,16 @@ export const AllBooking = () => {
               </div>
             ))}
             <p>備考：{booking.note}</p>
-            <DeleteButton
+            {dispButton.delete == true && <DeleteButton bookingId={booking.id} table={null} />}
+            {dispButton.addTable == true && <AddTableRelationButton bookingId={booking.id} />}
+            {dispButton.removeTable == true && <RemoveTableRelationButton
               bookingId={booking.id}
-            />
-            <AddTableRelationButton
-              bookingId={booking.id}
-            />
-            <RemoveTableRelationButton bookingId={booking.id} tableNum={booking.tables}/>
-            <Link to={`/editBooking/${booking.id}`}>編集</Link>
+              tableNum={booking.tables}
+            />}
+            {dispButton.edit == true && <Link to={`/editBooking/${booking.id}`}>編集</Link>}
           </div>
         ))}
       </div>
     </>
   );
-
-}
-
+};

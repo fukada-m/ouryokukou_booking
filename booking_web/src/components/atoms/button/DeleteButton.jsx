@@ -4,15 +4,15 @@ import {
   getAllBooking,
   getTables,
   leaveSeat,
-} from "../utils/api";
-import { today } from "../utils/date";
+} from "../../../utils/api";
+import { today } from "../../../utils/date";
 import { useSetRecoilState } from "recoil";
 import {
   allBookingState,
   todayBookingState,
   noAssignedBookingState,
   tableState,
-} from "../atom/state";
+} from "../../../atom/state";
 
 export const DeleteButton = (props) => {
   const setAllBooking = useSetRecoilState(allBookingState);
@@ -20,10 +20,7 @@ export const DeleteButton = (props) => {
   const setNoAssigendBooking = useSetRecoilState(noAssignedBookingState);
   const setTables = useSetRecoilState(tableState);
 
-  const {
-    bookingId,
-    table,
-  } = props;
+  const { bookingId, table } = props;
 
   const onClickDelete = async () => {
     const data = {
@@ -43,13 +40,15 @@ export const DeleteButton = (props) => {
     setNoAssigendBooking(noAssigendBooking);
     setAllBooking(allBooking);
     setTodayBooking(todayBooking);
-    const tableId = {
-      table: {
-        id: table.id,
-      },
-    };
-    await leaveSeat(tableId);
-    setTables(await getTables());
+    if (table !== null) {
+      const tableId = {
+        table: {
+          id: table.id,
+        },
+      };
+      await leaveSeat(tableId);
+      setTables(await getTables());
+    }
   };
 
   return (

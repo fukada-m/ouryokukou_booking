@@ -15,16 +15,16 @@ export const MenuDrawer = (props) => {
         <DrawerContent>
           <DrawerBody p={0} bg="gray.100">
             <Button w="100%" my={2}>
-              予約を削除
+              削除
+            </Button>
+            <Button w="100%" my={2}>
+              編集
             </Button>
             <Button w="100%" my={2}>
               席を追加
             </Button>
             <Button w="100%" my={2}>
               席を削除
-            </Button>
-            <Button w="100%" my={2}>
-              編集
             </Button>
             <Button w="100%" my={2}>
               席の移動

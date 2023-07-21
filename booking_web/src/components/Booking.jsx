@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { DeleteButton } from "./DeleteButton";
+import { DeleteButton } from "./atoms/button/DeleteButton";
 import { MoveSeatButton } from "./MoveSeatButton";
 import { useRecoilValue } from "recoil";
 import { todayBookingState } from "../atom/state";
 import { Link } from "react-router-dom";
-
 
 export const Booking = (props) => {
   const { table } = props;
