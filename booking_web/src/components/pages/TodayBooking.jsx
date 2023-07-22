@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
+import { Box, Button, Heading } from "@chakra-ui/react";
+
 import { today } from "../../utils/date";
 import { getAllBooking, getTables } from "../../utils/api";
 import { Booking } from "../Booking";
 import { NoAssignedBooking } from "../NoAssignedBooking";
 import { LeaveSeatButton } from "../LeaveSeatButton";
 import { SitSeatButton } from "../SitSeatButton";
-import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
 import { todayBookingState, noAssignedBookingState, tableState, buttonDispState, optionDispState } from "../../atom/state";
 
 
@@ -44,7 +46,7 @@ export const TodayBooking = () => {
 
   return (
     <>
-      <h1>TodayBooking</h1>
+      <Heading as="h1" fontSize={{ base: "lg", md: "xl"}}>今日の予約</Heading>
       <div style={{ display: "flex" }}>
         {tables.map((table) => (
           <div

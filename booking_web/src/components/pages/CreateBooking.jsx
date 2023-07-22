@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { createBooking } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { Heading } from "@chakra-ui/react";
+
+import { createBooking } from "../../utils/api";
 import { getWeek } from "../../utils/date";
 import { optionDispState } from "../../atom/state";
-import { useSetRecoilState } from "recoil";
 
 
 export const CreateBooking = () => {
@@ -73,7 +75,9 @@ export const CreateBooking = () => {
 
   return (
     <>
-      <h1>CreateBooking</h1>
+      <Heading as="h1" fontSize={{ base: "lg", md: "xl" }}>
+        新規予約
+      </Heading>
       <div>
         <input type="date" onChange={(e) => setDate(e.target.value)} />
         <input type="time" onChange={(e) => setTime(e.target.value)} />

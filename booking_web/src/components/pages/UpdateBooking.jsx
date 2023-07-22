@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from "react-router-dom";
-import { getAllBooking, updateBooking } from '../../utils/api';
+import { Heading } from "@chakra-ui/react";
 import { useSetRecoilState } from "recoil";
+
+import { getAllBooking, updateBooking } from '../../utils/api';
 import { optionDispState } from "../../atom/state";
 
 
@@ -68,7 +70,9 @@ export const UpdateBooking = () => {
 
     return (
       <>
-        <h1>UpdateBooking</h1>
+        <Heading as="h1" fontSize={{ base: "lg", md: "xl" }}>
+          予約の編集
+        </Heading>
         <div>
           <input
             type="date"
@@ -122,7 +126,10 @@ export const UpdateBooking = () => {
           <label htmlFor="option2">電話</label>
           <br />
           <label>備考</label>
-          <textarea defaultValue={note} onChange={(e) => setNote(e.target.value)} />
+          <textarea
+            defaultValue={note}
+            onChange={(e) => setNote(e.target.value)}
+          />
           <button onClick={update}>更新</button>
         </div>
       </>
