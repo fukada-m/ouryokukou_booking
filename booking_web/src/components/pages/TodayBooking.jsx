@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
-import { Box, Button, Heading } from "@chakra-ui/react";
+import { Box, Button, Heading, Stack, Text, Wrap, WrapItem } from "@chakra-ui/react";
 
 import { today } from "../../utils/date";
 import { getAllBooking, getTables } from "../../utils/api";
@@ -46,29 +46,52 @@ export const TodayBooking = () => {
 
   return (
     <>
-      <Heading as="h1" fontSize={{ base: "lg", md: "xl"}}>今日の予約</Heading>
-      <div style={{ display: "flex" }}>
+      <Heading as="h1" fontSize={{ base: "lg", md: "xl" }}>
+        今日の予約
+      </Heading>
+      <Wrap p={{ base: 4, md: 6 }}>
         {tables.map((table) => (
-          <div
-            key={table.id}
-            style={{ backgroundColor: table.is_seated && "red" }}
-          >
-            <p style={{ margin: "10px" }}>{table.id}番</p>
-            {table.is_seated == false ? (
-              <SitSeatButton tableId={table.id} setTables={setTables} />
-            ) : (
-              <LeaveSeatButton tableId={table.id} setTables={setTables} />
-            )}
-            <Booking table={table} />
-
-          </div>
+          <WrapItem mx="auto">
+            <Box
+              w="250px"
+              h="100%"
+              bg="white"
+              borderRadius="10px"
+              shadow="md"
+              p={1}
+              key={table.id}
+              backgroundColor={table.is_seated && "yellow.200"}
+            >
+              <Stack textAlign="center">
+                <Text fontSize="lg">{table.id}番</Text>
+                {table.is_seated == false ? (
+                  <SitSeatButton tableId={table.id} setTables={setTables} />
+                ) : (
+                  <LeaveSeatButton tableId={table.id} setTables={setTables} />
+                )}
+                <Booking table={table} />
+              </Stack>
+            </Box>
+          </WrapItem>
         ))}
-        {noAssigendBooking.map((booking) => (
-          <div key={booking.id}>
-            <NoAssignedBooking booking={booking} />
-          </div>
-        ))}
-      </div>
+      </Wrap>
+      <Wrap p={{ base: 4, md: 6 }}>
+          {noAssigendBooking.map((booking) => (
+        <WrapItem mx="auto">
+            <Box
+              w="200px"
+              h="100%"
+              bg="gray.200"
+              borderRadius="10px"
+              shadow="md"
+              p={1}
+              key={booking.id}
+            >
+              <NoAssignedBooking booking={booking} />
+            </Box>
+        </WrapItem>
+          ))}
+      </Wrap>
     </>
   );
 };
