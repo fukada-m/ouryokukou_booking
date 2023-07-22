@@ -87,7 +87,9 @@ export const TodayBooking = () => {
               p={1}
               key={booking.id}
             >
+              <Stack textAlign="center">
               <NoAssignedBooking booking={booking} />
+              </Stack>
             </Box>
         </WrapItem>
           ))}
