@@ -27,12 +27,39 @@ export const Header = () => {
         </Heading>
         <Flex align="center" flexGrow={2}>
           <Box pr={4} pl={4}>
-            <Link onClick={onClickAllBooking}>全予約</Link>
+            <Link
+              bg="white"
+              color="black"
+              borderRadius="15px"
+              p={2}
+              fontWeight="bold"
+              onClick={onClickAllBooking}
+            >
+              全予約
+            </Link>
           </Box>
           <Box pr={4}>
-            <Link onClick={onClickTodayBooking}>今日の予約</Link>
+            <Link
+              bg="white"
+              color="black"
+              borderRadius="15px"
+              p={2}
+              fontWeight="bold"
+              onClick={onClickTodayBooking}
+            >
+              今日の予約
+            </Link>
           </Box>
-          <Link onClick={onClickCreateBooking}>新規予約</Link>
+          <Link
+            bg="white"
+            color="black"
+            borderRadius="15px"
+            p={2}
+            fontWeight="bold"
+            onClick={onClickCreateBooking}
+          >
+            新規予約
+          </Link>
         </Flex>
         <Options />
         <MenuIconButton onOpen={onOpen} />

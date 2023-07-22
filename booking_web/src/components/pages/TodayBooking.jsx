@@ -53,7 +53,7 @@ export const TodayBooking = () => {
         {tables.map((table) => (
           <WrapItem mx="auto">
             <Box
-              w="250px"
+              w="200px"
               h="100%"
               bg="white"
               borderRadius="10px"

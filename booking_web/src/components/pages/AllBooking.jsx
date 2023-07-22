@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { DeleteButton } from "../atoms/button/DeleteButton";
 import { Link } from "react-router-dom";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
-import { Box, Stack, Wrap, WrapItem } from "@chakra-ui/react";
+import { Box, Stack, Wrap, WrapItem, Heading } from "@chakra-ui/react";
+
 import { AddTableRelationButton } from "../AddTableRelationButton";
 import { RemoveTableRelationButton } from "../RemoveTableRelationButton";
 import { getAllBooking } from "../../utils/api";
@@ -25,20 +26,19 @@ export const AllBooking = () => {
 
   return (
     <>
-      <h1>予約一覧</h1>
+      <Heading as="h1" fontSize={{ base: "lg", md: "xl" }}>予約一覧</Heading>
       {allBooking.length === 0 && <h2>予約はまだありません</h2>}
       <Wrap p={{ base: 4, md: 6 }}>
         {allBooking.map((booking) => (
           <WrapItem mx="auto">
             <Box
-              w="250px"
+              w="200px"
               h="100%"
               bg="white"
               borderRadius="10px"
               shadow="md"
               p={1}
               key={booking.id}
-              style={{ margin: "20px" }}
             >
               <Stack textAlign="center">
                 <p>
