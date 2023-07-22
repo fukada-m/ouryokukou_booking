@@ -1,10 +1,11 @@
 import React from 'react'
 import { Box, Button } from '@chakra-ui/react'
-import { buttonDispState } from '../../atom/state';
-import { useSetRecoilState } from 'recoil';
+import { buttonDispState, optionDispState } from '../../atom/state';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 
 export const Options = () => {
     const setButtonDisp = useSetRecoilState(buttonDispState)
+    const optionDisp = useRecoilValue(optionDispState)
 
     const onClickDispDelete = () => {
         setButtonDisp(() => ({delete: true, edit: false, addTable: false, removeTable: false, moveTable: false}));
@@ -25,11 +26,31 @@ export const Options = () => {
 
   return (
     <Box display={{ base: "none", md: "block" }}>
-      <Button onClick={onClickDispDelete} m="1">削除</Button>
-      <Button onClick={onClickDispEdit}m="1">編集</Button>
-      <Button onClick={onClickDispAddTable} m="1">席を割り振る</Button>
-      <Button onClick={onClickDispRemoveTable} m="1">席を解除</Button>
-      <Button onClick={onClickDispMoveTable} m="1">席の移動</Button>
+      {optionDisp.delete && (
+        <Button onClick={onClickDispDelete} p="2" m="1">
+          削除
+        </Button>
+      )}
+      {optionDisp.edit && (
+        <Button onClick={onClickDispEdit} p="2" m="1">
+          編集
+        </Button>
+      )}
+      {optionDisp.addTable && (
+        <Button onClick={onClickDispAddTable} p="2" m="1">
+          席を割り振る
+        </Button>
+      )}
+      {optionDisp.removeTable && (
+        <Button onClick={onClickDispRemoveTable} p="2" m="1">
+          席を解除
+        </Button>
+      )}
+      {optionDisp.moveTable && (
+        <Button onClick={onClickDispMoveTable} p="2" m="1">
+          席の移動
+        </Button>
+      )}
     </Box>
   );
 }

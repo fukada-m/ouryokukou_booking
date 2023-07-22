@@ -5,12 +5,12 @@ import { AddTableRelationButton } from "../AddTableRelationButton";
 import { RemoveTableRelationButton } from "../RemoveTableRelationButton";
 import { getAllBooking } from "../../utils/api";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
-import { allBookingState, buttonDispState } from "../../atom/state";
+import { allBookingState, buttonDispState, optionDispState } from "../../atom/state";
 
 export const AllBooking = () => {
   const [allBooking, setAllBooking] = useRecoilState(allBookingState);
-  const dispButton = useRecoilValue(buttonDispState);
-
+  const buttonDisp = useRecoilValue(buttonDispState);
+  const setOptionDisp = useSetRecoilState(optionDispState);
 
   const fetchAllBooking = async () => {
     setAllBooking(await getAllBooking());
@@ -19,6 +19,7 @@ export const AllBooking = () => {
 
   useEffect(() => {
     fetchAllBooking();
+    setOptionDisp({ delete: true, edit: true, addTable: true, removeTable: true, moveTable: false });
   }, []);
 
   return (
@@ -45,13 +46,13 @@ export const AllBooking = () => {
               </div>
             ))}
             <p>備考：{booking.note}</p>
-            {dispButton.delete == true && <DeleteButton bookingId={booking.id} table={null} />}
-            {dispButton.addTable == true && <AddTableRelationButton bookingId={booking.id} />}
-            {dispButton.removeTable == true && <RemoveTableRelationButton
+            {buttonDisp.delete == true && <DeleteButton bookingId={booking.id} table={null} />}
+            {buttonDisp.addTable == true && <AddTableRelationButton bookingId={booking.id} />}
+            {buttonDisp.removeTable == true && <RemoveTableRelationButton
               bookingId={booking.id}
               tableNum={booking.tables}
             />}
-            {dispButton.edit == true && <Link to={`/editBooking/${booking.id}`}>編集</Link>}
+            {buttonDisp.edit == true && <Link to={`/editBooking/${booking.id}`}>編集</Link>}
           </div>
         ))}
       </div>

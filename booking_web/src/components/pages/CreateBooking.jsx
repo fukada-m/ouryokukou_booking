@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createBooking } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 import { getWeek } from "../../utils/date";
+import { optionDispState } from "../../atom/state";
+import { useSetRecoilState } from "recoil";
+
 
 export const CreateBooking = () => {
   const navigate = useNavigate();
+  const setOptionDisp = useSetRecoilState(optionDispState);
 
   const [date, setDate] = useState();
   const [time, setTime] = useState();
@@ -56,6 +60,16 @@ export const CreateBooking = () => {
       alert("予約の作成に失敗しました");
     }
   };
+
+  useEffect(() => {
+    setOptionDisp({
+      delete: false,
+      edit: false,
+      addTable: false,
+      removeTable: false,
+      moveTable: false,
+    });
+  }, []);
 
   return (
     <>

@@ -27,7 +27,7 @@ export const Header = () => {
         </Heading>
         <Flex align="center" flexGrow={2}>
           <Box pr={4} pl={4}>
-            <Link onClick={onClickAllBooking}>全ての予約</Link>
+            <Link onClick={onClickAllBooking}>全予約</Link>
           </Box>
           <Box pr={4}>
             <Link onClick={onClickTodayBooking}>今日の予約</Link>

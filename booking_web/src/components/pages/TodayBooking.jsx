@@ -6,7 +6,7 @@ import { NoAssignedBooking } from "../NoAssignedBooking";
 import { LeaveSeatButton } from "../LeaveSeatButton";
 import { SitSeatButton } from "../SitSeatButton";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
-import { todayBookingState, noAssignedBookingState, tableState, buttonDispState } from "../../atom/state";
+import { todayBookingState, noAssignedBookingState, tableState, buttonDispState, optionDispState } from "../../atom/state";
 
 
 export const TodayBooking = () => {
@@ -15,7 +15,8 @@ export const TodayBooking = () => {
     noAssignedBookingState
   );
   const [tables, setTables] = useRecoilState(tableState);
-  const dispButton = useRecoilValue(buttonDispState);
+  const setOptionDisp = useSetRecoilState(optionDispState);
+
 
   const fetchTodayBooking = async () => {
     const allBooking = await getAllBooking();
@@ -32,6 +33,13 @@ export const TodayBooking = () => {
 
   useEffect(() => {
     fetchTodayBooking();
+    setOptionDisp({
+      delete: true,
+      edit: true,
+      addTable: true,
+      removeTable: false,
+      moveTable: true,
+    });
   }, []);
 
   return (

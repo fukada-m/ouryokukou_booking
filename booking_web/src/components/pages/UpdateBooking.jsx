@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from "react-router-dom";
 import { getAllBooking, updateBooking } from '../../utils/api';
+import { useSetRecoilState } from "recoil";
+import { optionDispState } from "../../atom/state";
 
 
 export const UpdateBooking = () => {
     const navigate = useNavigate();
     const { id } = useParams();
+  const setOptionDisp = useSetRecoilState(optionDispState);
 
     const [date, setDate] = useState();
     const [name, setName] = useState();
@@ -34,6 +37,13 @@ export const UpdateBooking = () => {
 
     useEffect(() => {
       fetchBooking();
+      setOptionDisp({
+      delete: false,
+      edit: false,
+      addTable: false,
+      removeTable: false,
+      moveTable: false,
+    });
       }, []);
 
       const update = async () => {
