@@ -41,7 +41,7 @@ export const AllBooking = () => {
       {allBooking.length === 0 && <h2>予約はまだありません</h2>}
       <Wrap p={{ base: 4, md: 6 }}>
         {allBooking.map((booking) => (
-          <WrapItem mx="auto">
+          <WrapItem key={booking.id} mx="auto">
             <Box
               w="200px"
               h="100%"
@@ -49,7 +49,6 @@ export const AllBooking = () => {
               borderRadius="10px"
               shadow="md"
               p={1}
-              key={booking.id}
             >
               <Stack textAlign="center">
                 <p>

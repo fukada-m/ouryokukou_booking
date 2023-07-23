@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
-import { Box, Button, Heading, Stack, Text, Wrap, WrapItem } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Heading,
+  Stack,
+  Text,
+  Wrap,
+  WrapItem,
+} from "@chakra-ui/react";
 
 import { today } from "../../utils/date";
 import { getAllBooking, getTables } from "../../utils/api";
 import { Booking } from "../Booking";
 import { NoAssignedBooking } from "../NoAssignedBooking";
-import { LeaveSeatButton } from "../LeaveSeatButton";
-import { SitSeatButton } from "../SitSeatButton";
-import { todayBookingState, noAssignedBookingState, tableState, buttonDispState, optionDispState } from "../../atom/state";
-
+import { LeaveSeatButton } from "../atoms/button/LeaveSeatButton";
+import { SitSeatButton } from "../atoms/button/SitSeatButton";
+import {
+  todayBookingState,
+  noAssignedBookingState,
+  tableState,
+  buttonDispState,
+  optionDispState,
+} from "../../atom/state";
 
 export const TodayBooking = () => {
   const setTodayBooking = useSetRecoilState(todayBookingState);
@@ -18,7 +31,6 @@ export const TodayBooking = () => {
   );
   const [tables, setTables] = useRecoilState(tableState);
   const setOptionDisp = useSetRecoilState(optionDispState);
-
 
   const fetchTodayBooking = async () => {
     const allBooking = await getAllBooking();
@@ -76,8 +88,8 @@ export const TodayBooking = () => {
         ))}
       </Wrap>
       <Wrap p={{ base: 4, md: 6 }}>
-          {noAssigendBooking.map((booking) => (
-        <WrapItem mx="auto">
+        {noAssigendBooking.map((booking) => (
+          <WrapItem mx="auto">
             <Box
               w="200px"
               h="100%"
@@ -88,11 +100,11 @@ export const TodayBooking = () => {
               key={booking.id}
             >
               <Stack textAlign="center">
-              <NoAssignedBooking booking={booking} />
+                <NoAssignedBooking booking={booking} />
               </Stack>
             </Box>
-        </WrapItem>
-          ))}
+          </WrapItem>
+        ))}
       </Wrap>
     </>
   );

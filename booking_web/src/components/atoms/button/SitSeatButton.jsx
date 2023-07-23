@@ -1,9 +1,10 @@
 import React from "react";
-import { sitSeat } from "../utils/api";
+import { sitSeat } from "../../../utils/api";
+import { Button } from "@chakra-ui/react";
 
 export const SitSeatButton = (props) => {
   const { tableId, setTables } = props;
-  
+
   const onClickSitSeat = async () => {
     const data = {
       table: {
@@ -15,7 +16,7 @@ export const SitSeatButton = (props) => {
 
   return (
     <div>
-      <button onClick={onClickSitSeat}>来店</button>
+      <Button onClick={onClickSitSeat}>来店</Button>
     </div>
   );
 };
