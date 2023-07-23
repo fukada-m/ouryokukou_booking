@@ -75,7 +75,7 @@ export const CreateBooking = () => {
 
   return (
     <>
-      <Heading px={5}as="h1" fontSize={{ base: "2xl", md: "3xl" }}>
+      <Heading px={5} as="h1" fontSize={{ base: "2xl", md: "3xl" }}>
         新規予約
       </Heading>
       <Box p={{ base: 5, md: 10}} bg="red.100">

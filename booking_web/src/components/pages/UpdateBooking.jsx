@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from "react-router-dom";
-import { Heading } from "@chakra-ui/react";
+import { Heading, Box, Input, FormLabel, NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Select, Textarea,Button  } from "@chakra-ui/react";
 import { useSetRecoilState } from "recoil";
 
 import { getAllBooking, updateBooking } from '../../utils/api';
 import { optionDispState } from "../../atom/state";
-
 
 export const UpdateBooking = () => {
     const navigate = useNavigate();
@@ -70,68 +69,101 @@ export const UpdateBooking = () => {
 
     return (
       <>
-        <Heading as="h1" fontSize={{ base: "lg", md: "xl" }}>
+        <Heading px={5} as="h1" fontSize={{ base: "2xl", md: "3xl" }}>
           予約の編集
         </Heading>
-        <div>
-          <input
-            type="date"
-            defaultValue={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
-          <input
-            type="time"
-            defaultValue={time}
-            onChange={(e) => setTime(e.target.value)}
-          />
-          <label>名前</label>
-          <input
-            type="text"
-            defaultValue={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <br />
-          <label>大人</label>
-          <input
-            type="number"
-            defaultValue={numberOfAdults}
-            onChange={(e) => setNumberOfAdults(e.target.value)}
-            min={1}
-            max={99}
-          />
-          <label>子供</label>
-          <input
-            type="number"
-            defaultValue={numberOfChildren}
-            onChange={(e) => setNumberOfChildren(e.target.value)}
-            min={0}
-            max={99}
-          />
-          <br />
-          <label>予約カテゴリー</label>
-          <input
-            type="radio"
-            value="1"
-            checked={bookingCategoryId === "1"}
-            onChange={() => setBookingCategoryId("1")}
-          />
-          <label htmlFor="option1">LINE</label>
-
-          <input
-            type="radio"
-            value="2"
-            checked={bookingCategoryId === "2"}
-            onChange={() => setBookingCategoryId("2")}
-          />
-          <label htmlFor="option2">電話</label>
-          <br />
-          <label>備考</label>
-          <textarea
-            defaultValue={note}
-            onChange={(e) => setNote(e.target.value)}
-          />
-          <button onClick={update}>更新</button>
-        </div>
+        <Box p={{ base: 5, md: 10 }} bg="red.100">
+          <Box py={3} display="flex">
+            <Input
+              bg="white"
+              type="date"
+              w="150px"
+              borderRadius="10px"
+              defaultValue={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+            <Input
+              bg="white"
+              type="time"
+              w="120px"
+              mx={2}
+              borderRadius="10px"
+              defaultValue={time}
+              onChange={(e) => setTime(e.target.value)}
+            />
+            <Input
+              type="text"
+              bg="white"
+              w="150px"
+              borderRadius="10px"
+              defaultValue={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </Box>
+          <Box display="flex">
+            <FormLabel fontSize={"2xl"}>大人</FormLabel>
+            <NumberInput
+              w="80px"
+              min={1}
+              max={60}
+              onChange={(value) => setNumberOfAdults(parseInt(value))}
+              defaultValue={numberOfAdults}
+              value={numberOfAdults}
+            >
+              <NumberInputField bg={"white"} />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+            <FormLabel fontSize={"2xl"}>子供</FormLabel>
+            <NumberInput
+              w="80px"
+              min={0}
+              max={60}
+              onChange={(value) => setNumberOfChildren(parseInt(value))}
+              defaultValue={numberOfChildren}
+              value={numberOfChildren}
+            >
+              <NumberInputField bg={"white"} />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+          </Box>
+          <Box display="flex">
+            <FormLabel fontSize={"2xl"}>予約カテゴリー</FormLabel>
+            <input
+              type="radio"
+              value="1"
+              checked={bookingCategoryId === "1"}
+              onChange={() => setBookingCategoryId("1")}
+            />
+            <FormLabel fontSize={"2xl"}>LINE</FormLabel>
+            <input
+              type="radio"
+              value="2"
+              checked={bookingCategoryId === "2"}
+              onChange={() => setBookingCategoryId("2")}
+            />
+            <FormLabel fontSize={"2xl"}>電話</FormLabel>
+          </Box>
+          <Box py={3} display="flex">
+            <FormLabel fontSize={"2xl"}>備考</FormLabel>
+            <Textarea
+              bg={"white"}
+              w={"400px"}
+              onChange={(e) => setNote(e.target.value)}
+              defaultValue={note}
+            />
+          </Box>
+          <Box px={30} py={3}>
+            <Button fontSize={"2xl"} p={8} bg={"white"} onClick={update}>
+              登録
+            </Button>
+          </Box>
+        </Box>
       </>
     );
   };
