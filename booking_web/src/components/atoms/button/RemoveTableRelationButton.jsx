@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-import { removeTableRelation, getAllBooking } from "../utils/api";
-import { today } from "../utils/date";
+import React, { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
+import { Box, Button, Select } from "@chakra-ui/react";
+
+import { today } from "../../../utils/date";
+import { removeTableRelation, getAllBooking } from "../../../utils/api";
 import {
   allBookingState,
   todayBookingState,
   noAssignedBookingState,
-} from "../atom/state";
+} from "../../../atom/state";
 
 export const RemoveTableRelationButton = (props) => {
   const { bookingId, tableNum } = props;
@@ -14,23 +16,7 @@ export const RemoveTableRelationButton = (props) => {
   const setTodayBooking = useSetRecoilState(todayBookingState);
   const setNoAssigendBooking = useSetRecoilState(noAssignedBookingState);
 
-//   const tableNum = [
-//     { id: 1, name: "1番" },
-//     { id: 2, name: "2番" },
-//     { id: 3, name: "3番" },
-//     { id: 5, name: "5番" },
-//     { id: 11, name: "11番" },
-//     { id: 12, name: "12番" },
-//     { id: 13, name: "13番" },
-//     { id: 14, name: "14番" },
-//     { id: 15, name: "15番" },
-//     { id: 16, name: "16番" },
-//     { id: 21, name: "21番" },
-//   ];
-
-console.log(tableNum);
-
-  const [table, setTable] = useState(1);
+  const [table, setTable] = useState();
 
   const onClickRemoveTableRelation = async () => {
     const data = {
@@ -41,6 +27,7 @@ console.log(tableNum);
         id: table,
       },
     };
+    console.log(table);
     await removeTableRelation(data);
     const allBooking = await getAllBooking();
     setAllBooking(allBooking);
@@ -54,16 +41,30 @@ console.log(tableNum);
     setNoAssigendBooking(noAssigendBooking);
   };
 
+  useEffect(() => {
+    if (tableNum.length > 0) {
+      setTable(tableNum[0].id);
+    }
+  }, []);
+
   return (
-    <div>
-      <select value={table} onChange={(e) => setTable(e.target.value)}>
-        {tableNum.map((table) => (
-          <option key={table.id} value={table.id}>
-            {table.name}
-          </option>
-        ))}
-      </select>
-      <button onClick={onClickRemoveTableRelation}>席を解除する</button>
-    </div>
+    <>
+      {tableNum.length > 0 && (
+        <Box display={"flex"}>
+          <Select
+            w={"100px"}
+            value={table}
+            onChange={(e) => setTable(e.target.value)}
+          >
+            {tableNum.map((table) => (
+              <option key={table.id} value={table.id}>
+                {table.name}
+              </option>
+            ))}
+          </Select>
+          <Button onClick={onClickRemoveTableRelation}>席を解除</Button>
+        </Box>
+      )}
+    </>
   );
 };

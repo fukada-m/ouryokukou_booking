@@ -5,7 +5,7 @@ import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
 import { Box, Stack, Wrap, WrapItem, Heading, Text } from "@chakra-ui/react";
 
 import { AddTableRelationButton } from "../atoms/button/AddTableRelationButton";
-import { RemoveTableRelationButton } from "../RemoveTableRelationButton";
+import { RemoveTableRelationButton } from "../atoms/button/RemoveTableRelationButton";
 import { getAllBooking } from "../../utils/api";
 import {
   allBookingState,
@@ -73,7 +73,7 @@ export const AllBooking = () => {
                     <p>{table.name}</p>
                   </div>
                 ))}
-                <p>備考：{booking.note}</p>
+                <p>{booking.note}</p>
                 {buttonDisp.delete && (
                   <DeleteButton bookingId={booking.id} table={null} />
                 )}
