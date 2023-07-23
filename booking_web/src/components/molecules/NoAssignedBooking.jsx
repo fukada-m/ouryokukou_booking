@@ -1,11 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Text } from "@chakra-ui/react";
+import { Text, Link } from "@chakra-ui/react";
 
-import { DeleteButton } from "./atoms/button/DeleteButton";
-import { AddTableRelationButton } from "./atoms/button/AddTableRelationButton";
+import { DeleteButton } from "../atoms/button/DeleteButton";
+import { AddTableRelationButton } from "../atoms/button/AddTableRelationButton";
 import { useRecoilValue } from "recoil";
-import { noAssignedBookingState, buttonDispState } from "../atom/state";
+import { noAssignedBookingState, buttonDispState } from "../../atom/state";
 
 export const NoAssignedBooking = (props) => {
   const { booking } = props;
@@ -40,7 +39,18 @@ export const NoAssignedBooking = (props) => {
       <p>{note}</p>
       {dispButton.addTable && <AddTableRelationButton bookingId={id} />}
       {dispButton.delete && <DeleteButton bookingId={id} />}
-      {dispButton.edit && <Link to={`/editBooking/${booking.id}`}>編集</Link>}
+      {dispButton.edit && (
+        <Link
+          bg={"gray.100"}
+          px={3}
+          py={2}
+          m="auto"
+          borderRadius={"20px"}
+          to={`/editBooking/${booking.id}`}
+        >
+          編集
+        </Link>
+      )}
     </div>
   );
 };

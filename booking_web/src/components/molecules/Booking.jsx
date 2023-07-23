@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, Link } from "@chakra-ui/react";
 
-import { DeleteButton } from "./atoms/button/DeleteButton";
-import { MoveSeatButton } from "./MoveSeatButton";
+import { DeleteButton } from "../atoms/button/DeleteButton";
+import { MoveSeatButton } from "../atoms/button/MoveSeatButton";
 import { useRecoilValue } from "recoil";
-import { todayBookingState, buttonDispState } from "../atom/state";
+import { todayBookingState, buttonDispState } from "../../atom/state";
 
 export const Booking = (props) => {
   const { table } = props;
   const todayBooking = useRecoilValue(todayBookingState);
   const dispButton = useRecoilValue(buttonDispState);
-
 
   const booking = todayBooking.filter((booking) => {
     const selectedTable = booking.tables.filter((todayTable) => {
@@ -36,14 +34,24 @@ export const Booking = (props) => {
             {booking.booking_category.name}
           </Text>
           <p>{booking.note}</p>
-          {dispButton.moveTable == true && (
+          {dispButton.moveTable && (
             <MoveSeatButton bookingId={booking.id} tableId={table.id} />
           )}
-          {dispButton.delete == true && (
+          {dispButton.delete && (
             <DeleteButton bookingId={booking.id} table={table} />
           )}
-          {dispButton.edit == true && (
-            <Link to={`/editBooking/${booking.id}`}>編集</Link>
+          {dispButton.edit && (
+            <Link
+              fontSize={{ base: "lg", md: "md" }}
+              bg={"gray.100"}
+              px={3}
+              py={2}
+              m="auto"
+              borderRadius={"20px"}
+              to={`/editBooking/${booking.id}`}
+            >
+              編集
+            </Link>
           )}
         </Box>
       ))}

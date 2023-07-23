@@ -13,6 +13,7 @@ import {
   noAssignedBookingState,
   tableState,
 } from "../../../atom/state";
+import { Button } from "@chakra-ui/react";
 
 export const DeleteButton = (props) => {
   const setAllBooking = useSetRecoilState(allBookingState);
@@ -53,7 +54,7 @@ export const DeleteButton = (props) => {
 
   return (
     <div>
-      <button onClick={onClickDelete}>削除</button>
+      <Button onClick={onClickDelete}>削除</Button>
     </div>
   );
 };

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { DeleteButton } from "../atoms/button/DeleteButton";
-import { Link } from "react-router-dom";
+import {  } from "react-router-dom";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
-import { Box, Stack, Wrap, WrapItem, Heading, Text } from "@chakra-ui/react";
+import { Box, Stack, Wrap, WrapItem, Heading, Text, Link } from "@chakra-ui/react";
 
 import { AddTableRelationButton } from "../atoms/button/AddTableRelationButton";
 import { RemoveTableRelationButton } from "../atoms/button/RemoveTableRelationButton";
@@ -38,7 +38,7 @@ export const AllBooking = () => {
       <Heading as="h1" fontSize={{ base: "lg", md: "xl" }}>
         予約一覧
       </Heading>
-      {allBooking.length === 0 && <h2>予約はまだありません</h2>}
+      {allBooking.length === 0 && <h2>予約がまだない、または読み込み中</h2>}
       <Wrap p={{ base: 4, md: 6 }}>
         {allBooking.map((booking) => (
           <WrapItem key={booking.id} mx="auto">
@@ -86,7 +86,7 @@ export const AllBooking = () => {
                   />
                 )}
                 {buttonDisp.edit && (
-                  <Link to={`/editBooking/${booking.id}`}>編集</Link>
+                  <Link fontSize="lg" bg={"gray.100"} w={20} m="auto" borderRadius={"20px"} to={`/editBooking/${booking.id}`}>編集</Link>
                 )}
               </Stack>
             </Box>

@@ -12,8 +12,8 @@ import {
 
 import { today } from "../../utils/date";
 import { getAllBooking, getTables } from "../../utils/api";
-import { Booking } from "../Booking";
-import { NoAssignedBooking } from "../NoAssignedBooking";
+import { Booking } from "../molecules/Booking";
+import { NoAssignedBooking } from "../molecules/NoAssignedBooking";
 import { LeaveSeatButton } from "../atoms/button/LeaveSeatButton";
 import { SitSeatButton } from "../atoms/button/SitSeatButton";
 import {
@@ -63,7 +63,7 @@ export const TodayBooking = () => {
       </Heading>
       <Wrap p={{ base: 4, md: 6 }}>
         {tables.map((table) => (
-          <WrapItem mx="auto">
+          <WrapItem key={table.id} mx="auto">
             <Box
               w="200px"
               h="100%"
@@ -71,7 +71,6 @@ export const TodayBooking = () => {
               borderRadius="10px"
               shadow="md"
               p={1}
-              key={table.id}
               backgroundColor={table.is_seated && "yellow.200"}
             >
               <Stack textAlign="center">
