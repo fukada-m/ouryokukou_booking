@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { DeleteButton } from "../atoms/button/DeleteButton";
 import { Link } from "react-router-dom";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
-import { Box, Stack, Wrap, WrapItem, Heading } from "@chakra-ui/react";
+import { Box, Stack, Wrap, WrapItem, Heading, Text } from "@chakra-ui/react";
 
 import { AddTableRelationButton } from "../AddTableRelationButton";
 import { RemoveTableRelationButton } from "../RemoveTableRelationButton";
@@ -50,27 +50,26 @@ export const AllBooking = () => {
                   大人{booking.number_of_adults}人 子供
                   {booking.number_of_children}人
                 </p>
-                <p></p>
-                <p>{booking.booking_category.name}</p>
+                <Text color={booking.booking_category.name === "LINE" && "green.500"} >{booking.booking_category.name}</Text>
                 {booking.tables.map((table, index) => (
                   <div key={index}>
                     <p>{table.name}</p>
                   </div>
                 ))}
                 <p>備考：{booking.note}</p>
-                {buttonDisp.delete == true && (
+                {buttonDisp.delete && (
                   <DeleteButton bookingId={booking.id} table={null} />
                 )}
-                {buttonDisp.addTable == true && (
+                {buttonDisp.addTable && (
                   <AddTableRelationButton bookingId={booking.id} />
                 )}
-                {buttonDisp.removeTable == true && (
+                {buttonDisp.removeTable&& (
                   <RemoveTableRelationButton
                     bookingId={booking.id}
                     tableNum={booking.tables}
                   />
                 )}
-                {buttonDisp.edit == true && (
+                {buttonDisp.edit && (
                   <Link to={`/editBooking/${booking.id}`}>編集</Link>
                 )}
               </Stack>
