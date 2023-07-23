@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Text } from "@chakra-ui/react";
 
 import { DeleteButton } from "./atoms/button/DeleteButton";
-import { AddTableRelationButton } from "./AddTableRelationButton";
+import { AddTableRelationButton } from "./atoms/button/AddTableRelationButton";
 import { useRecoilValue } from "recoil";
 import { noAssignedBookingState, buttonDispState } from "../atom/state";
 
@@ -22,9 +22,10 @@ export const NoAssignedBooking = (props) => {
     note,
     id,
   } = booking;
+
   return (
     <div>
-      <p style={{ margin: "10px" }}>席が未定</p>
+      <Text m={2}>席が未定</Text>
       <p>
         {date}({week})
       </p>
@@ -37,11 +38,9 @@ export const NoAssignedBooking = (props) => {
         {booking.booking_category.name}
       </Text>
       <p>{note}</p>
-      {dispButton.addTable == true && <AddTableRelationButton bookingId={id} />}
-      {dispButton.delete == true && <DeleteButton bookingId={id} />}
-      {dispButton.edit == true && (
-        <Link to={`/editBooking/${booking.id}`}>編集</Link>
-      )}
+      {dispButton.addTable && <AddTableRelationButton bookingId={id} />}
+      {dispButton.delete && <DeleteButton bookingId={id} />}
+      {dispButton.edit && <Link to={`/editBooking/${booking.id}`}>編集</Link>}
     </div>
   );
 };

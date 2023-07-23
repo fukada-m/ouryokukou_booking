@@ -4,10 +4,14 @@ import { Link } from "react-router-dom";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
 import { Box, Stack, Wrap, WrapItem, Heading, Text } from "@chakra-ui/react";
 
-import { AddTableRelationButton } from "../AddTableRelationButton";
+import { AddTableRelationButton } from "../atoms/button/AddTableRelationButton";
 import { RemoveTableRelationButton } from "../RemoveTableRelationButton";
 import { getAllBooking } from "../../utils/api";
-import { allBookingState, buttonDispState, optionDispState } from "../../atom/state";
+import {
+  allBookingState,
+  buttonDispState,
+  optionDispState,
+} from "../../atom/state";
 
 export const AllBooking = () => {
   const [allBooking, setAllBooking] = useRecoilState(allBookingState);
@@ -18,15 +22,22 @@ export const AllBooking = () => {
     setAllBooking(await getAllBooking());
   };
 
-
   useEffect(() => {
     fetchAllBooking();
-    setOptionDisp({ delete: true, edit: true, addTable: true, removeTable: true, moveTable: false });
+    setOptionDisp({
+      delete: true,
+      edit: true,
+      addTable: true,
+      removeTable: true,
+      moveTable: false,
+    });
   }, []);
 
   return (
     <>
-      <Heading as="h1" fontSize={{ base: "lg", md: "xl" }}>予約一覧</Heading>
+      <Heading as="h1" fontSize={{ base: "lg", md: "xl" }}>
+        予約一覧
+      </Heading>
       {allBooking.length === 0 && <h2>予約はまだありません</h2>}
       <Wrap p={{ base: 4, md: 6 }}>
         {allBooking.map((booking) => (
@@ -50,7 +61,13 @@ export const AllBooking = () => {
                   大人{booking.number_of_adults}人 子供
                   {booking.number_of_children}人
                 </p>
-                <Text color={booking.booking_category.name === "LINE" && "green.500"} >{booking.booking_category.name}</Text>
+                <Text
+                  color={
+                    booking.booking_category.name === "LINE" && "green.500"
+                  }
+                >
+                  {booking.booking_category.name}
+                </Text>
                 {booking.tables.map((table, index) => (
                   <div key={index}>
                     <p>{table.name}</p>
@@ -63,7 +80,7 @@ export const AllBooking = () => {
                 {buttonDisp.addTable && (
                   <AddTableRelationButton bookingId={booking.id} />
                 )}
-                {buttonDisp.removeTable&& (
+                {buttonDisp.removeTable && (
                   <RemoveTableRelationButton
                     bookingId={booking.id}
                     tableNum={booking.tables}

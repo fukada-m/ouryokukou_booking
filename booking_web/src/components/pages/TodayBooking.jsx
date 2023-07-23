@@ -81,7 +81,7 @@ export const TodayBooking = () => {
             <Box
               w="200px"
               h="100%"
-              bg="gray.200"
+              bg="pink.200"
               borderRadius="10px"
               shadow="md"
               p={1}
