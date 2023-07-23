@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Box, Text, Link } from "@chakra-ui/react";
+import { Box, Text, Link, chakra } from "@chakra-ui/react";
 
 import { DeleteButton } from "../atoms/button/DeleteButton";
 import { MoveSeatButton } from "../atoms/button/MoveSeatButton";
 import { useRecoilValue } from "recoil";
 import { todayBookingState, buttonDispState } from "../../atom/state";
+import { Link as RouterLink } from "react-router-dom";
 
 export const Booking = (props) => {
   const { table } = props;
   const todayBooking = useRecoilValue(todayBookingState);
   const dispButton = useRecoilValue(buttonDispState);
+  const Link = chakra(RouterLink);
 
   const booking = todayBooking.filter((booking) => {
     const selectedTable = booking.tables.filter((todayTable) => {

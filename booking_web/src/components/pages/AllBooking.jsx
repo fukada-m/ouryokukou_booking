@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { DeleteButton } from "../atoms/button/DeleteButton";
-import {  } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
-import { Box, Stack, Wrap, WrapItem, Heading, Text, Link } from "@chakra-ui/react";
+import { Box, Stack, Wrap, WrapItem, Heading, Text, Link, chakra } from "@chakra-ui/react";
 
 import { AddTableRelationButton } from "../atoms/button/AddTableRelationButton";
 import { RemoveTableRelationButton } from "../atoms/button/RemoveTableRelationButton";
@@ -17,6 +17,7 @@ export const AllBooking = () => {
   const [allBooking, setAllBooking] = useRecoilState(allBookingState);
   const buttonDisp = useRecoilValue(buttonDispState);
   const setOptionDisp = useSetRecoilState(optionDispState);
+  const Link = chakra(RouterLink);
 
   const fetchAllBooking = async () => {
     setAllBooking(await getAllBooking());
