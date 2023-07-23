@@ -20,4 +20,26 @@ export const tableState = atom({
     default: []
 })
 
+export const optionDispState = atom({
+    key: 'optionDispState',
+    default: {
+        delete: false,
+        edit: false,
+        addTable: false,
+        removeTable: false,
+        moveTable: false,
+    }
+})
+
+export const buttonDispState = atom({
+    key: 'buttonDispState',
+    default: {
+        delete: false,
+        edit: false,
+        addTable: false,
+        removeTable: false,
+        moveTable: false,
+    }
+})
+
 
