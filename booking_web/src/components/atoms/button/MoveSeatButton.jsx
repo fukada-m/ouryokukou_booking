@@ -3,10 +3,13 @@ import { moveSeat } from "../../../utils/api";
 import { useSetRecoilState } from "recoil";
 import { todayBookingState } from "../../../atom/state";
 import { Box, Button, Select } from "@chakra-ui/react";
+import { useMessage } from "../../../hooks/useMessage";
 
 export const MoveSeatButton = (props) => {
   const { bookingId, tableId } = props;
   const setTodayBooking = useSetRecoilState(todayBookingState);
+  const { showMessage } = useMessage();
+
 
   const tableNum = [
     { id: 1, name: "1番" },
@@ -41,6 +44,7 @@ export const MoveSeatButton = (props) => {
       },
     };
     setTodayBooking(await moveSeat(addData, removeData));
+    showMessage({ title: "席を移動しました", status: "success" });
   };
 
   return (

@@ -6,10 +6,12 @@ import { Heading, Box, Button, Input, FormLabel, Select, NumberInput, NumberInpu
 import { createBooking } from "../../utils/api";
 import { getWeek } from "../../utils/date";
 import { optionDispState } from "../../atom/state";
+import { useMessage } from "../../hooks/useMessage";
 
 
 export const CreateBooking = () => {
   const navigate = useNavigate();
+  const {showMessage} = useMessage();
   const setOptionDisp = useSetRecoilState(optionDispState);
 
   const [date, setDate] = useState();
@@ -56,10 +58,10 @@ export const CreateBooking = () => {
 
     const res = await createBooking(data);
     if (res.status === "SUCCESS") {
-      // alert("予約の作成が完了しました");
+      showMessage({title: "予約の作成に成功しました", status: "success"});
       navigate("/allBooking");
     } else {
-      alert("予約の作成に失敗しました");
+      showMessage({title: "予約の作成に失敗しました", status: "error"});
     }
   };
 

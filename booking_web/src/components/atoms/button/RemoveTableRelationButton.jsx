@@ -9,12 +9,15 @@ import {
   todayBookingState,
   noAssignedBookingState,
 } from "../../../atom/state";
+import { useMessage } from "../../../hooks/useMessage";
 
 export const RemoveTableRelationButton = (props) => {
   const { bookingId, tableNum } = props;
   const setAllBooking = useSetRecoilState(allBookingState);
   const setTodayBooking = useSetRecoilState(todayBookingState);
   const setNoAssigendBooking = useSetRecoilState(noAssignedBookingState);
+  const { showMessage } = useMessage();
+
 
   const [table, setTable] = useState();
 
@@ -39,6 +42,7 @@ export const RemoveTableRelationButton = (props) => {
       return booking.tables.length === 0;
     });
     setNoAssigendBooking(noAssigendBooking);
+    showMessage({ title: "席を解除しました", status: "success" });
   };
 
   useEffect(() => {
