@@ -1,4 +1,4 @@
-import { position, useToast } from '@chakra-ui/react'
+import { useToast } from '@chakra-ui/react'
 import { useCallback } from 'react'
 
 export const useMessage = () => {
