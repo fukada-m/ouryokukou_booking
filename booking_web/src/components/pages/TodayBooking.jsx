@@ -88,7 +88,7 @@ export const TodayBooking = () => {
       </Wrap>
       <Wrap p={{ base: 4, md: 6 }}>
         {noAssigendBooking.map((booking) => (
-          <WrapItem mx="auto">
+          <WrapItem key={booking.id} mx="auto">
             <Box
               w="200px"
               h="100%"
@@ -96,7 +96,6 @@ export const TodayBooking = () => {
               borderRadius="10px"
               shadow="md"
               p={1}
-              key={booking.id}
             >
               <Stack textAlign="center">
                 <NoAssignedBooking booking={booking} />
