@@ -26,7 +26,7 @@ export const Header = () => {
           鴨緑江Booking
         </Heading>
         <Flex align="center" flexGrow={2}>
-          <Box pr={4} pl={4}>
+          <Box pr={2} pl={4}>
             <Link
               bg="white"
               color="black"
@@ -38,7 +38,7 @@ export const Header = () => {
               全予約
             </Link>
           </Box>
-          <Box pr={4}>
+          <Box pr={2}>
             <Link
               bg="white"
               color="black"

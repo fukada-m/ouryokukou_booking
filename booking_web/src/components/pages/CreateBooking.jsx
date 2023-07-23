@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { Heading } from "@chakra-ui/react";
+import { Heading, Box, Button, Input, FormLabel, Select, NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Textarea } from "@chakra-ui/react";
 
 import { createBooking } from "../../utils/api";
 import { getWeek } from "../../utils/date";
@@ -75,62 +75,103 @@ export const CreateBooking = () => {
 
   return (
     <>
-      <Heading as="h1" fontSize={{ base: "lg", md: "xl" }}>
+      <Heading px={5}as="h1" fontSize={{ base: "2xl", md: "3xl" }}>
         新規予約
       </Heading>
-      <div>
-        <input type="date" onChange={(e) => setDate(e.target.value)} />
-        <input type="time" onChange={(e) => setTime(e.target.value)} />
-        <label>名前</label>
-        <input type="text" onChange={(e) => setName(e.target.value)} />
-        <br />
-        <label>大人</label>
-        <input
-          type="number"
-          value={numberOfAdults}
-          onChange={(e) => setNumberOfAdults(e.target.value)}
-          min={1}
-          max={99}
-        />
-        <label>子供</label>
-        <input
-          type="number"
-          value={numberOfChildren}
-          onChange={(e) => setNumberOfChildren(e.target.value)}
-          min={0}
-          max={99}
-        />
-        <br />
-        <label>予約カテゴリー</label>
-        <input
-          type="radio"
-          value="1"
-          checked={bookingCategoryId === "1"}
-          onChange={() => setBookingCategoryId("1")}
-        />
-        <label>LINE</label>
-
-        <input
-          type="radio"
-          value="2"
-          checked={bookingCategoryId === "2"}
-          onChange={() => setBookingCategoryId("2")}
-        />
-        <label>電話</label>
-        <br />
-        <label>卓番</label>
-        <select value={tableId} onChange={(e) => setTableId(e.target.value)}>
-          {tableNum.map((table) => (
-            <option key={table.id} value={table.id}>
-              {table.name}
-            </option>
-          ))}
-        </select>
-        <br />
-        <label>備考</label>
-        <textarea onChange={(e) => setNote(e.target.value)} />
-        <button onClick={create}>登録</button>
-      </div>
+      <Box p={{ base: 5, md: 10}} bg="red.100">
+        <Box py={3} display="flex">
+          <Input
+            bg="white"
+            type="date"
+            w="150px"
+            borderRadius="10px"
+            onChange={(e) => setDate(e.target.value)}
+          />
+          <Input
+            bg="white"
+            type="time"
+            w="120px"
+            mx={2}
+            borderRadius="10px"
+            onChange={(e) => setTime(e.target.value)}
+          />
+          <Input
+            type="text"
+            bg="white"
+            w="150px"
+            borderRadius="10px"
+            placeholder="名前"
+            onChange={(e) => setName(e.target.value)}
+          />
+        </Box>
+        <Box display="flex">
+          <FormLabel fontSize={"2xl"}>大人</FormLabel>
+          <NumberInput
+            w="80px"
+            min={1}
+            max={60}
+            onChange={(value) => setNumberOfAdults(parseInt(value))}
+            value={numberOfAdults}
+          >
+            <NumberInputField bg={"white"} />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+          <FormLabel fontSize={"2xl"}>子供</FormLabel>
+          <NumberInput
+            w="80px"
+            min={0}
+            max={60}
+            onChange={(value) => setNumberOfChildren(parseInt(value))}
+            value={numberOfChildren}
+          >
+            <NumberInputField bg={"white"} />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+        </Box>
+        <Box display="flex">
+          <FormLabel fontSize={"2xl"}>予約カテゴリー</FormLabel>
+          <input
+            type="radio"
+            value="1"
+            checked={bookingCategoryId === "1"}
+            onChange={() => setBookingCategoryId("1")}
+          />
+          <FormLabel  fontSize={"2xl"}>LINE</FormLabel>
+          <input
+            type="radio"
+            value="2"
+            checked={bookingCategoryId === "2"}
+            onChange={() => setBookingCategoryId("2")}
+          />
+          <FormLabel fontSize={"2xl"}>電話</FormLabel>
+        </Box>
+        <Box display="flex">
+          <FormLabel fontSize={"2xl"}>卓番</FormLabel>
+          <Select
+            w={"100px"}
+            bg={"white"}
+            value={tableId}
+            onChange={(e) => setTableId(e.target.value)}
+          >
+            {tableNum.map((table) => (
+              <option key={table.id} value={table.id}>
+                {table.name}
+              </option>
+            ))}
+          </Select>
+        </Box>
+        <Box py={3} display="flex">
+        <FormLabel fontSize={"2xl"}>備考</FormLabel>
+        <Textarea bg={"white"} w={"400px"} onChange={(e) => setNote(e.target.value)} />
+        </Box>
+        <Box  px={30} py={3} ><Button fontSize={"2xl"} p={8} bg={"white"}  onClick={create}>登録</Button></Box>
+      </Box>
     </>
   );
 };
