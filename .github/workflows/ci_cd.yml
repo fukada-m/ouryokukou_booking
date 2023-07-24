@@ -46,8 +46,8 @@ jobs:
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           mkdir -p ~/.ssh
           echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-          scp -r ./booking_api ${USER_NAME}@${HOSTNAME}:~/ouryokukou_booking/
-          ssh ${USER_NAME}@${HOSTNAME} <<EOF
+          scp -v -r ./booking_api ${USER_NAME}@${HOSTNAME}:~/ouryokukou_booking/
+          ssh -v ${USER_NAME}@${HOSTNAME} <<EOF
             cd ~/ouryokukou_booking/booking_api
             bundle install
             bin/rails db:migrate RAILS_ENV=production
