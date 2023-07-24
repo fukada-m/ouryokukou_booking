@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
+      with:
+        ruby-version: '3.2.1'
+
+    - name: Install dependencies
+      run: cd booking_api && bundle install
+
+    - name: Run rspec
+      run: cd booking_api && bundle exec rspec
+
+    - name: Run rubocop
+      run: cd booking_api && bundle exec rubocop app/controllers app/models
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Deploy in Amazon EC2
+        env:
+          PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
+          HOSTNAME : ${{ secrets.HOSTNAME  }}
+          USER_NAME : ${{ secrets.USER_NAME  }}
+
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+            cd /ouryokukou_booking/ &&
+            git pull &&
+            cd booking_api && bundle config set --local without 'development test' &&
+            bundle install &&
+            source set_env.sh && bin/rails db:migrate RAILS_ENV=production &&
+            sudo systemctl restart myapp &&
+            sudo systemctl restart myfront
+            '
