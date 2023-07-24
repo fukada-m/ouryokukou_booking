@@ -43,10 +43,14 @@ jobs:
           SSH_PRIVATE_KEY : ${{ secrets.SSH_PRIVATE_KEY  }}
 
         run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          echo "$PRIVATE_KEY" | base64 --decode > private_key
+          chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-            mdir -p ~/.ssh &&
-            echo "$SSH_PRIVATE_KEY > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa &&
+            mkdir -p ~/.ssh &&
+            cat > ~/.ssh/id_rsa << EOF
+            $(echo "$SSH_PRIVATE_KEY" | base64 --decode)
+            EOF
+            chmod 600 ~/.ssh/id_rsa &&
             cd ouryokukou_booking &&
             git fetch --all &&
             git reset --hard origin/main &&
@@ -56,3 +60,4 @@ jobs:
             sudo systemctl restart myapp &&
             sudo systemctl restart myfront
             '
+
