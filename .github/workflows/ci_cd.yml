@@ -52,7 +52,8 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-            cd ouryokukou_booking && ls
+            cd ouryokukou_booking &&
+            ssh -T git@github.com
             '
 
 
