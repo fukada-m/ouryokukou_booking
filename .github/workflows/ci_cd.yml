@@ -44,7 +44,7 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-            cd /ouryokukou_booking/ &&
+            cd ls &&
             git pull &&
             cd booking_api && bundle config set --local without 'development test' &&
             bundle install &&
