@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Text, Link, chakra } from "@chakra-ui/react";
+import { Box, Text, chakra } from "@chakra-ui/react";
 
 import { DeleteButton } from "../atoms/button/DeleteButton";
 import { MoveSeatButton } from "../atoms/button/MoveSeatButton";
