@@ -45,7 +45,8 @@ jobs:
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
             ls && cd ouryokukou_booking/ &&
-            git pull &&
+            git fetch --all &&
+            git reset --hard origin/main &&
             cd booking_api && bundle config set --local without 'development test' &&
             bundle install &&
             source set_env.sh && bin/rails db:migrate RAILS_ENV=production &&
