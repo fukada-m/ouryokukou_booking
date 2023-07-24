@@ -20,10 +20,10 @@ jobs:
         ruby-version: '3.2.1'
 
     - name: Install dependencies
-      run: ls && cd ouryokukou_booking/booking_api && bundle install
+      run: cd booking_api && bundle install
 
     # - name: Run tests
     #   run: bundle exec rspec
 
     - name: Run rubocop
-      run: cd ouryokukou_booking/booking_api && bundle exec rubocop app/controllers app/models
+      run: cd booking_api && bundle exec rubocop app/controllers app/models
