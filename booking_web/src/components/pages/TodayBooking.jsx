@@ -43,6 +43,7 @@ export const TodayBooking = () => {
     );
     setNoAssigendBooking(noAssigendBooking);
     setTables(await getTables());
+    console.log(tables)
   };
 
   useEffect(() => {

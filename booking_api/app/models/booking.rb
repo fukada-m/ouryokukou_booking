@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# 予約テーブル
 class Booking < ApplicationRecord
   belongs_to :booking_category
   has_and_belongs_to_many :tables
