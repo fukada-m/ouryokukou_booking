@@ -22,7 +22,7 @@ jobs:
     - name: Install dependencies
       run: cd booking_api && bundle install
 
-    - name: Run tests
+    - name: Run rspec
       run: cd booking_api && bundle exec rspec
 
     - name: Run rubocop
