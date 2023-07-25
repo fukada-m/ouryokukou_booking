@@ -41,9 +41,9 @@ jobs:
             export PATH="$HOME/.rbenv/bin:$PATH"
             eval "$(rbenv init -)"
             cd ouryokukou_booking &&
-            # git fetch --all &&
-            # git reset --hard origin/main &&
-            cd booking_api && ls &&
+            git fetch --all &&
+            git reset --hard origin/main &&
+            cd booking_api &&
             bundle config set --local without 'development test' && bundle install &&
             sudo systemctl restart myapp
             '
