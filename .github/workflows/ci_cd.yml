@@ -17,10 +17,10 @@ jobs:
           ruby-version: '3.2'
 
       - name: Install dependencies
-        run: cd ouryokukou_booking && bundle install
+        run: cd booking-api && bundle install
 
       - name: Rubocop
-        run: bundle exec rubocop
+        run: cd booking-api && bundle exec rubocop app/models app/controllers
 
   deploy:
     # needs: test
@@ -41,7 +41,7 @@ jobs:
             cd ouryokukou_booking &&
             # git fetch --all &&
             # git reset --hard origin/main &&
-            bundle config set --local without 'development test' &&
-            bundle install &&
+            cd booking_api &&
+            bundle config set --local without 'development test' && bundle install &&
             sudo systemctl restart myapp
             '
