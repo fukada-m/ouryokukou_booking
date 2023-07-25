@@ -39,9 +39,10 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+            mkdir -p ~/.ssh &&
+            echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519 &&
             export PATH="$HOME/.rbenv/bin:$PATH" &&
             eval "$(rbenv init -)" &&
-            cat ~/.ssh/id_ed25519 &&
             cd ouryokukou_booking &&
             git fetch --all &&
             git reset --hard origin/main &&
