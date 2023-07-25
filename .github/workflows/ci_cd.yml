@@ -1,4 +1,4 @@
-name: Deploy
+name: CICD
 
 on:
   push:
@@ -22,8 +22,11 @@ jobs:
       - name: Rubocop
         run: cd booking_api && bundle exec rubocop app/models app/controllers
 
+      - name: RSpec
+        run: cd booking_api && bundle exec rspec
+
   deploy:
-    # needs: test_lint
+    needs: test_lint
     runs-on: ubuntu-latest
 
     steps:
@@ -41,25 +44,14 @@ jobs:
             export PATH="$HOME/.rbenv/bin:$PATH" &&
             eval "$(rbenv init -)" &&
             cd ouryokukou_booking &&
-            git fetch --all &&
-            git reset --hard origin/main &&
+            git pull &&
             cd booking_api &&
-            bundle config set --local without 'development test' && bundle install
-            sudo systemctl restart myapp
+            bundle config set --local without 'development test' && bundle install &&
+            source set_env.sh && bin/rails db:migrate RAILS_ENV=production &&
+            cd ../booking_web && npm install &&
+            sudo systemctl restart myapp && sudo systemctl restart myfront
             '
-  github:
-    runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
 
-      - name: Setup SSH Keys
-        run: |
-          ssh-keygen -t ed25519 -C "fukada.m888@gmail.com" -f ~/.ssh/id_ed25519 -N ""
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          cat ~/.ssh/id_ed25519.pub
 
-      - name: Test SSH to GitHub
-        run: |
-          ssh -T git@github.com
 
