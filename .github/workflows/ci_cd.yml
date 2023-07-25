@@ -34,12 +34,14 @@ jobs:
           PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
           HOSTNAME : ${{ secrets.HOSTNAME  }}
           USER_NAME : ${{ secrets.USER_NAME  }}
+          SSH_PRIVATE_KEY : ${{ secrets.SSH_PRIVATE_KEY  }}
 
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-            export PATH="$HOME/.rbenv/bin:$PATH"
-            eval "$(rbenv init -)"
+            export PATH="$HOME/.rbenv/bin:$PATH" &&
+            eval "$(rbenv init -)" &&
+            cat ~/.ssh/id_ed25519 &&
             cd ouryokukou_booking &&
             git fetch --all &&
             git reset --hard origin/main &&
