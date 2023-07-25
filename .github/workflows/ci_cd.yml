@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  test_lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,7 +23,7 @@ jobs:
         run: cd booking_api && bundle exec rubocop app/models app/controllers
 
   deploy:
-    # needs: test
+    # needs: test_lint
     runs-on: ubuntu-latest
 
     steps:
@@ -37,7 +37,7 @@ jobs:
 
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -v -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
             export PATH="$HOME/.rbenv/bin:$PATH" &&
             eval "$(rbenv init -)" &&
             cd ouryokukou_booking &&
@@ -47,3 +47,19 @@ jobs:
             bundle config set --local without 'development test' && bundle install
             sudo systemctl restart myapp
             '
+  github:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup SSH Keys
+        run: |
+          ssh-keygen -t ed25519 -C "fukada.m888@gmail.com" -f ~/.ssh/id_ed25519 -N ""
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          cat ~/.ssh/id_ed25519.pub
+
+      - name: Test SSH to GitHub
+        run: |
+          ssh -T git@github.com
+
