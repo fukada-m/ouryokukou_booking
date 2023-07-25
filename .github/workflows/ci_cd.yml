@@ -17,7 +17,7 @@ jobs:
           ruby-version: '3.2'
 
       - name: Install dependencies
-        run: bundle install
+        run: cd ouryokukou_booking && bundle install
 
       - name: Rubocop
         run: bundle exec rubocop
@@ -39,9 +39,9 @@ jobs:
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
             cd ouryokukou_booking &&
-            git fetch --all &&
-            git reset --hard origin/main &&
+            # git fetch --all &&
+            # git reset --hard origin/main &&
+            bundle config set --local without 'development test' &&
             bundle install &&
-            lsof -t -i:4567 | xargs --no-run-if-empty kill -9 &&
-            screen -dm bundle exec ruby app.rb -o 0.0.0.0
+            sudo systemctl restart myapp
             '
