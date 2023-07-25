@@ -34,19 +34,16 @@ jobs:
           PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
           HOSTNAME : ${{ secrets.HOSTNAME  }}
           USER_NAME : ${{ secrets.USER_NAME  }}
-          SSH_PRIVATE_KEY : ${{ secrets.SSH_PRIVATE_KEY  }}
 
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-            mkdir -p ~/.ssh &&
-            echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519 &&
             export PATH="$HOME/.rbenv/bin:$PATH" &&
             eval "$(rbenv init -)" &&
             cd ouryokukou_booking &&
-            git fetch --all &&
-            git reset --hard origin/main &&
+            # git fetch --all &&
+            # git reset --hard origin/main &&
             cd booking_api &&
             bundle config set --local without 'development test' && bundle install &&
-            sudo systemctl restart myapp
+            # sudo systemctl restart myapp
             '
