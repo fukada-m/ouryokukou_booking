@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { Heading, Box, Button, Input, FormLabel, Select, NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Textarea } from "@chakra-ui/react";
+// import { TimePicker } from "react-time-picker";
 
 import { createBooking } from "../../utils/api";
 import { getWeek } from "../../utils/date";
@@ -15,7 +16,7 @@ export const CreateBooking = () => {
   const setOptionDisp = useSetRecoilState(optionDispState);
 
   const [date, setDate] = useState();
-  const [time, setTime] = useState();
+  const [time, setTime] = useState('18:00');
   const [name, setName] = useState();
   const [numberOfAdults, setNumberOfAdults] = useState(1);
   const [numberOfChildren, setNumberOfChildren] = useState(1);
@@ -97,6 +98,14 @@ export const CreateBooking = () => {
             borderRadius="10px"
             onChange={(e) => setTime(e.target.value)}
           />
+          {/* <TimePicker
+          onChange={(e) => setTime(e)}
+          value={time}
+          format="HH:mm"
+          disableClock={true}
+          minuteAriaLabel="分"
+          minutePlaceholder="0, 15, 30, 45"
+          /> */}
           <Input
             type="text"
             bg="white"
