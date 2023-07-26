@@ -16,6 +16,7 @@ import { Booking } from "../molecules/Booking";
 import { NoAssignedBooking } from "../molecules/NoAssignedBooking";
 import { LeaveSeatButton } from "../atoms/button/LeaveSeatButton";
 import { SitSeatButton } from "../atoms/button/SitSeatButton";
+import { MainHeading } from "../atoms/heading/MainHeading";
 import {
   todayBookingState,
   noAssignedBookingState,
@@ -63,9 +64,7 @@ export const TodayBooking = () => {
 
   return (
     <>
-      <Heading as="h1" fontSize={{ base: "lg", md: "xl" }}>
-        今日の予約
-      </Heading>
+      <MainHeading>今日の予約</MainHeading>
       <Wrap p={{ base: 4, md: 6 }}>
         {tables.map((table) => (
           <WrapItem key={table.id} mx="auto">

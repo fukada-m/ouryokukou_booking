@@ -1,22 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { Heading, Box, Button, Input, FormLabel, Select, NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Textarea } from "@chakra-ui/react";
-// import { TimePicker } from "react-time-picker";
+import {
+  Heading,
+  Box,
+  Button,
+  Input,
+  FormLabel,
+  Select,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+  Textarea,
+} from "@chakra-ui/react";
 
+import { MainHeading } from '../atoms/heading/MainHeading'
 import { createBooking } from "../../utils/api";
 import { getWeek } from "../../utils/date";
 import { optionDispState } from "../../atom/state";
 import { useMessage } from "../../hooks/useMessage";
 
-
 export const CreateBooking = () => {
   const navigate = useNavigate();
-  const {showMessage} = useMessage();
+  const { showMessage } = useMessage();
   const setOptionDisp = useSetRecoilState(optionDispState);
 
   const [date, setDate] = useState();
-  const [time, setTime] = useState();
   const [hour, setHour] = useState("12:00");
   const [minute, setMinute] = useState("00");
   const [name, setName] = useState();
@@ -61,10 +72,10 @@ export const CreateBooking = () => {
 
     const res = await createBooking(data);
     if (res.status === "SUCCESS") {
-      showMessage({title: "予約の作成に成功しました", status: "success"});
+      showMessage({ title: "予約の作成に成功しました", status: "success" });
       navigate("/allBooking");
     } else {
-      showMessage({title: "予約の作成に失敗しました", status: "error"});
+      showMessage({ title: "予約の作成に失敗しました", status: "error" });
     }
   };
 
@@ -80,9 +91,7 @@ export const CreateBooking = () => {
 
   return (
     <>
-      <Heading px={5} as="h1" fontSize={{ base: "2xl", md: "3xl" }}>
-        新規予約
-      </Heading>
+      <MainHeading>新規予約</MainHeading>
       <Box p={{ base: 5, md: 10 }} bg="red.100">
         <Box py={3} display="flex">
           <Input
@@ -98,14 +107,14 @@ export const CreateBooking = () => {
               bg={"white"}
               value={hour}
               onChange={(e) => setHour(e.target.value)}
-              >
+            >
               {["11", "12", "13", "17", "18", "19", "20", "21"].map((hour) => (
                 <option key={hour} value={hour}>
                   {hour}
                 </option>
               ))}
             </Select>
-              <FormLabel fontSize={"2xl"}>時</FormLabel>
+            <FormLabel fontSize={"2xl"}>時</FormLabel>
           </Box>
           <Box display="flex">
             <Select
@@ -113,14 +122,14 @@ export const CreateBooking = () => {
               bg={"white"}
               value={hour}
               onChange={(e) => setMinute(e.target.value)}
-              >
+            >
               {["00", "15", "30", "45"].map((minitue) => (
                 <option key={minitue} value={minitue}>
                   {minitue}
                 </option>
               ))}
             </Select>
-              <FormLabel fontSize={"2xl"}>分</FormLabel>
+            <FormLabel fontSize={"2xl"}>分</FormLabel>
           </Box>
         </Box>
         <Box pb={3} display="flex">

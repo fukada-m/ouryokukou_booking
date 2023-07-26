@@ -2,7 +2,15 @@ import React, { useEffect, useState } from "react";
 import { DeleteButton } from "../atoms/button/DeleteButton";
 import { Link as RouterLink } from "react-router-dom";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
-import { Box, Stack, Wrap, WrapItem, Heading, Text, Link, chakra } from "@chakra-ui/react";
+import {
+  Box,
+  Stack,
+  Wrap,
+  WrapItem,
+  Heading,
+  Text,
+  chakra,
+} from "@chakra-ui/react";
 
 import { AddTableRelationButton } from "../atoms/button/AddTableRelationButton";
 import { RemoveTableRelationButton } from "../atoms/button/RemoveTableRelationButton";
@@ -12,15 +20,19 @@ import {
   buttonDispState,
   optionDispState,
 } from "../../atom/state";
+import { MainHeading } from "../atoms/heading/MainHeading";
 
 export const AllBooking = () => {
   const [allBooking, setAllBooking] = useRecoilState(allBookingState);
   const buttonDisp = useRecoilValue(buttonDispState);
   const setOptionDisp = useSetRecoilState(optionDispState);
+  const [loading, setLoading] = useState(false);
   const Link = chakra(RouterLink);
 
   const fetchAllBooking = async () => {
+    setLoading(true);
     setAllBooking(await getAllBooking());
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -36,10 +48,9 @@ export const AllBooking = () => {
 
   return (
     <>
-      <Heading as="h1" fontSize={{ base: "lg", md: "xl" }}>
-        予約一覧
-      </Heading>
-      {allBooking.length === 0 && <h2>予約がまだない、または読み込み中</h2>}
+      <MainHeading>予約一覧</MainHeading>
+      {loading && <p>読み込み中です...</p>}
+      {loading === false && allBooking.length === 0 && <h2>予約が0件です</h2>}
       <Wrap p={{ base: 4, md: 6 }}>
         {allBooking.map((booking) => (
           <WrapItem key={booking.id} mx="auto">
@@ -87,7 +98,16 @@ export const AllBooking = () => {
                   />
                 )}
                 {buttonDisp.edit && (
-                  <Link fontSize="lg" bg={"gray.100"} w={20} m="auto" borderRadius={"20px"} to={`/editBooking/${booking.id}`}>編集</Link>
+                  <Link
+                    fontSize="lg"
+                    bg={"gray.100"}
+                    w={20}
+                    m="auto"
+                    borderRadius={"20px"}
+                    to={`/editBooking/${booking.id}`}
+                  >
+                    編集
+                  </Link>
                 )}
               </Stack>
             </Box>

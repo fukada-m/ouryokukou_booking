@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate, Link as RouterLink } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   Heading,
   Box,
@@ -19,6 +19,7 @@ import { useSetRecoilState } from "recoil";
 import { getAllBooking, updateBooking } from "../../utils/api";
 import { optionDispState } from "../../atom/state";
 import { useMessage } from "../../hooks/useMessage";
+import { MainHeading } from "../atoms/heading/MainHeading";
 
 export const UpdateBooking = () => {
   const navigate = useNavigate();
@@ -100,9 +101,7 @@ export const UpdateBooking = () => {
 
   return (
     <>
-      <Heading px={5} as="h1" fontSize={{ base: "2xl", md: "3xl" }}>
-        予約の編集
-      </Heading>
+      <MainHeading>予約の編集</MainHeading>
       <Box p={{ base: 5, md: 10 }} bg="red.100">
         <Box py={3} display="flex">
           <Input
