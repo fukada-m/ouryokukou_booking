@@ -19,11 +19,11 @@ jobs:
       - name: Install dependencies
         run: cd booking_api && bundle install
 
-      - name: Rubocop
-        run: cd booking_api && bundle exec rubocop app/models app/controllers
-
       - name: RSpec
         run: cd booking_api && bundle exec rspec
+
+      - name: Rubocop
+        run: cd booking_api && bundle exec rubocop app/models app/controllers
 
   deploy:
     needs: test_lint
