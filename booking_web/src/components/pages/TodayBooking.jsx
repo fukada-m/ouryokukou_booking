@@ -42,8 +42,12 @@ export const TodayBooking = () => {
       (booking) => booking.tables.length === 0
     );
     setNoAssigendBooking(noAssigendBooking);
-    setTables(await getTables());
-    console.log(tables)
+    const tables = await getTables();
+    tables.sort((a, b) => {
+      return a.id - b.id;
+    });
+    setTables(tables);
+    console.log(tables);
   };
 
   useEffect(() => {
