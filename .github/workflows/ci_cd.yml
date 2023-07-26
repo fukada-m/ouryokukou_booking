@@ -47,6 +47,7 @@ jobs:
             git pull &&
             cd booking_api &&
             source set_env.sh && bin/rails db:migrate RAILS_ENV=production &&
+            bundle config set --local without 'development test' && bundle install &&
             sudo systemctl restart myapp && sudo systemctl restart myfront
             '
 
