@@ -16,7 +16,9 @@ export const CreateBooking = () => {
   const setOptionDisp = useSetRecoilState(optionDispState);
 
   const [date, setDate] = useState();
-  const [time, setTime] = useState('18:00');
+  const [time, setTime] = useState();
+  const [hour, setHour] = useState("12:00");
+  const [minute, setMinute] = useState("00");
   const [name, setName] = useState();
   const [numberOfAdults, setNumberOfAdults] = useState(1);
   const [numberOfChildren, setNumberOfChildren] = useState(1);
@@ -45,7 +47,7 @@ export const CreateBooking = () => {
       booking: {
         date,
         week,
-        time,
+        time: `${hour}:${minute}`,
         name,
         number_of_adults: numberOfAdults,
         number_of_children: numberOfChildren,
@@ -81,7 +83,7 @@ export const CreateBooking = () => {
       <Heading px={5} as="h1" fontSize={{ base: "2xl", md: "3xl" }}>
         新規予約
       </Heading>
-      <Box p={{ base: 5, md: 10}} bg="red.100">
+      <Box p={{ base: 5, md: 10 }} bg="red.100">
         <Box py={3} display="flex">
           <Input
             bg="white"
@@ -90,26 +92,42 @@ export const CreateBooking = () => {
             borderRadius="10px"
             onChange={(e) => setDate(e.target.value)}
           />
-          <Input
-            bg="white"
-            type="time"
-            w="120px"
-            mx={2}
-            borderRadius="10px"
-            onChange={(e) => setTime(e.target.value)}
-          />
-          {/* <TimePicker
-          onChange={(e) => setTime(e)}
-          value={time}
-          format="HH:mm"
-          disableClock={true}
-          minuteAriaLabel="分"
-          minutePlaceholder="0, 15, 30, 45"
-          /> */}
+          <Box display="flex">
+            <Select
+              w={"80px"}
+              bg={"white"}
+              value={hour}
+              onChange={(e) => setHour(e.target.value)}
+              >
+              {["11", "12", "13", "17", "18", "19", "20", "21"].map((hour) => (
+                <option key={hour} value={hour}>
+                  {hour}
+                </option>
+              ))}
+            </Select>
+              <FormLabel fontSize={"2xl"}>時</FormLabel>
+          </Box>
+          <Box display="flex">
+            <Select
+              w={"80px"}
+              bg={"white"}
+              value={hour}
+              onChange={(e) => setMinute(e.target.value)}
+              >
+              {["00", "15", "30", "45"].map((minitue) => (
+                <option key={minitue} value={minitue}>
+                  {minitue}
+                </option>
+              ))}
+            </Select>
+              <FormLabel fontSize={"2xl"}>分</FormLabel>
+          </Box>
+        </Box>
+        <Box pb={3} display="flex">
           <Input
             type="text"
             bg="white"
-            w="150px"
+            w="250px"
             borderRadius="10px"
             placeholder="名前"
             onChange={(e) => setName(e.target.value)}
@@ -153,7 +171,7 @@ export const CreateBooking = () => {
             checked={bookingCategoryId === "1"}
             onChange={() => setBookingCategoryId("1")}
           />
-          <FormLabel  fontSize={"2xl"}>LINE</FormLabel>
+          <FormLabel fontSize={"2xl"}>LINE</FormLabel>
           <input
             type="radio"
             value="2"
@@ -178,10 +196,18 @@ export const CreateBooking = () => {
           </Select>
         </Box>
         <Box py={3} display="flex">
-        <FormLabel fontSize={"2xl"}>備考</FormLabel>
-        <Textarea bg={"white"} w={"400px"} onChange={(e) => setNote(e.target.value)} />
+          <FormLabel fontSize={"2xl"}>備考</FormLabel>
+          <Textarea
+            bg={"white"}
+            w={"400px"}
+            onChange={(e) => setNote(e.target.value)}
+          />
         </Box>
-        <Box  px={30} py={3} ><Button fontSize={"2xl"} p={8} bg={"white"}  onClick={create}>登録</Button></Box>
+        <Box px={30} py={3}>
+          <Button fontSize={"2xl"} p={8} bg={"white"} onClick={create}>
+            登録
+          </Button>
+        </Box>
       </Box>
     </>
   );
