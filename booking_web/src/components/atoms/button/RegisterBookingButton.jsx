@@ -53,7 +53,7 @@ export const RegisterBookingButton = (props) => {
     if (res.status === "SUCCESS") {
       showMessage({ title: "予約の作成に成功しました", status: "success" });
       navigate("/allBooking");
-      reset();
+      // reset();
     } else {
       showMessage({ title: "予約の作成に失敗しました", status: "error" });
     }
