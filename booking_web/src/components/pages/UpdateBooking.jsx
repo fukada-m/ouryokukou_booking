@@ -32,7 +32,6 @@ export const UpdateBooking = () => {
     const allBooking = await getAllBooking();
     const booking = allBooking.find((booking) => booking.id === Number(id));
     setDate(booking.date);
-    console.log(booking.time.slice(0, 2));
     setHour(booking.time.slice(0, 2));
     setMinute(booking.time.slice(3, 5));
     setName(booking.name);

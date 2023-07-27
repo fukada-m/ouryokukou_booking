@@ -84,5 +84,5 @@ export const tableIdState = atom({
 
 export const noteState = atom({
     key: "noteState",
-    default: null
+    default: ""
 })

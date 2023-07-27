@@ -7,12 +7,14 @@ import { MainHeading } from '../atoms/heading/MainHeading'
 import { InputArea } from "../organisms/layout/InputArea";
 import { RegisterBookingButton } from "../atoms/button/RegisterBookingButton";
 import { SelectTable } from "../molecules/SelectTable";
+import { useReset } from "../../hooks/useReset";
 
 export const CreateBooking = () => {
-
   const setOptionDisp = useSetRecoilState(optionDispState);
+  const { reset } = useReset();
 
   useEffect(() => {
+    reset()
     setOptionDisp({
       delete: false,
       edit: false,
