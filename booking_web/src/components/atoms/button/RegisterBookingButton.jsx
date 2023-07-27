@@ -58,9 +58,11 @@ export const RegisterBookingButton = (props) => {
   };
 
   const update = async () => {
+    const week = getWeek(date);
     const data = {
       booking: {
         id,
+        week,
         date,
         time: `${hour}:${minute}`,
         name,
