@@ -6,13 +6,14 @@ import { getWeek } from "../../../utils/date";
 import { createBooking, updateBooking } from "../../../utils/api";
 import { useRecoilValue } from 'recoil';
 import { dateState, hourState, minuteState, nameState, numberOfAdultsState, numberOfChildrenState, bookingCategoryIdState, tableIdState, noteState } from '../../../atom/state';
-
+import { useReset } from '../../../hooks/useReset';
 
 export const RegisterBookingButton = (props) => {
   const { onClick } = props;
   const { id } = useParams();
   const navigate = useNavigate();
   const { showMessage } = useMessage();
+  const { reset } = useReset();
   const date = useRecoilValue(dateState);
   const hour = useRecoilValue(hourState);
   const minute = useRecoilValue(minuteState);
@@ -52,6 +53,7 @@ export const RegisterBookingButton = (props) => {
     if (res.status === "SUCCESS") {
       showMessage({ title: "予約の作成に成功しました", status: "success" });
       navigate("/allBooking");
+      reset();
     } else {
       showMessage({ title: "予約の作成に失敗しました", status: "error" });
     }
