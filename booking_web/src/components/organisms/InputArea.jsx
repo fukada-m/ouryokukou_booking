@@ -1,13 +1,13 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 
-import { InputDate } from "../../atoms/input/InputDate";
-import { SelectHour } from "../../molecules/SelectHour";
-import { SelectMinute } from "../../molecules/SelectMinute";
-import { InputName } from "../../atoms/input/InputName";
-import { SelectMember } from "../../molecules/SelectMember";
-import { RadioBookingCategory } from "../../molecules/RadioBookingCategory";
-import { TextNote } from "../../molecules/TextNote";
+import { InputDate } from "../atoms/input/InputDate";
+import { SelectHour } from "../molecules/SelectHour";
+import { SelectMinute } from "../molecules/SelectMinute";
+import { InputName } from "../atoms/input/InputName";
+import { SelectMember } from "../molecules/SelectMember";
+import { RadioBookingCategory } from "../molecules/RadioBookingCategory";
+import { TextNote } from "../molecules/TextNote";
 
 export const InputArea = () => {
 

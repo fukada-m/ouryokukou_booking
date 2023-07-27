@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
 import {
   Box,
-  Button,
-  Heading,
   Stack,
   Text,
   Wrap,
@@ -12,8 +10,8 @@ import {
 
 import { today } from "../../utils/date";
 import { getAllBooking, getTables } from "../../utils/api";
-import { Booking } from "../molecules/Booking";
-import { NoAssignedBooking } from "../molecules/NoAssignedBooking";
+import { Booking } from "../organisms/Booking";
+import { NoAssignedBooking } from "../organisms/NoAssignedBooking";
 import { LeaveSeatButton } from "../atoms/button/LeaveSeatButton";
 import { SitSeatButton } from "../atoms/button/SitSeatButton";
 import { MainHeading } from "../atoms/heading/MainHeading";

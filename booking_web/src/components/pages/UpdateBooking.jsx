@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import {Box} from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { useSetRecoilState } from "recoil";
 
 import { optionDispState } from "../../atom/state";
 import { MainHeading } from "../atoms/heading/MainHeading";
 import { RegisterBookingButton } from "../atoms/button/RegisterBookingButton";
-import { InputArea } from "../organisms/layout/InputArea";
+import { InputArea } from "../organisms/InputArea";
 import { useFetchBooking } from "../../hooks/useFetchBooking";
 
 export const UpdateBooking = () => {
@@ -22,8 +22,6 @@ export const UpdateBooking = () => {
       moveTable: false,
     });
   }, []);
-
-
 
   return (
     <>

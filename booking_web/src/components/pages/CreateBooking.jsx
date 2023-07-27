@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useSetRecoilState } from "recoil";
-import {Box} from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 import { optionDispState } from "../../atom/state";
-import { MainHeading } from '../atoms/heading/MainHeading'
-import { InputArea } from "../organisms/layout/InputArea";
+import { MainHeading } from "../atoms/heading/MainHeading";
+import { InputArea } from "../organisms/InputArea";
 import { RegisterBookingButton } from "../atoms/button/RegisterBookingButton";
 import { SelectTable } from "../molecules/SelectTable";
 import { useReset } from "../../hooks/useReset";
@@ -14,7 +14,7 @@ export const CreateBooking = () => {
   const { reset } = useReset();
 
   useEffect(() => {
-    reset()
+    reset();
     setOptionDisp({
       delete: false,
       edit: false,
@@ -35,7 +35,7 @@ export const CreateBooking = () => {
           <SelectTable />
         </Box>
         <Box px={200} py={7}>
-          <RegisterBookingButton onClick="create"/>
+          <RegisterBookingButton onClick="create" />
         </Box>
       </Box>
     </>
