@@ -7,7 +7,7 @@ class TablesController < ApplicationController
     render json: data.as_json(except: %i[created_at updated_at])
   end
 
-  def seated_true?
+  def seated_true
     table = Table.find_by!(table_params)
     if table.update(is_seated: true)
       render json: { status: 'SUCCESS' }
@@ -18,7 +18,7 @@ class TablesController < ApplicationController
     render json: { status: 'ERROR', data: e.message, message: '該当するテーブルがありませんでした。' }
   end
 
-  def seated_false?
+  def seated_false
     table = Table.find_by!(table_params)
     if table.update(is_seated: false)
       render json: { status: 'SUCCESS' }
@@ -29,7 +29,7 @@ class TablesController < ApplicationController
     render json: { status: 'ERROR', data: e.message, message: '該当するテーブルがありませんでした。' }
   end
 
-  def remove_table_relation
+  def remove_booking_relation
     table = Table.find_by!(table_params)
     booking = Booking.find_by!(booking_params)
     if table.bookings.include?(booking)
@@ -42,7 +42,7 @@ class TablesController < ApplicationController
     render json: { status: 'ERROR', data: e.message, message: '該当するテーブルがありませんでした。' }
   end
 
-  def add_table_relation
+  def add_booking_relation
     table = Table.find_by!(table_params)
     booking = Booking.find_by!(booking_params)
     if table.bookings.include?(booking)

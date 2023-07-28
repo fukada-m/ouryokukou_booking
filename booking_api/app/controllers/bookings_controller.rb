@@ -2,17 +2,17 @@
 
 # 予約のCURD処理を行うコントローラー
 class BookingsController < ApplicationController
-  def create_booking
+  def create
     booking = Booking.new(booking_params)
     if booking.save
-      add_table_relation(booking)
+      link_table(booking)
       render json: { status: 'SUCCESS' }
     else
       render json: { status: 'ERROR', data: booking.errors, message: '予約の作成に失敗しました。' }
     end
   end
 
-  def all_booking
+  def index
     booking = Booking.includes(:tables, :booking_category)
     render json: booking.as_json(
       include: {
@@ -23,7 +23,7 @@ class BookingsController < ApplicationController
     )
   end
 
-  def update_booking
+  def edit
     booking = Booking.find(booking_params[:id])
     if booking.update(booking_params)
       render json: { status: 'SUCCESS' }
@@ -34,7 +34,7 @@ class BookingsController < ApplicationController
     render json: { status: 'ERROR', data: e.message, message: '該当する予約がありませんでした。' }
   end
 
-  def delete_booking
+  def destroy
     booking = Booking.find(booking_params[:id])
     if booking.destroy
       render json: { status: 'SUCCESS' }
@@ -56,7 +56,7 @@ class BookingsController < ApplicationController
     params.require(:table).permit(id: [])
   end
 
-  def add_table_relation(booking)
+  def link_table(booking)
     table_params[:id].each do |table_id|
       next if table_id.blank?
 
