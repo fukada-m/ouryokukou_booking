@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# 疎通確認用のコントローラー
+# 疎通確認用のテストコントローラー
 class HealthChecksController < ApplicationController
   def index
     render json: { status: 'ok' }

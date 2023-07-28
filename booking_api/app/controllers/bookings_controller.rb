@@ -24,7 +24,7 @@ class BookingsController < ApplicationController
   end
 
   def update_booking
-    booking = Booking.find_by!(id: booking_params[:id])
+    booking = Booking.find(booking_params[:id])
     if booking.update(booking_params)
       render json: { status: 'SUCCESS' }
     else
@@ -35,7 +35,7 @@ class BookingsController < ApplicationController
   end
 
   def delete_booking
-    booking = Booking.find_by!(id: booking_params[:id])
+    booking = Booking.find(booking_params[:id])
     if booking.destroy
       render json: { status: 'SUCCESS' }
     else
