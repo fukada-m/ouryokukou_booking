@@ -23,7 +23,6 @@ export const DeleteButton = (props) => {
   const setTables = useSetRecoilState(tableState);
   const { showMessage } = useMessage();
 
-
   const { bookingId, table } = props;
 
   const onClickDelete = async () => {

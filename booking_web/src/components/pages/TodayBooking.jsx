@@ -10,7 +10,7 @@ import {
 
 import { today } from "../../utils/date";
 import { getAllBooking, getTables } from "../../utils/api";
-import { Booking } from "../organisms/Booking";
+import { SelectedBooking } from "../organisms/SelectedBooking";
 import { NoAssignedBooking } from "../organisms/NoAssignedBooking";
 import { LeaveSeatButton } from "../atoms/button/LeaveSeatButton";
 import { SitSeatButton } from "../atoms/button/SitSeatButton";
@@ -46,7 +46,6 @@ export const TodayBooking = () => {
       return a.id - b.id;
     });
     setTables(tables);
-    console.log(tables);
   };
 
   useEffect(() => {
@@ -65,7 +64,7 @@ export const TodayBooking = () => {
       <MainHeading>今日の予約</MainHeading>
       <Wrap p={{ base: 4, md: 6 }}>
         {tables.map((table) => (
-          <WrapItem key={table.id} mx="auto">
+          <WrapItem key={table.id} >
             <Box
               w="200px"
               h="100%"
@@ -82,7 +81,7 @@ export const TodayBooking = () => {
                 ) : (
                   <LeaveSeatButton tableId={table.id} setTables={setTables} />
                 )}
-                <Booking table={table} />
+                <SelectedBooking table={table} />
               </Stack>
             </Box>
           </WrapItem>
@@ -90,7 +89,7 @@ export const TodayBooking = () => {
       </Wrap>
       <Wrap p={{ base: 4, md: 6 }}>
         {noAssigendBooking.map((booking) => (
-          <WrapItem key={booking.id} mx="auto">
+          <WrapItem key={booking.id} >
             <Box
               w="200px"
               h="100%"

@@ -21,13 +21,13 @@ import {
   optionDispState,
 } from "../../atom/state";
 import { MainHeading } from "../atoms/heading/MainHeading";
+import { BookingContents } from "../molecules/BookingContents";
+import { OptionButtonCollection } from "../molecules/OptionButtonCollection";
 
 export const AllBooking = () => {
   const [allBooking, setAllBooking] = useRecoilState(allBookingState);
-  const buttonDisp = useRecoilValue(buttonDispState);
   const setOptionDisp = useSetRecoilState(optionDispState);
   const [loading, setLoading] = useState(false);
-  const Link = chakra(RouterLink);
 
   const fetchAllBooking = async () => {
     setLoading(true);
@@ -50,10 +50,14 @@ export const AllBooking = () => {
     <>
       <MainHeading>予約一覧</MainHeading>
       {loading && <p>読み込み中です...</p>}
-      {loading === false && allBooking.length === 0 && <h2>予約が0件です</h2>}
+      {loading === false && allBooking.length === 0 && (
+        <Heading p={5} fontSize={"lg"}>
+          予約が0件です
+        </Heading>
+      )}
       <Wrap p={{ base: 4, md: 6 }}>
         {allBooking.map((booking) => (
-          <WrapItem key={booking.id} mx="auto">
+          <WrapItem key={booking.id}>
             <Box
               w="200px"
               h="100%"
@@ -63,52 +67,13 @@ export const AllBooking = () => {
               p={1}
             >
               <Stack textAlign="center">
-                <p>
-                  {booking.date}({booking.week})
-                </p>
-                <p>{booking.time}</p>
-                <p>{booking.name}</p>
-                <p>
-                  大人{booking.number_of_adults}人 子供
-                  {booking.number_of_children}人
-                </p>
-                <Text
-                  color={
-                    booking.booking_category.name === "LINE" && "green.500"
-                  }
-                >
-                  {booking.booking_category.name}
-                </Text>
+                <BookingContents booking={booking} />
                 {booking.tables.map((table, index) => (
                   <div key={index}>
-                    <p>{table.name}</p>
+                    <Text fontSize={"lg"}>{table.name}</Text>
                   </div>
                 ))}
-                <p>{booking.note}</p>
-                {buttonDisp.delete && (
-                  <DeleteButton bookingId={booking.id} table={null} />
-                )}
-                {buttonDisp.addTable && (
-                  <AddTableRelationButton bookingId={booking.id} />
-                )}
-                {buttonDisp.removeTable && (
-                  <RemoveTableRelationButton
-                    bookingId={booking.id}
-                    tableNum={booking.tables}
-                  />
-                )}
-                {buttonDisp.edit && (
-                  <Link
-                    fontSize="lg"
-                    bg={"gray.100"}
-                    w={20}
-                    m="auto"
-                    borderRadius={"20px"}
-                    to={`/editBooking/${booking.id}`}
-                  >
-                    編集
-                  </Link>
-                )}
+                <OptionButtonCollection booking={booking} />
               </Stack>
             </Box>
           </WrapItem>
