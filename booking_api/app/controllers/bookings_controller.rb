@@ -2,16 +2,6 @@
 
 # 予約のCURD処理を行うコントローラー
 class BookingsController < ApplicationController
-  def create
-    booking = Booking.new(booking_params)
-    if booking.save
-      link_table(booking)
-      render json: { status: 'SUCCESS' }
-    else
-      render json: { status: 'ERROR', data: booking.errors, message: '予約の作成に失敗しました。' }
-    end
-  end
-
   def index
     booking = Booking.includes(:tables, :booking_category)
     render json: booking.as_json(
@@ -32,6 +22,16 @@ class BookingsController < ApplicationController
     end
   rescue ActiveRecord::RecordNotFound => e
     render json: { status: 'ERROR', data: e.message, message: '該当する予約がありませんでした。' }
+  end
+
+  def create
+    booking = Booking.new(booking_params)
+    if booking.save
+      link_table(booking)
+      render json: { status: 'SUCCESS' }
+    else
+      render json: { status: 'ERROR', data: booking.errors, message: '予約の作成に失敗しました。' }
+    end
   end
 
   def destroy
