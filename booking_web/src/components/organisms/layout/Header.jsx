@@ -1,9 +1,11 @@
 import React, { useCallback } from "react";
-import { Flex, Button, Heading, Link, Box, useDisclosure } from "@chakra-ui/react";
+import { Flex, Heading, Box, useDisclosure } from "@chakra-ui/react";
 import { MenuIconButton } from "../../atoms/button/MenuIconButton";
 import { MenuDrawer } from "../../molecules/MenuDrawer";
 import { Options } from "../../molecules/Options";
 import { useNavigate } from "react-router-dom";
+import { HeaderLink } from "../../atoms/Link/HeaderLink";
+
 export const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
@@ -27,39 +29,12 @@ export const Header = () => {
         </Heading>
         <Flex align="center" flexGrow={2}>
           <Box pr={2} pl={4}>
-            <Link
-              bg="white"
-              color="black"
-              borderRadius="15px"
-              p={2}
-              fontWeight="bold"
-              onClick={onClickAllBooking}
-            >
-              全予約
-            </Link>
+            <HeaderLink onClick={onClickAllBooking}>全予約</HeaderLink>
           </Box>
           <Box pr={2}>
-            <Link
-              bg="white"
-              color="black"
-              borderRadius="15px"
-              p={2}
-              fontWeight="bold"
-              onClick={onClickTodayBooking}
-            >
-              今日の予約
-            </Link>
+            <HeaderLink onClick={onClickTodayBooking}>今日の予約</HeaderLink>
           </Box>
-          <Link
-            bg="white"
-            color="black"
-            borderRadius="15px"
-            p={2}
-            fontWeight="bold"
-            onClick={onClickCreateBooking}
-          >
-            新規予約
-          </Link>
+          <HeaderLink onClick={onClickCreateBooking}>新規予約</HeaderLink>
         </Flex>
         <Options />
         <MenuIconButton onOpen={onOpen} />
