@@ -5,7 +5,7 @@ class BookingsController < ApplicationController
   def create_booking
     booking = Booking.new(booking_params)
     if booking.save
-      add_table_relation
+      add_table_relation(booking)
       render json: { status: 'SUCCESS' }
     else
       render json: { status: 'ERROR', data: booking.errors, message: '予約の作成に失敗しました。' }
@@ -56,7 +56,7 @@ class BookingsController < ApplicationController
     params.require(:table).permit(id: [])
   end
 
-  def add_table_relation
+  def add_table_relation(booking)
     table_params[:id].each do |table_id|
       next if table_id.blank?
 
