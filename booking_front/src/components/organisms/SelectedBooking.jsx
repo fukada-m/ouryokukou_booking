@@ -23,7 +23,7 @@ export const SelectedBooking = (props) => {
   return (
     <>
       {booking.map((booking) => (
-        <Box key={booking.id}>
+        <Box borderTop={"2px"} key={booking.id}>
           <BookingContents booking={booking} />
           <OptionButtonCollection booking={booking} table={table} />
           {buttonDisp.moveTable && (
