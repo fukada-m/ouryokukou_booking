@@ -1,5 +1,5 @@
 import React from "react";
-import { sitSeat } from "../../../utils/api";
+import { sitSeat, getTables } from "../../../utils/api";
 import { Button } from "@chakra-ui/react";
 
 export const SitSeatButton = (props) => {
@@ -11,7 +11,12 @@ export const SitSeatButton = (props) => {
         id: tableId,
       },
     };
-    setTables(await sitSeat(data));
+    await sitSeat(data);
+    const tables = await getTables();
+    tables.sort((a, b) => {
+      return a.id - b.id;
+    });
+    setTables(tables);
   };
 
   return (
