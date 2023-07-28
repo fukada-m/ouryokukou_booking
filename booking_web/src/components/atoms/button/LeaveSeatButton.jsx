@@ -1,5 +1,5 @@
 import React from "react";
-import { leaveSeat } from "../../../utils/api";
+import { leaveSeat, getTables } from "../../../utils/api";
 import { Button } from "@chakra-ui/react";
 
 export const LeaveSeatButton = (props) => {
@@ -11,7 +11,12 @@ export const LeaveSeatButton = (props) => {
         id: tableId,
       },
     };
-    setTables(await leaveSeat(data));
+    await leaveSeat(data)
+        const tables = await getTables();
+        tables.sort((a, b) => {
+          return a.id - b.id;
+        });
+        setTables(tables);
   };
 
   return (

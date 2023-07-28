@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { axiosInstance } from "../utils/axios";
 
+// 疎通確認用のコンポーネント
 export const Test = () => {
   const [status, setStatus] = useState("チェックしてみて");
   const [testData, setTestData] = useState([

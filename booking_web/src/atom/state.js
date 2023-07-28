@@ -42,4 +42,47 @@ export const buttonDispState = atom({
     }
 })
 
+export const dateState = atom({
+    key: "dateState",
+    default: ""
+})
 
+export const hourState = atom({
+    key: "hourState",
+    default: "18"
+})
+
+export const minuteState = atom({
+    key: "minuteState",
+    default: "00"
+})
+
+export const nameState = atom({
+    key: "nameState",
+    default: ""
+})
+
+export const numberOfAdultsState = atom({
+    key: "numberOfAdultsState",
+    default: "2"
+})
+
+export const numberOfChildrenState = atom({
+    key: "numberOfChildrenState",
+    default: "0"
+})
+
+export const bookingCategoryIdState = atom({
+    key: "bookingCategoryState",
+    default: "1"
+})
+
+export const tableIdState = atom({
+    key: "tableIdState",
+    default: ""
+})
+
+export const noteState = atom({
+    key: "noteState",
+    default: ""
+})

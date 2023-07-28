@@ -1,15 +1,10 @@
 import React, { useState } from "react";
-import { moveSeat } from "../../../utils/api";
-import { useSetRecoilState } from "recoil";
-import { todayBookingState } from "../../../atom/state";
 import { Box, Button, Select } from "@chakra-ui/react";
-import { useMessage } from "../../../hooks/useMessage";
+import { useMoveSeat } from "../../../hooks/useMoveSeat";
 
 export const MoveSeatButton = (props) => {
   const { bookingId, tableId } = props;
-  const setTodayBooking = useSetRecoilState(todayBookingState);
-  const { showMessage } = useMessage();
-
+  const { move } = useMoveSeat();
 
   const tableNum = [
     { id: 1, name: "1番" },
@@ -24,27 +19,10 @@ export const MoveSeatButton = (props) => {
     { id: 16, name: "16番" },
     { id: 21, name: "21番" },
   ];
-  const [table, setTable] = useState(tableId);
+  const [table, setTable] = useState(1);
 
-  const onClickMoveSeat = async () => {
-    const removeData = {
-      table: {
-        id: tableId,
-      },
-      booking: {
-        id: bookingId,
-      },
-    };
-    const addData = {
-      table: {
-        id: table,
-      },
-      booking: {
-        id: bookingId,
-      },
-    };
-    setTodayBooking(await moveSeat(addData, removeData));
-    showMessage({ title: "席を移動しました", status: "success" });
+  const onClickMoveSeat = () => {
+    move(bookingId, table, tableId);
   };
 
   return (
