@@ -17,7 +17,7 @@ export const useAddTableRelation = () => {
 
     const { showMessage } = useMessage();
 
-    const addTable = async ( bookingId ,tableId) => {
+    const addTable = async ( bookingId, tableId) => {
         const data = {
             booking: {
                 id: bookingId,
