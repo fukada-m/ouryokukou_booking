@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { DeleteButton } from "../atoms/button/DeleteButton";
-import { Link as RouterLink } from "react-router-dom";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
 import {
   Box,
@@ -11,15 +9,8 @@ import {
   Text,
   chakra,
 } from "@chakra-ui/react";
-
-import { AddTableRelationButton } from "../atoms/button/AddTableRelationButton";
-import { RemoveTableRelationButton } from "../atoms/button/RemoveTableRelationButton";
 import { getAllBooking } from "../../utils/api";
-import {
-  allBookingState,
-  buttonDispState,
-  optionDispState,
-} from "../../atom/state";
+import { allBookingState, optionDispState } from "../../atom/state";
 import { MainHeading } from "../atoms/heading/MainHeading";
 import { BookingContents } from "../molecules/BookingContents";
 import { OptionButtonCollection } from "../molecules/OptionButtonCollection";

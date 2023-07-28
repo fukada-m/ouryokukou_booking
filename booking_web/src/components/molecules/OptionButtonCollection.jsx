@@ -1,13 +1,12 @@
 import React from "react";
-import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import { Link as RouterLink } from "react-router-dom";
-import { Box, Button, chakra, Text } from "@chakra-ui/react";
+import { chakra } from "@chakra-ui/react";
 
-import { buttonDispState, optionDispState } from "../../atom/state";
+import { buttonDispState} from "../../atom/state";
 import { DeleteButton } from "../atoms/button/DeleteButton";
 import { AddTableRelationButton } from "../atoms/button/AddTableRelationButton";
 import { RemoveTableRelationButton } from "../atoms/button/RemoveTableRelationButton";
-import { MoveSeatButton } from "../atoms/button/MoveSeatButton";
 
 export const OptionButtonCollection = (props) => {
   const { booking, table } = props;

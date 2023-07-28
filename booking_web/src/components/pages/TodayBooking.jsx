@@ -19,17 +19,16 @@ import {
   todayBookingState,
   noAssignedBookingState,
   tableState,
-  buttonDispState,
   optionDispState,
 } from "../../atom/state";
 
 export const TodayBooking = () => {
   const setTodayBooking = useSetRecoilState(todayBookingState);
+  const [tables, setTables] = useRecoilState(tableState);
+  const setOptionDisp = useSetRecoilState(optionDispState);
   const [noAssigendBooking, setNoAssigendBooking] = useRecoilState(
     noAssignedBookingState
   );
-  const [tables, setTables] = useRecoilState(tableState);
-  const setOptionDisp = useSetRecoilState(optionDispState);
 
   const fetchTodayBooking = async () => {
     const allBooking = await getAllBooking();

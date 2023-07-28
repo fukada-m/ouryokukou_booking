@@ -21,7 +21,7 @@ export const SelectedBooking = (props) => {
   });
 
   return (
-    <div>
+    <>
       {booking.map((booking) => (
         <Box key={booking.id}>
           <BookingContents booking={booking} />
@@ -31,6 +31,6 @@ export const SelectedBooking = (props) => {
           )}
         </Box>
       ))}
-    </div>
+    </>
   );
 };
