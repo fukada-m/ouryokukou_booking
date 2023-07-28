@@ -10,7 +10,7 @@ import {
   chakra,
 } from "@chakra-ui/react";
 import { getAllBooking } from "../../utils/api";
-import { allBookingState, optionDispState } from "../../atom/state";
+import { allBookingState, buttonDispState, optionDispState } from "../../atom/state";
 import { MainHeading } from "../atoms/heading/MainHeading";
 import { BookingContents } from "../molecules/BookingContents";
 import { OptionButtonCollection } from "../molecules/OptionButtonCollection";
@@ -18,6 +18,7 @@ import { OptionButtonCollection } from "../molecules/OptionButtonCollection";
 export const AllBooking = () => {
   const [allBooking, setAllBooking] = useRecoilState(allBookingState);
   const setOptionDisp = useSetRecoilState(optionDispState);
+  const setButtonDisp = useSetRecoilState(buttonDispState);
   const [loading, setLoading] = useState(false);
 
   const fetchAllBooking = async () => {
@@ -33,6 +34,13 @@ export const AllBooking = () => {
       edit: true,
       addTable: true,
       removeTable: true,
+      moveTable: false,
+    });
+    setButtonDisp({
+      delete: false,
+      edit: false,
+      addTable: false,
+      removeTable: false,
       moveTable: false,
     });
   }, []);

@@ -11,12 +11,14 @@ import {
   noAssignedBookingState,
   tableState,
   optionDispState,
+  buttonDispState,
 } from "../../atom/state";
 import { useFetchTodayBooking } from "../../hooks/useFetchTodayBooking";
 
 export const TodayBooking = () => {
   const [tables, setTables] = useRecoilState(tableState);
   const setOptionDisp = useSetRecoilState(optionDispState);
+  const setButtonDisp = useSetRecoilState(buttonDispState);
   const noAssigendBooking = useRecoilValue(noAssignedBookingState);
   const { fetch } = useFetchTodayBooking();
 
@@ -32,6 +34,13 @@ export const TodayBooking = () => {
       addTable: true,
       removeTable: false,
       moveTable: true,
+    });
+    setButtonDisp({
+      delete: false,
+      edit: false,
+      addTable: false,
+      removeTable: false,
+      moveTable: false,
     });
   }, []);
 
