@@ -3,6 +3,8 @@ name: CICD
 on:
   push:
     branches: [ main ]
+  pull_request:
+    types: [ closed ]
 
 jobs:
   test_lint:
@@ -48,7 +50,3 @@ jobs:
             cd booking_api &&
             sudo systemctl restart myapp && sudo systemctl restart myfront
             '
-
-
-
-
