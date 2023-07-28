@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
 import { Box, Stack, Text, Wrap, WrapItem } from "@chakra-ui/react";
 
@@ -21,13 +21,21 @@ export const TodayBooking = () => {
   const setButtonDisp = useSetRecoilState(buttonDispState);
   const noAssigendBooking = useRecoilValue(noAssignedBookingState);
   const { fetch } = useFetchTodayBooking();
+  const [loading, setLoading] = useState(false);
+
 
   const fetchTodayBooking = async () => {
-    fetch();
   };
 
-  useEffect(() => {
-    fetchTodayBooking();
+  useEffect( () => {
+    setLoading(true);
+    const fetchData = async () => {
+      await fetch();
+      await fetchTodayBooking();
+    };
+    fetchData().then(() => {
+      setLoading(false);
+    });
     setOptionDisp({
       delete: true,
       edit: true,
@@ -42,12 +50,15 @@ export const TodayBooking = () => {
       removeTable: false,
       moveTable: false,
     });
+
+
   }, []);
 
   return (
     <>
       <MainHeading>今日の予約</MainHeading>
-      <Wrap p={{ base: 4, md: 6 }}>
+      {loading && <p>読み込み中です...</p>}
+      <Wrap p={{ base: 4, md: 6 }} justify={{ base: "center", md: "left" }}>
         {tables.map((table) => (
           <WrapItem key={table.id}>
             <Box
@@ -72,7 +83,7 @@ export const TodayBooking = () => {
           </WrapItem>
         ))}
       </Wrap>
-      <Wrap p={{ base: 4, md: 6 }}>
+      <Wrap p={{ base: 4, md: 6 }} justify={{ base: "center", md: "left" }}>
         {noAssigendBooking.map((booking) => (
           <WrapItem key={booking.id}>
             <Box

@@ -54,9 +54,9 @@ export const AllBooking = () => {
           予約が0件です
         </Heading>
       )}
-      <Wrap p={{ base: 4, md: 6 }}>
+      <Wrap p={{ base: 4, md: 6 }} justify={{ base: "center", md: "left"}}>
         {allBooking.map((booking) => (
-          <WrapItem key={booking.id}>
+          <WrapItem key={booking.id} >
             <Box
               w="200px"
               h="100%"
