@@ -19,9 +19,8 @@ RSpec.describe Table, type: :model do
   end
 
   describe "nameが許可されていない値である時" do
-    it "nameが現実に存在しない卓番である場合は無効" do
+    it "nameが存在しない卓番である場合は無効" do
       expect(FactoryBot.build(:table, name: "100番")).to_not be_valid
     end
   end
-
 end

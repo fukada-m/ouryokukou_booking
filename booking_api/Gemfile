@@ -49,6 +49,10 @@ group :development do
   # gem "spring"
 end
 
+group :test do
+  gem 'database_cleaner'
+end
+
 group :production do
   gem "pg", "~> 1.4.6"
 end

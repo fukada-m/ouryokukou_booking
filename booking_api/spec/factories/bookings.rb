@@ -6,8 +6,7 @@ FactoryBot.define do
     name { "テスト太郎" }
     number_of_adults { 1 }
     number_of_children { 0 }
-    booking_category { FactoryBot.create(:booking_category, name: "LINE")}
-    tables { [FactoryBot.create(:table, name: "1番")] }
     note { "テスト用の予約です" }
+    booking_category_id { 1 }
   end
 end
