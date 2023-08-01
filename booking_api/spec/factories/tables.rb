@@ -1,4 +1,4 @@
 FactoryBot.define do
-  factory :booking_category do
+  factory :table do
   end
 end

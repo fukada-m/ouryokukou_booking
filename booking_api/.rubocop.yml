@@ -8,3 +8,6 @@ require:
   - rubocop-rspec
   - rubocop-factory_bot
   - rubocop-rails
+
+Style/Documentation:
+  Enabled: false
