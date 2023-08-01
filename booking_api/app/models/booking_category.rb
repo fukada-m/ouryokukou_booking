@@ -4,5 +4,5 @@
 class BookingCategory < ApplicationRecord
   has_many :bookings, dependent: :nullify
 
-  validates :name, presence: true
+  validates :name, presence: true, inclusion: { in: %w[LINE 電話] }
 end
