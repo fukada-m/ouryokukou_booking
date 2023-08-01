@@ -4,6 +4,7 @@ RSpec.describe Booking, type: :model do
   before do
     FactoryBot.create(:booking_category)
   end
+
   it "dateが空欄でないこと" do
     expect(FactoryBot.build(:booking, date: nil)).to_not be_valid
   end
@@ -27,9 +28,19 @@ RSpec.describe Booking, type: :model do
   it "number_of_childrenが空欄でないこと" do
     expect(FactoryBot.build(:booking, number_of_children: nil)).to_not be_valid
   end
+  describe "日付が正しいフォーマットである時" do
+    it "日付が10文字であること" do
+      expect(FactoryBot.build(:booking, date: "2023-08-01")).to be_valid
+    end
+  end
 
-  it "日付が10文字であること" do
-    expect(FactoryBot.build(:booking, date: "2023-08-01")).to be_valid
+  describe "日付が正しくないフォーマットである時" do
+    it "日付が9文字である場合は無効" do
+      expect(FactoryBot.build(:booking, date: "2023-0801")).to_not be_valid
+    end
+    it "日付が11文字である場合は無効" do
+      expect(FactoryBot.build(:booking, date: "2023-08-001")).to_not be_valid
+    end
   end
 
   describe "曜日が許可された値である時" do
@@ -46,8 +57,19 @@ RSpec.describe Booking, type: :model do
     end
   end
 
-  it "時間が5文字であること" do
-    expect(FactoryBot.build(:booking, time: "18:00")).to be_valid
+  describe "時間が正しいフォーマットである時" do
+    it "時間が5文字であること" do
+      expect(FactoryBot.build(:booking, time: "18:00")).to be_valid
+    end
+  end
+
+  describe "時間が正しくないフォーマットである時" do
+    it "時間が4文字である場合は無効" do
+      expect(FactoryBot.build(:booking, time: "1800")).to_not be_valid
+    end
+    it "時間が6文字である場合は無効" do
+      expect(FactoryBot.build(:booking, time: "18:000")).to_not be_valid
+    end
   end
 
   describe "人数が許可された値である時" do
