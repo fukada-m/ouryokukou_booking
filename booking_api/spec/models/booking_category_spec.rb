@@ -5,10 +5,16 @@ RSpec.describe BookingCategory, type: :model do
     expect(FactoryBot.build(:booking_category, name: nil)).to_not be_valid
   end
 
+  it "nameが重複していないこと" do
+    FactoryBot.create(:booking_category, name: "電話")
+    expect(FactoryBot.build(:booking_category, name: "電話")).to_not be_valid
+  end
+
   describe "nameがLINEか電話であること" do
     it "nameがLINEであること" do
-      expect(FactoryBot.build(:booking_category)).to be_valid
+      expect(FactoryBot.build(:booking_category, name: "LINE")).to be_valid
     end
+
     it "nameが電話であること" do
       expect(FactoryBot.build(:booking_category, name: "電話")).to be_valid
     end
