@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   put '/api/edit_booking', to: 'bookings#edit'
   delete '/api/delete_booking', to: 'bookings#destroy'
 
-  get '/api/get_all_tables', to: 'tables#all_tables'
+  get '/api/get_all_tables', to: 'tables#index'
   put '/api/is_seated_true', to: 'tables#seated_true'
   put '/api/is_seated_false', to: 'tables#seated_false'
   put '/api/remove_table_relation', to: 'tables#remove_booking_relation'
