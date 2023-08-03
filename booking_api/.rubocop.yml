@@ -8,3 +8,12 @@ require:
   - rubocop-rspec
   - rubocop-factory_bot
   - rubocop-rails
+
+Style/Documentation:
+  Enabled: false
+
+FactoryBot/SyntaxMethods:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: false

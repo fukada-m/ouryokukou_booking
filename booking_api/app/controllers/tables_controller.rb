@@ -2,7 +2,7 @@
 
 # 予約とテーブルを紐付けるためのコントローラー
 class TablesController < ApplicationController
-  def all_tables
+  def index
     data = Table.all
     render json: data.as_json(except: %i[created_at updated_at])
   end

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-# テスト用のモデル
+# APIの疎通テスト用のモデルで用途は得にないです。
 class Test < ApplicationRecord
 end

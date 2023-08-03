@@ -24,7 +24,7 @@ export const useFetchBooking = () => {
         setName(booking.name);
         setNumberOfAdults(booking.number_of_adults);
         setNumberOfChildren(booking.number_of_children);
-        if (booking.booking_category.name === "LINE") {
+        if (booking.booking_category.id === 1) {
             setBookingCategoryId("1");
         } else {
             setBookingCategoryId("2");

@@ -24,6 +24,13 @@ module BookingApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     # config.assets.enabled = true
+    config.generators do |g|
+    g.test_framework :rspec,
+      view_specs: false, # ビュースペックを作成しないUIはシステムスペック（結合テスト）でテストする
+      helper_specs: false, # 最初のうちはヘルパースペックを作成しなくても良い
+      routing_specs: false # ルーティングが複雑になってきたら必要になるかも
+   
+end
 
   end
 end
