@@ -12,6 +12,7 @@ RSpec.describe 'BookingCategoryApis' do
     before do
       get '/api/get_all_categories'
     end
+
     it '正常にレスポンスを返すこと' do
       expect(response).to be_successful
     end
