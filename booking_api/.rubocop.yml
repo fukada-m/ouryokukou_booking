@@ -11,3 +11,9 @@ require:
 
 Style/Documentation:
   Enabled: false
+
+FactoryBot/SyntaxMethods:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: false
