@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "TableApis", type: :request do
   table_data = [1, 2, 3, 5, 11, 12, 13, 14, 15, 16, 21]
+
   before do
     table_data.each do |id|
       FactoryBot.create(:table, id: id)
@@ -55,7 +56,7 @@ end
       FactoryBot.create(:booking_category)
       FactoryBot.create(:booking)
     end
-    it "席と予約を関連付ける" do
+    it "指定した席と予約を関連付ける" do
       put '/api/add_table_relation', params: {
         "table": {
           "id": 1
@@ -71,10 +72,10 @@ end
     it "席と予約の関連付けを解除する" do
       put '/api/add_table_relation', params: {
         "table": {
-          "id": 1
+          "id": 21
         },
         "booking": {
-          "id": 1
+          "id": 21
         }
       }
       put '/api/remove_table_relation', params: {
