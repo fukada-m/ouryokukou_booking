@@ -47,7 +47,7 @@ jobs:
             eval "$(rbenv init -)" &&
             cd ouryokukou_booking &&
             cd booking_api &&
-            rm Gemfile.lock &&
+            rm -f Gemfile.lock &&
             git pull &&
             bundle config set --local without 'development test' &&
             bundle install &&
