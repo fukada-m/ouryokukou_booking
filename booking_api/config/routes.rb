@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  post '/api/signup', to: 'users#create'
+  post '/api/login', to: 'users#login'
+
   post '/api/create_booking', to: 'bookings#create'
   get '/api/get_all_booking', to: 'bookings#index'
   put '/api/edit_booking', to: 'bookings#edit'
