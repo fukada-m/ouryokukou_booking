@@ -20,6 +20,7 @@ export const AllBooking = () => {
   const setOptionDisp = useSetRecoilState(optionDispState);
   const setButtonDisp = useSetRecoilState(buttonDispState);
   const [loading, setLoading] = useState(false);
+ 
 
   const fetchAllBooking = async () => {
     setLoading(true);
