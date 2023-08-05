@@ -11,8 +11,8 @@ export const InputDate = () => {
     <BaseInput
       value={date}
       type={"date"}
-      w={"150px"}
-      placeholder
+      w={"125px"}
+      placeholder={"日付"}
       onChange={(e) => setDate(e.target.value)}
     />
   );

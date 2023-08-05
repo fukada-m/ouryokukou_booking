@@ -10,7 +10,7 @@ export const TextNote = () => {
       <FormLabel fontSize={"2xl"}>備考</FormLabel>
       <Textarea
         bg={"white"}
-        w={"400px"}
+        w={"300px"}
         value={note}
         onChange={(e) => setNote(e.target.value)}
       />

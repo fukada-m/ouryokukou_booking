@@ -18,11 +18,10 @@ export const LoginJwt = () => {
         password,
       },
     };
-    const status = await (login(data))
+    const status = await login(data);
     if (!status) {
-        showMessage({ title: "ログインに失敗しました", status: "error" });
+      showMessage({ title: "ログインに失敗しました", status: "error" });
     }
-
   };
 
   return (
@@ -53,6 +52,7 @@ export const LoginJwt = () => {
       </Button>
       <p>email: yakiniku@example.com </p>
       <p>password: pass</p>
+      <p>ご自由にお試しください</p>
     </Box>
   );
 };
