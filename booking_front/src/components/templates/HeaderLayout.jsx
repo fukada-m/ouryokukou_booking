@@ -14,7 +14,7 @@ export const HeaderLayout = (props) => {
   return (
     <>
       <Header />
-      {children}
+      {token && children}
     </>
   );
 };
