@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import {
   Box,
   Stack,
@@ -7,7 +7,6 @@ import {
   WrapItem,
   Heading,
   Text,
-  chakra,
 } from "@chakra-ui/react";
 import { getAllBooking } from "../../utils/api";
 import { allBookingState, buttonDispState, optionDispState } from "../../atom/state";
@@ -20,7 +19,7 @@ export const AllBooking = () => {
   const setOptionDisp = useSetRecoilState(optionDispState);
   const setButtonDisp = useSetRecoilState(buttonDispState);
   const [loading, setLoading] = useState(false);
- 
+
 
   const fetchAllBooking = async () => {
     setLoading(true);

@@ -1,6 +1,7 @@
 import { axiosInstance } from '../utils/axios'
 import { today } from '../utils/date'
 
+
 export const getAllBooking = async () => {
     try {
         const res = await axiosInstance.get('/api/get_all_booking');
@@ -92,6 +93,18 @@ export const leaveSeat = async (data) => {
         return tables.data;
     } catch (error) {
         console.error(error);
+    }
+}
+
+export const login = async (data) => {
+    try {
+        const res = await axiosInstance.post("/api/login", data);
+        localStorage.setItem('token', res.data.token);
+        window.location.href = "/allBooking";
+        return true;
+    } catch (error) {
+        console.error(error);
+        return false;
     }
 }
 
