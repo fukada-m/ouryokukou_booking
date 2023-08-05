@@ -1,14 +1,16 @@
-import React from 'react'
-import { Button } from '@chakra-ui/react'
+import React from "react";
+import { Button } from "@chakra-ui/react";
 
 export const FooterLayout = () => {
   return (
-    <Button
+    <Button mx={5}
+      bg={"white"}
       onClick={() => {
         localStorage.removeItem("token");
+        window.location.href = "/";
       }}
     >
       ログアウト
     </Button>
   );
-}
+};

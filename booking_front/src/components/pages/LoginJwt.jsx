@@ -1,40 +1,58 @@
 import React, { useState } from "react";
-import { axiosInstance } from "../../utils/axios";
+import { login } from "../../utils/api";
+import { Box, Button } from "@chakra-ui/react";
+import { BaseInput } from "../atoms/input/BaseInput";
+import { MainHeading } from "../atoms/heading/MainHeading";
+import { useMessage } from "../../hooks/useMessage";
 
 export const LoginJwt = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { showMessage } = useMessage();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    try {
-      const response = await axiosInstance.post('/api/login', {
-        user: {
+    const data = {
+      user: {
         email,
-        password
-        }
-      });
-
-      localStorage.setItem('token', response.data.token);
-      console.log('Login successful');
-    } catch (error) {
-      console.error('Error logging in', error);
+        password,
+      },
+    };
+    const status = await (login(data))
+    if (!status) {
+        showMessage({ title: "ログインに失敗しました", status: "error" });
     }
+
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Box m="auto" p={4} w={300} bg={"pink"}>
+      <MainHeading>ようこそ</MainHeading>
       <label>
         Email:
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        <BaseInput
+          w="250px"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
       </label>
       <label>
         Password:
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        <BaseInput
+          w="250px"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
       </label>
-      <input type="submit" value="Login" />
-    </form>
+      <Button my={3} onClick={handleSubmit}>
+        ログイン
+      </Button>
+      <p>email: yakiniku@example.com </p>
+      <p>password: pass</p>
+    </Box>
   );
-}
-
+};

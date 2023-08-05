@@ -8,6 +8,12 @@ export const InputName = () => {
     const [name, setName] = useRecoilState(nameState);
 
   return (
-    <BaseInput value={name} type={"text"} w={"250px"} onChange={(e) => setName(e.target.value)} />
+    <BaseInput
+      value={name}
+      type={"text"}
+      w={"250px"}
+      placeholder="名前"
+      onChange={(e) => setName(e.target.value)}
+    />
   );
 }
