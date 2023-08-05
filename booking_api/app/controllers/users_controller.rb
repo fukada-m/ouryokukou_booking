@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       token = create_token(@user.id)
-      render json: { token: }
+      render json: { token: }, status: :created
     else
       render json: { errors: @user.errors }, status: :unprocessable_entity
     end
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.find_by(email: user_params[:email])
     if @user&.authenticate(user_params[:password])
       token = create_token(@user.id)
-      render json: { token: }
+      render json: { token: }, status: :ok
     else
       render status: :unauthorized
     end
