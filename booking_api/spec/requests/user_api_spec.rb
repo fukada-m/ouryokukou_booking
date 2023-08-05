@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "UserApis", type: :request do
+RSpec.describe 'UserApis' do
   describe '正常なデータを登録したとき' do
     before do
       post '/api/signup', params: { user: { email: 'yakiniku@example.com', password: 'pass' } }
@@ -9,19 +11,23 @@ RSpec.describe "UserApis", type: :request do
     it '正常なレスポンスが返されること' do
       expect(response).to be_successful
     end
+
     it 'トークンが返されること' do
       expect(response.parsed_body['token']).to be_present
     end
   end
+
   describe '異常なデータを登録したとき' do
     before do
       post '/api/signup', params: { user: { email: nil, password: nil } }
     end
+
     it 'エラーレスポンスが返されること' do
-      expect(response).to_not be_successful
+      expect(response).not_to be_successful
     end
+
     it 'トークンが返されないこと' do
-      expect(response.parsed_body['token']).to_not be_present
+      expect(response.parsed_body['token']).not_to be_present
     end
   end
 
@@ -30,9 +36,11 @@ RSpec.describe "UserApis", type: :request do
       FactoryBot.create(:user, email: 'yakiniku@example.com', password: 'pass')
       post '/api/login', params: { user: { email: 'yakiniku@example.com', password: 'pass' } }
     end
+
     it '正常なレスポンスが返されること' do
       expect(response).to be_successful
     end
+
     it 'トークンが返されること' do
       expect(response.parsed_body['token']).to be_present
     end
@@ -43,11 +51,13 @@ RSpec.describe "UserApis", type: :request do
       FactoryBot.create(:user, email: 'yakiniku@example.com', password: 'pass')
       post '/api/login', params: { user: { email: nil, password: nil } }
     end
+
     it 'エラーレスポンスが返されること' do
-      expect(response).to_not be_successful
+      expect(response).not_to be_successful
     end
+
     it 'トークンが返されないこと' do
-      expect(response.parsed_body['token']).to_not be_present
+      expect(response.parsed_body['token']).not_to be_present
     end
   end
 end
