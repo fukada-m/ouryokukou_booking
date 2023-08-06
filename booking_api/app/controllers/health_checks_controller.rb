@@ -10,4 +10,8 @@ class HealthChecksController < ApplicationController
     data = Test.all
     render json: data
   end
+
+  def error
+    this_method_does_not_exist
+  end
 end
