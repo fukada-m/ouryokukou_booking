@@ -12,7 +12,10 @@ export const Header = () => {
 
   const onClickAllBooking = useCallback(() => navigate("/allBooking"), []);
   const onClickTodayBooking = useCallback(() => navigate("/todayBooking"), []);
-  const onClickCreateBooking = useCallback(() => navigate("/createBooking"), []);
+  const onClickCreateBooking = useCallback(
+    () => navigate("/createBooking"),
+    []
+  );
 
   return (
     <>
@@ -24,7 +27,11 @@ export const Header = () => {
         justify="space-between"
         padding={{ base: 3, md: 5 }}
       >
-        <Heading as="h1" fontSize={{ base: "lg", md: "xl" }} display={{base: "none", sm: "block"}}>
+        <Heading
+          as="h1"
+          fontSize={{ base: "lg", md: "xl" }}
+          display={{ base: "none", sm: "block" }}
+        >
           鴨緑江Booking
         </Heading>
         <Flex align="center" flexGrow={2}>

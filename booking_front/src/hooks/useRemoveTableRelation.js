@@ -35,7 +35,7 @@ export const useRemoveTableRelation = () => {
             return booking.tables.length === 0;
         });
         setNoAssigendBooking(noAssigendBooking);
-        
+
         showMessage({ title: "席を解除しました", status: "success" });
     }
     return { removeTable }

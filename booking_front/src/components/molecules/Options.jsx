@@ -1,28 +1,57 @@
-import React from 'react'
-import { Box, Button } from '@chakra-ui/react'
-import { buttonDispState, optionDispState } from '../../atom/state';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import React from "react";
+import { Box, Button } from "@chakra-ui/react";
+import { buttonDispState, optionDispState } from "../../atom/state";
+import { useSetRecoilState, useRecoilValue } from "recoil";
 
 export const Options = () => {
-    const setButtonDisp = useSetRecoilState(buttonDispState)
-    const optionDisp = useRecoilValue(optionDispState)
+  const setButtonDisp = useSetRecoilState(buttonDispState);
+  const optionDisp = useRecoilValue(optionDispState);
 
-    const onClickDispDelete = () => {
-        setButtonDisp(() => ({delete: true, edit: false, addTable: false, removeTable: false, moveTable: false}));
-    }
-    const onClickDispEdit = () => {
-        setButtonDisp(() => ({delete: false, edit: true, addTable: false, removeTable: false, moveTable: false}));
-    }
-    const onClickDispAddTable = () => {
-        setButtonDisp(() => ({delete: false, edit: false, addTable: true, removeTable: false, moveTable: false}));
-    }
-    const onClickDispRemoveTable = () => {
-        setButtonDisp(() => ({delete: false, edit: false, addTable: false, removeTable: true, moveTable: false}));
-    }
-    const onClickDispMoveTable = () => {
-        setButtonDisp(() => ({delete: false, edit: false, addTable: false, removeTable: false, moveTable: true}));
-    }
-
+  const onClickDispDelete = () => {
+    setButtonDisp(() => ({
+      delete: true,
+      edit: false,
+      addTable: false,
+      removeTable: false,
+      moveTable: false,
+    }));
+  };
+  const onClickDispEdit = () => {
+    setButtonDisp(() => ({
+      delete: false,
+      edit: true,
+      addTable: false,
+      removeTable: false,
+      moveTable: false,
+    }));
+  };
+  const onClickDispAddTable = () => {
+    setButtonDisp(() => ({
+      delete: false,
+      edit: false,
+      addTable: true,
+      removeTable: false,
+      moveTable: false,
+    }));
+  };
+  const onClickDispRemoveTable = () => {
+    setButtonDisp(() => ({
+      delete: false,
+      edit: false,
+      addTable: false,
+      removeTable: true,
+      moveTable: false,
+    }));
+  };
+  const onClickDispMoveTable = () => {
+    setButtonDisp(() => ({
+      delete: false,
+      edit: false,
+      addTable: false,
+      removeTable: false,
+      moveTable: true,
+    }));
+  };
 
   return (
     <Box display={{ base: "none", md: "block" }}>
@@ -53,4 +82,4 @@ export const Options = () => {
       )}
     </Box>
   );
-}
+};

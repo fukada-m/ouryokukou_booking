@@ -23,11 +23,9 @@ export const TodayBooking = () => {
   const { fetch } = useFetchTodayBooking();
   const [loading, setLoading] = useState(false);
 
+  const fetchTodayBooking = async () => {};
 
-  const fetchTodayBooking = async () => {
-  };
-
-  useEffect( () => {
+  useEffect(() => {
     setLoading(true);
     const fetchData = async () => {
       await fetch();
@@ -50,8 +48,6 @@ export const TodayBooking = () => {
       removeTable: false,
       moveTable: false,
     });
-
-
   }, []);
 
   return (

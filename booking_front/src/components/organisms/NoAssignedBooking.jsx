@@ -9,7 +9,9 @@ export const NoAssignedBooking = (props) => {
 
   return (
     <div>
-      <Text fontSize={"lg"} m={2}>席が未定</Text>
+      <Text fontSize={"lg"} m={2}>
+        席が未定
+      </Text>
       <BookingContents booking={booking} />
       <OptionButtonCollection booking={booking} />
     </div>

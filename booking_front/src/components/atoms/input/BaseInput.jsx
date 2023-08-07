@@ -1,9 +1,9 @@
 import { Input } from "@chakra-ui/react";
 
-import React from 'react'
+import React from "react";
 
 export const BaseInput = (props) => {
-    const { type, w, onChange, placeholder, value } = props;
+  const { type, w, onChange, placeholder, value } = props;
   return (
     <Input
       bg="white"
@@ -15,4 +15,4 @@ export const BaseInput = (props) => {
       onChange={onChange}
     />
   );
-}
+};

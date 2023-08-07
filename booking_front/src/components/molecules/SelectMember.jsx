@@ -1,11 +1,21 @@
-import React, { useEffect } from 'react'
-import { FormLabel, NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper } from '@chakra-ui/react'
-import { useRecoilState } from 'recoil'
-import { numberOfAdultsState, numberOfChildrenState } from '../../atom/state'
+import React from "react";
+import {
+  FormLabel,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+} from "@chakra-ui/react";
+import { useRecoilState } from "recoil";
+import { numberOfAdultsState, numberOfChildrenState } from "../../atom/state";
 
 export const SelectMember = () => {
-    const [numberOfAdults, setNumberOfAdults] = useRecoilState(numberOfAdultsState)
-    const [numberOfChildren, setNumberOfChildren] = useRecoilState(numberOfChildrenState)
+  const [numberOfAdults, setNumberOfAdults] =
+    useRecoilState(numberOfAdultsState);
+  const [numberOfChildren, setNumberOfChildren] = useRecoilState(
+    numberOfChildrenState
+  );
 
   return (
     <>
@@ -39,4 +49,4 @@ export const SelectMember = () => {
       </NumberInput>
     </>
   );
-}
+};

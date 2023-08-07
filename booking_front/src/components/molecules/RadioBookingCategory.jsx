@@ -1,10 +1,8 @@
-import React from 'react'
-import { InputBookingCategory } from '../atoms/input/InputBookingCategory';
-import { FormLabel } from '@chakra-ui/react';
-
+import React from "react";
+import { InputBookingCategory } from "../atoms/input/InputBookingCategory";
+import { FormLabel } from "@chakra-ui/react";
 
 export const RadioBookingCategory = () => {
-
   return (
     <>
       <FormLabel fontSize={"2xl"}>予約カテゴリー</FormLabel>
@@ -14,5 +12,4 @@ export const RadioBookingCategory = () => {
       <FormLabel fontSize={"2xl"}>電話</FormLabel>
     </>
   );
-}
-
+};

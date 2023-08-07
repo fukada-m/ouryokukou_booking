@@ -1,10 +1,10 @@
-import React from 'react'
-import { Textarea, FormLabel } from '@chakra-ui/react';
-import { noteState } from '../../atom/state';
-import { useRecoilState } from 'recoil';
+import React from "react";
+import { Textarea, FormLabel } from "@chakra-ui/react";
+import { noteState } from "../../atom/state";
+import { useRecoilState } from "recoil";
 
 export const TextNote = () => {
-    const [note, setNote] = useRecoilState(noteState);
+  const [note, setNote] = useRecoilState(noteState);
   return (
     <>
       <FormLabel fontSize={"2xl"}>備考</FormLabel>
@@ -16,5 +16,4 @@ export const TextNote = () => {
       />
     </>
   );
-}
-
+};

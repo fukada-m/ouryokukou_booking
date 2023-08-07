@@ -11,29 +11,58 @@ import { buttonDispState } from "../../atom/state";
 
 export const MenuDrawer = (props) => {
   const { isOpen, onClose } = props;
-     const setButtonDisp = useSetRecoilState(buttonDispState)
+  const setButtonDisp = useSetRecoilState(buttonDispState);
 
-    const onClickDispDelete = () => {
-        setButtonDisp(() => ({delete: true, edit: false, addTable: false, removeTable: false, moveTable: false}));
-        onClose()
-    }
-    const onClickDispEdit = () => {
-        setButtonDisp(() => ({delete: false, edit: true, addTable: false, removeTable: false, moveTable: false}));
-        onClose();
-
-    }
-    const onClickDispAddTable = () => {
-        setButtonDisp(() => ({delete: false, edit: false, addTable: true, removeTable: false, moveTable: false}));
-        onClose();
-    }
-    const onClickDispRemoveTable = () => {
-        setButtonDisp(() => ({delete: false, edit: false, addTable: false, removeTable: true, moveTable: false}));
-        onClose();
-    }
-    const onClickDispMoveTable = () => {
-        setButtonDisp(() => ({delete: false, edit: false, addTable: false, removeTable: false, moveTable: true}));
-        onClose();
-    }
+  const onClickDispDelete = () => {
+    setButtonDisp(() => ({
+      delete: true,
+      edit: false,
+      addTable: false,
+      removeTable: false,
+      moveTable: false,
+    }));
+    onClose();
+  };
+  const onClickDispEdit = () => {
+    setButtonDisp(() => ({
+      delete: false,
+      edit: true,
+      addTable: false,
+      removeTable: false,
+      moveTable: false,
+    }));
+    onClose();
+  };
+  const onClickDispAddTable = () => {
+    setButtonDisp(() => ({
+      delete: false,
+      edit: false,
+      addTable: true,
+      removeTable: false,
+      moveTable: false,
+    }));
+    onClose();
+  };
+  const onClickDispRemoveTable = () => {
+    setButtonDisp(() => ({
+      delete: false,
+      edit: false,
+      addTable: false,
+      removeTable: true,
+      moveTable: false,
+    }));
+    onClose();
+  };
+  const onClickDispMoveTable = () => {
+    setButtonDisp(() => ({
+      delete: false,
+      edit: false,
+      addTable: false,
+      removeTable: false,
+      moveTable: true,
+    }));
+    onClose();
+  };
   return (
     <Drawer placement="right" size="xs" onClose={onClose} isOpen={isOpen}>
       <DrawerOverlay>

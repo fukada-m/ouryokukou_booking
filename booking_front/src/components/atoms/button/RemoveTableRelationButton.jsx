@@ -10,7 +10,7 @@ export const RemoveTableRelationButton = (props) => {
 
   const onClickRemoveTableRelation = async () => {
     removeTable(bookingId, table);
-  }
+  };
 
   useEffect(() => {
     if (tableNum.length > 0) {

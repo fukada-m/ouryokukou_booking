@@ -10,8 +10,6 @@ import { RadioBookingCategory } from "../molecules/RadioBookingCategory";
 import { TextNote } from "../molecules/TextNote";
 
 export const InputArea = () => {
-
-
   return (
     <Box p={{ base: 5, md: 10 }}>
       <Box display="flex">
@@ -19,7 +17,7 @@ export const InputArea = () => {
         <Box pl={3} display="flex">
           <SelectHour />
         </Box>
-          <SelectMinute />
+        <SelectMinute />
       </Box>
       <Box py={5} display="flex">
         <InputName />

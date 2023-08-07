@@ -1,9 +1,18 @@
-import React from 'react'
-import { Box ,Text } from '@chakra-ui/react'
+import React from "react";
+import { Box, Text } from "@chakra-ui/react";
 
 export const BookingContents = (props) => {
-    const { booking } = props;
-    const { date, week, time, name, number_of_adults, number_of_children, booking_category, note } = booking
+  const { booking } = props;
+  const {
+    date,
+    week,
+    time,
+    name,
+    number_of_adults,
+    number_of_children,
+    booking_category,
+    note,
+  } = booking;
   return (
     <Box fontSize={"lg"}>
       <Text>
@@ -21,5 +30,4 @@ export const BookingContents = (props) => {
       <Text>{note}</Text>
     </Box>
   );
-}
-
+};

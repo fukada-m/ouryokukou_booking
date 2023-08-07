@@ -3,7 +3,7 @@ import { useRecoilValue } from "recoil";
 import { Link as RouterLink } from "react-router-dom";
 import { chakra } from "@chakra-ui/react";
 
-import { buttonDispState} from "../../atom/state";
+import { buttonDispState } from "../../atom/state";
 import { DeleteButton } from "../atoms/button/DeleteButton";
 import { AddTableRelationButton } from "../atoms/button/AddTableRelationButton";
 import { RemoveTableRelationButton } from "../atoms/button/RemoveTableRelationButton";

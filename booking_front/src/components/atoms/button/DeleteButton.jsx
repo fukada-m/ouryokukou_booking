@@ -8,7 +8,7 @@ export const DeleteButton = (props) => {
 
   const onClickDelete = async () => {
     destroy(bookingId, table);
-  }
+  };
 
   return (
     <>

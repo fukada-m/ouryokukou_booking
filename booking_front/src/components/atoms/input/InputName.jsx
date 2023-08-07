@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 import { useRecoilState } from "recoil";
 
 import { nameState } from "../../../atom/state";
 import { BaseInput } from "./BaseInput";
 
 export const InputName = () => {
-    const [name, setName] = useRecoilState(nameState);
+  const [name, setName] = useRecoilState(nameState);
 
   return (
     <BaseInput
@@ -16,4 +16,4 @@ export const InputName = () => {
       onChange={(e) => setName(e.target.value)}
     />
   );
-}
+};

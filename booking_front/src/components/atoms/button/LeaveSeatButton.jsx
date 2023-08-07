@@ -11,12 +11,12 @@ export const LeaveSeatButton = (props) => {
         id: tableId,
       },
     };
-    await leaveSeat(data)
-        const tables = await getTables();
-        tables.sort((a, b) => {
-          return a.id - b.id;
-        });
-        setTables(tables);
+    await leaveSeat(data);
+    const tables = await getTables();
+    tables.sort((a, b) => {
+      return a.id - b.id;
+    });
+    setTables(tables);
   };
 
   return (

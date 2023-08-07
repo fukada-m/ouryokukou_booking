@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Box, Text, chakra } from "@chakra-ui/react";
+import React from "react";
+import { Box } from "@chakra-ui/react";
 import { useRecoilValue } from "recoil";
 import { todayBookingState, buttonDispState } from "../../atom/state";
 
@@ -11,7 +11,6 @@ export const SelectedBooking = (props) => {
   const { table } = props;
   const todayBooking = useRecoilValue(todayBookingState);
   const buttonDisp = useRecoilValue(buttonDispState);
-
 
   const booking = todayBooking.filter((booking) => {
     const selectedTable = booking.tables.filter((todayTable) => {

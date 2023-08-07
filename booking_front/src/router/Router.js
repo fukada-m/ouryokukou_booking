@@ -39,7 +39,7 @@ export const Router = () => {
         <Routes>
             <Route path='/' element={<LoginJwt />}></Route>
             {routes.map((route) => (
-                <Route key={route.path} path={route.path} element={<><HeaderLayout>{route.element}</HeaderLayout><FooterLayout/></>} />
+                <Route key={route.path} path={route.path} element={<><HeaderLayout>{route.element}</HeaderLayout><FooterLayout /></>} />
             ))}
         </Routes>
     )

@@ -3,7 +3,7 @@ import { getAllBooking, getTables } from "../utils/api";
 import { useSetRecoilState } from "recoil";
 import { todayBookingState, noAssignedBookingState, tableState } from "../atom/state";
 
-export const useFetchTodayBooking =  () => {
+export const useFetchTodayBooking = () => {
     const setTodayBooking = useSetRecoilState(todayBookingState);
     const setNoAssigendBooking = useSetRecoilState(noAssignedBookingState);
     const setTables = useSetRecoilState(tableState);

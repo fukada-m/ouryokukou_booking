@@ -27,7 +27,11 @@ export const MoveSeatButton = (props) => {
 
   return (
     <Box display={"flex"}>
-      <Select w={"100px"} value={table} onChange={(e) => setTable(e.target.value)}>
+      <Select
+        w={"100px"}
+        value={table}
+        onChange={(e) => setTable(e.target.value)}
+      >
         {tableNum.map((table) => (
           <option key={table.id} value={table.id}>
             {table.name}

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useMessage} from "./useMessage";
+import { useMessage } from "./useMessage";
 import { createBooking } from "../utils/api";
 import { getWeek } from "../utils/date";
 import { useRecoilValue } from 'recoil';

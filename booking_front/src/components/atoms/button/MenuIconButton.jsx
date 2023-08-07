@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 import { IconButton } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
 export const MenuIconButton = (props) => {
-    const { onOpen } = props;
+  const { onOpen } = props;
   return (
     <IconButton
       aria-label="オプションボタン"
@@ -14,5 +14,4 @@ export const MenuIconButton = (props) => {
       onClick={onOpen}
     />
   );
-}
-
+};

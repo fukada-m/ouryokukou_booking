@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import {
-  Box,
-  Stack,
-  Wrap,
-  WrapItem,
-  Heading,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Stack, Wrap, WrapItem, Heading, Text } from "@chakra-ui/react";
 import { getAllBooking } from "../../utils/api";
-import { allBookingState, buttonDispState, optionDispState } from "../../atom/state";
+import {
+  allBookingState,
+  buttonDispState,
+  optionDispState,
+} from "../../atom/state";
 import { MainHeading } from "../atoms/heading/MainHeading";
 import { BookingContents } from "../molecules/BookingContents";
 import { OptionButtonCollection } from "../molecules/OptionButtonCollection";
@@ -19,7 +16,6 @@ export const AllBooking = () => {
   const setOptionDisp = useSetRecoilState(optionDispState);
   const setButtonDisp = useSetRecoilState(buttonDispState);
   const [loading, setLoading] = useState(false);
-
 
   const fetchAllBooking = async () => {
     setLoading(true);
@@ -54,9 +50,9 @@ export const AllBooking = () => {
           予約が0件です
         </Heading>
       )}
-      <Wrap p={{ base: 4, md: 6 }} justify={{ base: "center", md: "left"}}>
+      <Wrap p={{ base: 4, md: 6 }} justify={{ base: "center", md: "left" }}>
         {allBooking.map((booking) => (
-          <WrapItem key={booking.id} >
+          <WrapItem key={booking.id}>
             <Box
               w="200px"
               h="100%"

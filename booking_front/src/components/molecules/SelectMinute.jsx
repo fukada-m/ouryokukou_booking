@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React from "react";
 import { Select, FormLabel } from "@chakra-ui/react";
 import { useRecoilState } from "recoil";
 import { minuteState } from "../../atom/state";
 
 export const SelectMinute = () => {
-    const [minitue, setMinute] = useRecoilState(minuteState);
+  const [minitue, setMinute] = useRecoilState(minuteState);
 
   return (
     <>
@@ -23,5 +23,4 @@ export const SelectMinute = () => {
       <FormLabel fontSize={"2xl"}>分</FormLabel>
     </>
   );
-}
-
+};
