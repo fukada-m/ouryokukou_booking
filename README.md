@@ -39,24 +39,24 @@
 ![ワイヤーフレーム](./documents/%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%BC%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%82%B9%E3%83%86%E3%83%83%E3%83%971.png)
 
 # その他のポートフォリオ
+[unityroom](https://unityroom.com/users/7qaijm2pyt3r0zkfvod5)
+Unityで作ったゲームです。
 
 [鴨緑江タブレット注文システム](https://oreder-ouryokukou.web.app/login/)
 ReactとFirebaseで作成しています。
 
-## 座席番号1でログイン
+### 座席番号1でログイン
 
-Email: 1@gmail.com
+- Email: 1@gmail.com
 
-pass: yakiniku1
+- pass: yakiniku1
 
-## マスターアカウントでログイン(注文を受信できます。)
+### マスターアカウントでログイン(注文を受信できます。)
 
-Email: master@gmail.com
+- Email: master@gmail.com
 
-pass: yakiniku100
+- pass: yakiniku100
 
-[unityroom](https://unityroom.com/users/7qaijm2pyt3r0zkfvod5)
-Unityで作ったゲームです。
 
 [鴨緑江ホームページ](https://ouryokukou.com/)
 WordPressで作成しています。
