@@ -2,7 +2,6 @@ import { RecoilRoot } from 'recoil';
 import { ChakraProvider } from "@chakra-ui/react"
 
 import { Router } from './router/Router';
-import { Header } from './components/organisms/layout/Header';
 import theme from './theme/theme';
 
 

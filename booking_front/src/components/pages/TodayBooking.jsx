@@ -68,7 +68,7 @@ export const TodayBooking = () => {
             >
               <Stack textAlign="center">
                 <Text fontSize="lg">{table.id}番</Text>
-                {table.is_seated == false ? (
+                {table.is_seated === false ? (
                   <SitSeatButton tableId={table.id} setTables={setTables} />
                 ) : (
                   <LeaveSeatButton tableId={table.id} setTables={setTables} />
