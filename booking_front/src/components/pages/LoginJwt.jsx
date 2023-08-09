@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import { login } from "../../utils/api";
-import { Box, Button, Image } from "@chakra-ui/react";
+import { Box, Button, Heading, Image } from "@chakra-ui/react";
 import { BaseInput } from "../atoms/input/BaseInput";
-import { MainHeading } from "../atoms/heading/MainHeading";
 import { useMessage } from "../../hooks/useMessage";
-import app_describe from "../../images/app_describe.png";
+import app_image from "../../images/app_image.png";
 
 export const LoginJwt = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { showMessage } = useMessage();
 
-  const handleSubmit = async (event) => {
+  const post = async (data) => {
+    const status = await login(data);
+    if (!status) {
+      showMessage({ title: "ログインに失敗しました", status: "error" });
+    }
+  };
+
+  const onClickUserLogin = (event) => {
     event.preventDefault();
     const data = {
       user: {
@@ -19,18 +25,47 @@ export const LoginJwt = () => {
         password,
       },
     };
-    const status = await login(data);
-    if (!status) {
-      showMessage({ title: "ログインに失敗しました", status: "error" });
-    }
+    post(data);
+  };
+
+  const onClickGestLogin = (event) => {
+    event.preventDefault();
+    const data = {
+      user: {
+        email: "yakiniku@example.com",
+        password: "pass",
+      },
+    };
+    post(data);
   };
 
   return (
-    <>
-      <Box m="auto" my={5} p={4} w={300} bg={"pink"}>
-        <MainHeading>ようこそ</MainHeading>
-        <label>
-          Email:
+    <Box p={{ base: 10, md: 20 }} bg={"pink"}>
+      <Heading color={"gray.600"} fontSize={"5xl"} my={10} textAlign={"center"}>
+        鴨緑江Booking
+      </Heading>
+      <Heading my={10} color={"gray.500"} textAlign={"center"}>
+        簡単操作でいつでもどこでも予約の管理ができます
+      </Heading>
+      <Button
+        m={"auto"}
+        display={"block"}
+        my={10}
+        pt={5}
+        pb={10}
+        onClick={onClickGestLogin}
+      >
+        ゲストログインして試してみる
+      </Button>
+      <Image m={"auto"} mb={5} src={app_image} alt="アプリの説明" />
+      <Heading my={15}>ボタン操作でわかりやすい</Heading>
+      <p>
+        右上の4つのボタンを押すと各予約に機能を実行するためのボタンを表示します。
+      </p>
+
+      <Box m={{ base: 5, md: 10 }} p={10} borderRadius={"10px"} bg={"white"}>
+        <Box display={"block"}>
+          Email
           <BaseInput
             w="250px"
             type="email"
@@ -38,8 +73,8 @@ export const LoginJwt = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
-        <label>
+        </Box>
+        <Box my={5} display={"block"}>
           Password:
           <BaseInput
             w="250px"
@@ -48,15 +83,11 @@ export const LoginJwt = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
-        <Button my={3} onClick={handleSubmit}>
+        </Box>
+        <Button my={3} onClick={onClickUserLogin}>
           ログイン
         </Button>
-        <p>email: yakiniku@example.com </p>
-        <p>password: pass</p>
-        <p>ご自由にお試しください</p>
       </Box>
-      <Image m={"auto"} src={app_describe} alt="アプリの説明" />
-    </>
+    </Box>
   );
 };

@@ -30,7 +30,7 @@
 - AWS: 信頼性の高いクラウドインフラとして、AWSの各サービスを利用することで可用性とセキュリティを確保しました。
 
 アプリイメージ
-![アプリ画面イメージ](./booking_front/src/images/app_describe.png)
+![アプリ画面イメージ](./documents/app_describe.png)
 
 システム構成図(インフラ)
 ![システム構成図インフラ](./documents/%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E6%A7%8B%E6%88%90%E5%9B%B3.drawio.png)
