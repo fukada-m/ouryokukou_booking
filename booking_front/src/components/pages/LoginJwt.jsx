@@ -49,10 +49,8 @@ export const LoginJwt = () => {
       </Heading>
       <Button
         m={"auto"}
-        display={"block"}
         my={10}
-        pt={5}
-        pb={10}
+        display={"block"}
         onClick={onClickGestLogin}
       >
         ゲストログインして試してみる
@@ -62,7 +60,6 @@ export const LoginJwt = () => {
       <p>
         右上の4つのボタンを押すと各予約に機能を実行するためのボタンを表示します。
       </p>
-
       <Box m={{ base: 5, md: 10 }} p={10} borderRadius={"10px"} bg={"white"}>
         <Box display={"block"}>
           Email
