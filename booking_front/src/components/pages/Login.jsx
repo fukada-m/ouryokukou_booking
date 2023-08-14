@@ -28,7 +28,7 @@ export const Login = () => {
   };
 
   return (
-    <Box w={"50%"} m={"auto"} p={10} borderRadius={"10px"} bg={"white"}>
+    <Box w={{base: "75%", md: "50%"}} m={"auto"} p={10} borderRadius={"10px"} bg={"white"}>
       <Box display={"block"}>
         Email
         <BaseInput
