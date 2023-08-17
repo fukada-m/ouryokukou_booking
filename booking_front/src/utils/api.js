@@ -22,7 +22,7 @@ export const createBooking = async (data) => {
 
 export const updateBooking = async (data) => {
     try {
-        const res = await axiosInstance.put("/api/update_booking", data);
+        const res = await axiosInstance.put("/api/edit_booking", data);
         return res.data;
     } catch (error) {
         console.error(error);
