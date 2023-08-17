@@ -6,9 +6,6 @@ import { useRecoilValue } from 'recoil';
 // import { useReset } from '../../../hooks/useReset';
 import { dateState, hourState, minuteState, nameState, numberOfAdultsState, numberOfChildrenState, bookingCategoryIdState, noteState } from '../atom/state';
 
-
-
-
 export const useUpdateBooking = () => {
     const navigate = useNavigate();
     const { showMessage } = useMessage();
@@ -40,16 +37,10 @@ export const useUpdateBooking = () => {
         };
         const res = await updateBooking(data);
         if (res.status === "SUCCESS") {
-            showMessage({
-                title: "予約の更新に成功しました",
-                status: "success",
-            });
+            showMessage({ title: "予約の更新に成功しました", status: "success" });
             navigate("/allBooking");
         } else {
-            showMessage({
-                title: "予約の更新に失敗しました",
-                status: "error",
-            });
+            showMessage({ title: "予約の更新に失敗しました", status: "error" });
         }
     };
     return { update };
