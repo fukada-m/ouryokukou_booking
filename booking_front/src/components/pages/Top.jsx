@@ -56,6 +56,7 @@ export const Top = () => {
       <Button m={"auto"} my={10} onClick={onClickNavigate} display={"block"}>
         スタッフ用ログイン画面に移動
       </Button>
+      <p>深夜から早朝(0:00-8:00)はアクセスできない場合があります。理由は費用削減のためRDSを停止しています。</p>
     </Box>
   );
 };
