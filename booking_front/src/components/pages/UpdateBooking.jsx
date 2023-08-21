@@ -9,6 +9,8 @@ import { RegisterBookingButton } from "../atoms/button/RegisterBookingButton";
 import { InputArea } from "../organisms/InputArea";
 import { useFetchBooking } from "../../hooks/useFetchBooking";
 import { DeleteButton } from "../atoms/button/DeleteButton";
+import { AddTableRelationButton } from "../atoms/button/AddTableRelationButton";
+import { RemoveTableRelationButton } from "../atoms/button/RemoveTableRelationButton";
 
 export const UpdateBooking = () => {
   const setOptionDisp = useSetRecoilState(optionDispState);
@@ -30,12 +32,16 @@ export const UpdateBooking = () => {
   return (
     <>
       <MainHeading>予約の編集</MainHeading>
-      <Box p={{ base: 5, md: 10 }} bg="red.100">
+      <Box p={{ base: 3, md: 5 }} bg="red.100">
         <InputArea />
         <Box px={30} py={3}>
-          <DeleteButton bookingId={bookingId} tableId={tableId} />
+          <AddTableRelationButton bookingId={bookingId} />
         </Box>
         <Box px={30} py={3}>
+          <RemoveTableRelationButton bookingId={bookingId} tableId={tableId} />
+        </Box>
+        <Box px={30} py={3}>
+          <DeleteButton bookingId={bookingId} tableId={tableId} />
           <RegisterBookingButton onClick="update" />
         </Box>
       </Box>
