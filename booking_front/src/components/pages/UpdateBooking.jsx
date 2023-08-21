@@ -32,7 +32,9 @@ export const UpdateBooking = () => {
       <MainHeading>予約の編集</MainHeading>
       <Box p={{ base: 5, md: 10 }} bg="red.100">
         <InputArea />
-        <DeleteButton bookingId={bookingId} tableId={tableId} />
+        <Box px={30} py={3}>
+          <DeleteButton bookingId={bookingId} tableId={tableId} />
+        </Box>
         <Box px={30} py={3}>
           <RegisterBookingButton onClick="update" />
         </Box>

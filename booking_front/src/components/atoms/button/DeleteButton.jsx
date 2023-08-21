@@ -8,12 +8,12 @@ export const DeleteButton = (props) => {
 
   const onClickDelete = async () => {
     destroy(bookingId);
-    
+
   };
 
   return (
     <>
-      <Button onClick={onClickDelete}>削除</Button>
+      <Button bg={"white"} p={8} fontSize={"2xl"} onClick={onClickDelete}>削除</Button>
     </>
   );
 };

@@ -30,6 +30,7 @@ export const Header = () => {
         top="0"
         left="0"
         w="100vw"
+        zIndex="1000"
       >
         <Heading
           as="h1"
