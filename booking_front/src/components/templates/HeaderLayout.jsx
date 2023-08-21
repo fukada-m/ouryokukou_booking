@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Header } from "../organisms/layout/Header";
+import { Box } from "@chakra-ui/react";
 
 export const HeaderLayout = (props) => {
   const { children } = props;
@@ -14,7 +15,9 @@ export const HeaderLayout = (props) => {
   return (
     <>
       <Header />
-      {token && children}
+      <Box mt={20}>
+        {token && children}
+      </Box>
     </>
   );
 };
