@@ -26,6 +26,10 @@ export const Header = () => {
         align="center"
         justify="space-between"
         padding={{ base: 3, md: 5 }}
+        position="fixed"
+        top="0"
+        left="0"
+        w="100vw"
       >
         <Heading
           as="h1"
