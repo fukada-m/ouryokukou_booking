@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { Box, Stack, Wrap, WrapItem, Heading, Text } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
+import {
+  Box,
+  chakra,
+  Stack,
+  Wrap,
+  WrapItem,
+  Heading,
+  Text,
+} from "@chakra-ui/react";
 import { getAllBooking } from "../../utils/api";
 import {
   allBookingState,
@@ -16,6 +25,7 @@ export const AllBooking = () => {
   const setOptionDisp = useSetRecoilState(optionDispState);
   const setButtonDisp = useSetRecoilState(buttonDispState);
   const [loading, setLoading] = useState(false);
+  const Link = chakra(RouterLink);
 
   const fetchAllBooking = async () => {
     setLoading(true);
@@ -68,7 +78,17 @@ export const AllBooking = () => {
                     <Text fontSize={"lg"}>{table.name}</Text>
                   </div>
                 ))}
-                <OptionButtonCollection booking={booking} />
+                <Link
+                  fontSize="lg"
+                  fontWeight={"bold"}
+                  bg={"gray.100"}
+                  py={1}
+                  px={3}
+                  borderRadius={"10px"}
+                  to={`/editBooking/booking/${booking.id}/table/${booking.tables[0]}`}
+                >
+                  編集
+                </Link>
               </Stack>
             </Box>
           </WrapItem>

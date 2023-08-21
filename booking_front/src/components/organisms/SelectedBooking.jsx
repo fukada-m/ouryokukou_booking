@@ -1,8 +1,7 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, chakra } from "@chakra-ui/react";
 import { useRecoilValue } from "recoil";
 import { todayBookingState, buttonDispState } from "../../atom/state";
-import { chakra } from "@chakra-ui/react";
 
 import { BookingContents } from "../molecules/BookingContents";
 import { Link as RouterLink } from "react-router-dom";
