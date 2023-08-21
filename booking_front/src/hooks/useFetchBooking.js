@@ -5,7 +5,7 @@ import { useSetRecoilState } from "recoil";
 
 
 export const useFetchBooking = () => {
-    const { id } = useParams();
+    const { bookingId } = useParams();
     const setDate = useSetRecoilState(dateState);
     const setHour = useSetRecoilState(hourState);
     const setMinute = useSetRecoilState(minuteState);
@@ -17,7 +17,7 @@ export const useFetchBooking = () => {
 
     const fetchBooking = async () => {
         const allBooking = await getAllBooking();
-        const booking = allBooking.find((booking) => booking.id === Number(id));
+        const booking = allBooking.find((booking) => booking.id === Number( bookingId ));
         setDate(booking.date);
         setHour(booking.time.slice(0, 2));
         setMinute(booking.time.slice(3, 5));

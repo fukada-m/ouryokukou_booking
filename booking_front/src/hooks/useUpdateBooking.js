@@ -9,7 +9,7 @@ import { dateState, hourState, minuteState, nameState, numberOfAdultsState, numb
 export const useUpdateBooking = () => {
     const navigate = useNavigate();
     const { showMessage } = useMessage();
-    const { id } = useParams();
+    const { bookingId } = useParams();
     // const { reset } = useReset();
     const date = useRecoilValue(dateState);
     const hour = useRecoilValue(hourState);
@@ -24,7 +24,7 @@ export const useUpdateBooking = () => {
         const week = getWeek(date);
         const data = {
             booking: {
-                id,
+                id: bookingId,
                 week,
                 date,
                 time: `${hour}:${minute}`,
@@ -38,7 +38,7 @@ export const useUpdateBooking = () => {
         const res = await updateBooking(data);
         if (res.status === "SUCCESS") {
             showMessage({ title: "予約の更新に成功しました", status: "success" });
-            navigate("/allBooking");
+            navigate("/todayBooking");
         } else {
             showMessage({ title: "予約の更新に失敗しました", status: "error" });
         }

@@ -25,7 +25,7 @@ const routes = [
         element: <CreateBooking />
     },
     {
-        path: "/editBooking/:id",
+        path: "/editBooking/booking/:bookingId/table/:tableId",
         element: <UpdateBooking />
     },
     {
