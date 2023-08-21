@@ -54,11 +54,11 @@ export const TodayBooking = () => {
     <>
       <MainHeading>今日の予約</MainHeading>
       {loading && <p>読み込み中です...</p>}
-      <Wrap p={{ base: 4, md: 6 }} justify={{ base: "center", md: "left" }}>
+      <Wrap p={{ base: 1, md: 6 }} justify={{ base: "center", md: "left" }}>
         {tables.map((table) => (
           <WrapItem key={table.id}>
             <Box
-              w="200px"
+              w="170px"
               h="100%"
               bg="white"
               borderRadius="10px"
@@ -79,11 +79,11 @@ export const TodayBooking = () => {
           </WrapItem>
         ))}
       </Wrap>
-      <Wrap p={{ base: 4, md: 6 }} justify={{ base: "center", md: "left" }}>
+      <Wrap p={{ base: 1, md: 6 }} justify={{ base: "center", md: "left" }}>
         {noAssigendBooking.map((booking) => (
           <WrapItem key={booking.id}>
             <Box
-              w="200px"
+              w="170px"
               h="100%"
               bg="pink.200"
               borderRadius="10px"
