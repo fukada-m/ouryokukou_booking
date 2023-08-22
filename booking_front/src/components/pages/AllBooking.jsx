@@ -64,7 +64,7 @@ export const AllBooking = () => {
                   py={1}
                   px={3}
                   borderRadius={"10px"}
-                  to={`/editBooking/booking/${booking.id}/table/${booking.tables[0].id}`}
+                  to={`/editBooking/booking/${booking.id}/table/${booking.tables[0]?.id ?? 0}`}
                 >
                   編集
                 </Link>
