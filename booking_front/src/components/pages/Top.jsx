@@ -41,9 +41,9 @@ export const Top = () => {
         ゲストログインして試してみる
       </Button>
       <Image m={"auto"} mb={5} src={appImage} alt="全予約画面の説明" />
-      <Heading my={5}>ボタン操作でわかりやすい</Heading>
+      <Heading my={5}>直感的で分かりやすいUI</Heading>
       <p>
-        右上の4つのボタンのいずれかを押すと各予約に機能を実行するためのボタンを表示します。
+        シンプルさを重視したUIで直感的に操作できるようにしています。
       </p>
       <Image m={"auto"} my={10} src={createBooking} alt="新規予約画面の説明" />
       <Heading my={5}>予約の作成が簡単</Heading>
@@ -56,7 +56,7 @@ export const Top = () => {
       <Button m={"auto"} my={10} onClick={onClickNavigate} display={"block"}>
         スタッフ用ログイン画面に移動
       </Button>
-      <p>深夜から早朝(0:00-8:00)はアクセスできない場合があります。理由は費用削減のためRDSを停止しています。</p>
+      <p>深夜から早朝(23:00-9:00)はアクセスできない場合があります。理由は費用削減のためRDSを停止しています。</p>
     </Box>
   );
 };
