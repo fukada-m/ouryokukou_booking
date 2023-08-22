@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { Box, Stack, Text, Wrap, WrapItem } from "@chakra-ui/react";
 
 import { SelectedBooking } from "../organisms/SelectedBooking";
@@ -7,18 +7,11 @@ import { NoAssignedBooking } from "../organisms/NoAssignedBooking";
 import { LeaveSeatButton } from "../atoms/button/LeaveSeatButton";
 import { SitSeatButton } from "../atoms/button/SitSeatButton";
 import { MainHeading } from "../atoms/heading/MainHeading";
-import {
-  noAssignedBookingState,
-  tableState,
-  optionDispState,
-  buttonDispState,
-} from "../../atom/state";
+import { noAssignedBookingState, tableState } from "../../atom/state";
 import { useFetchTodayBooking } from "../../hooks/useFetchTodayBooking";
 
 export const TodayBooking = () => {
   const [tables, setTables] = useRecoilState(tableState);
-  const setOptionDisp = useSetRecoilState(optionDispState);
-  const setButtonDisp = useSetRecoilState(buttonDispState);
   const noAssigendBooking = useRecoilValue(noAssignedBookingState);
   const { fetch } = useFetchTodayBooking();
   const [loading, setLoading] = useState(false);
@@ -33,20 +26,6 @@ export const TodayBooking = () => {
     };
     fetchData().then(() => {
       setLoading(false);
-    });
-    setOptionDisp({
-      delete: true,
-      edit: true,
-      addTable: true,
-      removeTable: false,
-      moveTable: true,
-    });
-    setButtonDisp({
-      delete: false,
-      edit: false,
-      addTable: false,
-      removeTable: false,
-      moveTable: false,
     });
   }, []);
 

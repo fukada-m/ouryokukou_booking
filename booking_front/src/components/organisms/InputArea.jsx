@@ -12,9 +12,9 @@ import { TextNote } from "../molecules/TextNote";
 export const InputArea = () => {
   return (
     <Box p={{ base: 5, md: 10 }}>
-      <Box display="flex">
-        <InputDate />
-        <Box pl={3} display="flex">
+      <InputDate />
+      <Box mt={3} display="flex">
+        <Box display="flex">
           <SelectHour />
         </Box>
         <SelectMinute />

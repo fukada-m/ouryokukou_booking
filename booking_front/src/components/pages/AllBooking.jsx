@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { Link as RouterLink } from "react-router-dom";
 import {
   Box,
@@ -11,19 +11,12 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { getAllBooking } from "../../utils/api";
-import {
-  allBookingState,
-  buttonDispState,
-  optionDispState,
-} from "../../atom/state";
+import { allBookingState } from "../../atom/state";
 import { MainHeading } from "../atoms/heading/MainHeading";
 import { BookingContents } from "../molecules/BookingContents";
-import { OptionButtonCollection } from "../molecules/OptionButtonCollection";
 
 export const AllBooking = () => {
   const [allBooking, setAllBooking] = useRecoilState(allBookingState);
-  const setOptionDisp = useSetRecoilState(optionDispState);
-  const setButtonDisp = useSetRecoilState(buttonDispState);
   const [loading, setLoading] = useState(false);
   const Link = chakra(RouterLink);
 
@@ -35,20 +28,6 @@ export const AllBooking = () => {
 
   useEffect(() => {
     fetchAllBooking();
-    setOptionDisp({
-      delete: true,
-      edit: true,
-      addTable: true,
-      removeTable: true,
-      moveTable: false,
-    });
-    setButtonDisp({
-      delete: false,
-      edit: false,
-      addTable: false,
-      removeTable: false,
-      moveTable: false,
-    });
   }, []);
 
   return (
@@ -85,7 +64,7 @@ export const AllBooking = () => {
                   py={1}
                   px={3}
                   borderRadius={"10px"}
-                  to={`/editBooking/booking/${booking.id}/table/${booking.tables[0]}`}
+                  to={`/editBooking/booking/${booking.id}/table/${booking.tables[0].id}`}
                 >
                   編集
                 </Link>
