@@ -25,7 +25,12 @@ export const Header = () => {
         color="gray.50"
         align="center"
         justify="space-between"
-        padding={{ base: 3, md: 5 }}
+        padding={{ base: 3, md: 4 }}
+        position="fixed"
+        top="0"
+        left="0"
+        w="100vw"
+        zIndex="1000"
       >
         <Heading
           as="h1"
@@ -44,9 +49,7 @@ export const Header = () => {
           <HeaderLink onClick={onClickCreateBooking}>新規予約</HeaderLink>
         </Flex>
         <Options />
-        <MenuIconButton onOpen={onOpen} />
       </Flex>
-      <MenuDrawer onClose={onClose} isOpen={isOpen} />
     </>
   );
 };

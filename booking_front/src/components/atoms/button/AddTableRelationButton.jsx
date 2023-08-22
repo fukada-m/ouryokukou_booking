@@ -28,7 +28,7 @@ export const AddTableRelationButton = (props) => {
   };
 
   return (
-    <Box display={"flex"}>
+    <Box>
       <Select
         bg={"white"}
         w={"100px"}
@@ -41,7 +41,7 @@ export const AddTableRelationButton = (props) => {
           </option>
         ))}
       </Select>
-      <Button bg={"gray.100"} onClick={onClickAddTableRelation}>
+      <Button fontSize={"2xl"} bg={"white"} onClick={onClickAddTableRelation}>
         席を割り振る
       </Button>
     </Box>

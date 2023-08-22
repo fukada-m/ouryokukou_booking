@@ -17,7 +17,7 @@ export const RegisterBookingButton = (props) => {
   };
 
   return (
-    <Button fontSize={"2xl"} p={8} bg={"white"} onClick={register}>
+    <Button fontSize={"2xl"} mx={10} p={8} bg={"white"} onClick={register}>
       登録
     </Button>
   );

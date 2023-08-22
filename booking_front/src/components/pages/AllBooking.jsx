@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { Box, Stack, Wrap, WrapItem, Heading, Text } from "@chakra-ui/react";
-import { getAllBooking } from "../../utils/api";
+import { useRecoilState } from "recoil";
+import { Link as RouterLink } from "react-router-dom";
 import {
-  allBookingState,
-  buttonDispState,
-  optionDispState,
-} from "../../atom/state";
+  Box,
+  chakra,
+  Stack,
+  Wrap,
+  WrapItem,
+  Heading,
+  Text,
+} from "@chakra-ui/react";
+import { getAllBooking } from "../../utils/api";
+import { allBookingState } from "../../atom/state";
 import { MainHeading } from "../atoms/heading/MainHeading";
 import { BookingContents } from "../molecules/BookingContents";
-import { OptionButtonCollection } from "../molecules/OptionButtonCollection";
 
 export const AllBooking = () => {
   const [allBooking, setAllBooking] = useRecoilState(allBookingState);
-  const setOptionDisp = useSetRecoilState(optionDispState);
-  const setButtonDisp = useSetRecoilState(buttonDispState);
   const [loading, setLoading] = useState(false);
+  const Link = chakra(RouterLink);
 
   const fetchAllBooking = async () => {
     setLoading(true);
@@ -25,20 +28,6 @@ export const AllBooking = () => {
 
   useEffect(() => {
     fetchAllBooking();
-    setOptionDisp({
-      delete: true,
-      edit: true,
-      addTable: true,
-      removeTable: true,
-      moveTable: false,
-    });
-    setButtonDisp({
-      delete: false,
-      edit: false,
-      addTable: false,
-      removeTable: false,
-      moveTable: false,
-    });
   }, []);
 
   return (
@@ -68,7 +57,17 @@ export const AllBooking = () => {
                     <Text fontSize={"lg"}>{table.name}</Text>
                   </div>
                 ))}
-                <OptionButtonCollection booking={booking} />
+                <Link
+                  fontSize="lg"
+                  fontWeight={"bold"}
+                  bg={"gray.100"}
+                  py={1}
+                  px={3}
+                  borderRadius={"10px"}
+                  to={`/editBooking/booking/${booking.id}/table/${booking.tables[0].id}`}
+                >
+                  編集
+                </Link>
               </Stack>
             </Box>
           </WrapItem>

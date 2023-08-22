@@ -4,7 +4,6 @@ import {
     deleteBooking,
     getAllBooking,
     getTables,
-    leaveSeat,
 } from "../utils/api";
 import { today } from "../utils/date";
 import {
@@ -13,6 +12,8 @@ import {
     noAssignedBookingState,
     tableState,
 } from "../atom/state";
+import { useNavigate } from "react-router-dom";
+
 
 export const useDeleteBooking = () => {
     const setAllBooking = useSetRecoilState(allBookingState);
@@ -20,8 +21,10 @@ export const useDeleteBooking = () => {
     const setNoAssigendBooking = useSetRecoilState(noAssignedBookingState);
     const setTables = useSetRecoilState(tableState);
     const { showMessage } = useMessage();
+    const navigate = useNavigate();
 
-    const destroy = async (bookingId, table) => {
+
+    const destroy = async (bookingId) => {
         const data = {
             booking: {
                 id: bookingId,
@@ -39,21 +42,13 @@ export const useDeleteBooking = () => {
         setNoAssigendBooking(noAssigendBooking);
         setAllBooking(allBooking);
         setTodayBooking(todayBooking);
-
-        if (table !== undefined) {
-            const tableId = {
-                table: {
-                    id: table.id,
-                },
-            };
-            await leaveSeat(tableId);
-            const tables = await getTables();
-            tables.sort((a, b) => {
-                return a.id - b.id;
-            });
-            setTables(tables);
-        }
+        const tables = await getTables();
+        tables.sort((a, b) => {
+            return a.id - b.id;
+        });
+        setTables(tables);
         showMessage({ title: "予約を削除しました", status: "success" });
+        navigate("/todayBooking");
     };
     return { destroy }
 }
